@@ -1,0 +1,45 @@
+<script setup lang="ts">
+import { type DataTableColumns, NText } from 'naive-ui/es/components'
+import type { RowData } from 'naive-ui/es/data-table/src/interface'
+import { useProducts } from '~/composables/useProducts'
+const { getTrendingProducts, trendingProducts, isLoading } = useProducts()
+const { renderPrice, renderRate, renderProductImage } = useRender()
+
+onMounted(() => getTrendingProducts(6))
+const columns: DataTableColumns<RowData> = [
+  {
+    title: $t('products.name'),
+    key: 'name',
+    render: (row) => renderProductImage(row.image, row.name),
+  },
+  {
+    title: $t('products.category'),
+    key: 'category',
+    render(row) {
+      return h(
+        NText,
+        {},
+        {
+          default: () => row.category.name,
+        },
+      )
+    },
+  },
+  {
+    title: $t('products.rate'),
+    key: 'rate',
+    render: (row) => renderRate(row.rate),
+  },
+  {
+    title: $t('common.price'),
+    key: 'price',
+    render: (row) => renderPrice(row.price, $t('currencySign')),
+  },
+]
+</script>
+
+<template>
+  <div>
+    <YummyDataTable :loading="isLoading" no-pagination :columns="columns" :rows="trendingProducts" :scroll-x="500" />
+  </div>
+</template>

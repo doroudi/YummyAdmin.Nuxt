@@ -1,0 +1,58 @@
+import type { Color, ColorCreateModel } from "~/models/Color"
+import { type PagedAndSortedRequest,defaultOptions, } from "~/models/PagedAndSortedRequest"
+import { useColorService } from '~/services/color.service'
+
+export const useColors = () => {
+    const colorService = useColorService()
+    const colors = ref<Color[]>([])
+    const colorItem = ref<Color>()
+    const isLoading = ref(false)
+    const isSaving = ref(false)
+
+    async function getColors(options: PagedAndSortedRequest) {
+        isLoading.value = true
+        try {
+            const response = await colorService.getPagedList(options)
+            colors.value = response.items
+            options.pageCount = Math.ceil(response.totalCount! / options.pageSize!)
+        } finally {
+            isLoading.value = false
+        }
+    }
+
+    function getColor() { }
+
+    async function createColor(colorItem: ColorCreateModel) {
+        isLoading.value = true
+        try {
+            await colorService.create(colorItem)
+            getColors(defaultOptions)
+        } finally {
+            isLoading.value = false
+        }
+    }
+
+    async function deleteColor(id: string) {
+        await colorService.delete(id)
+        colors.value.splice(
+            colors.value.findIndex((x: Color) => x.id === id),
+            1,
+        )
+
+        // getColors(defaultOptions)
+    }
+
+    function editColor() { }
+
+    return {
+        isLoading,
+        isSaving,
+        colors,
+        colorItem,
+        getColors,
+        getColor,
+        createColor,
+        deleteColor,
+        editColor,
+    }
+}
