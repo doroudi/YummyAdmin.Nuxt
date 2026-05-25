@@ -1,4 +1,4 @@
-export default function useColorsUtility() {
+export function useColorsUtility() {
   const primaryColors = [
     '#009b43',
     '#DB0B51',

@@ -2,6 +2,7 @@
 definePageMeta({
   title: 'dashboard',
   name: 'ecommerce-dashboard',
+  breadcrumb: ['dashboard']
 })
 </script>
 

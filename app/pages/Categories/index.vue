@@ -1,15 +1,10 @@
-<!-- <script setup lang="ts">
-import CategoryManagement from '~/components/Category/CategoryManagement'
-
-</script> -->
-
-<!-- <route lang="yaml">
-meta:
-  title: categories
-  breadcrumb:
-    - productManagement
-    - categories
-</route> -->
+<script setup lang="ts">
+definePageMeta({
+  title: 'categories',
+  name: 'ecommerce-categories',
+  breadcrumb: ['productManagement', 'categories']
+})
+</script>
 
 <template>
   <CategoryManagement />

@@ -14,7 +14,7 @@ async function doRegister() {
     if (!errors) {
       const registerResult = await register(registerInfo.value)
       if (registerResult) {
-        useNotification().success($t('register.successMessage'))
+        useNotification().success({title: $t('register.successMessage') })
         setTimeout(() => router.push('/'), 500)
       } else {
         loginFailed.value = true
@@ -42,14 +42,13 @@ const rules: FormRules = {
     },
   ],
 }
-</script>
 
-<route lang="yaml">
-meta:
-  title: register
-  layout: auth
+definePageMeta({
+  layout: 'auth',
+  title: 'register',
   authRequired: false
-</route>
+})
+</script>
 
 <template>
   <div class="bg flex justify-center items-center h-screen">

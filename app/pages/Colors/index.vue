@@ -1,14 +1,10 @@
 <script setup lang='ts'>
-
+definePageMeta({
+  title: 'colors',
+  name: 'colors',
+  breadcrumb: ['productManagement', 'colors']
+})
 </script>
-
-<!-- <route lang="yaml">
-meta:
-  title: colors
-  breadcrumb:
-    - productManagement
-    - colors
-</route> -->
 
 <template>
   <ColorManagement />

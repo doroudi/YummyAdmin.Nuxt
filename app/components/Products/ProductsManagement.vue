@@ -2,14 +2,15 @@
 import { ProductStatus } from '~/models/Product'
 import { useProducts } from '~/composables/useProducts'
 import YummyDataTable from '../shared/YummyDataTable.vue'
-import { NSwitch } from 'naive-ui'
+import { NSwitch, type DataTableColumns, type DataTableRowKey, type DataTableSortState } from 'naive-ui'
+import type { FilterOptionValue, RowData } from 'naive-ui/es/data-table/src/interface'
 const { enumToFilter } = useFilter()
 const { getProducts, deleteProduct, deleteMultipleProducts, isLoading, products } = useProducts()
 
 const router = useRouter()
 const { renderDeleteActionButton } = useRender()
 const { options, bindOptionsToDataTable, filterApplied, resetFilters } = useOptions()
-const { renderPrice, renderRate, renderTag, renderProductImage, renderText } = useRender()
+const { renderPrice, renderRate, renderTag, renderProductImage, renderText, renderIcon } = useRender()
 
 const columns: DataTableColumns<RowData> = [
   {
@@ -31,7 +32,7 @@ const columns: DataTableColumns<RowData> = [
     title: $t('products.rate'),
     key: 'rate',
     sorter: true,
-    render: (row) => renderRate(row.rate),
+    render: (row) => renderRate(row.rate)
   },
   {
     title: $t('common.price'),

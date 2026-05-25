@@ -53,7 +53,7 @@ function gotoRoute(name: string) {
 </script>
 
 <template>
-  <div class="hidden md:block md:me-2 md:w-40 transition-property-all transition-ease-in transition-duration-200"
+  <div class="hidden md:block md:me-2 md:w-40 transition-all ease-in duration-200"
     :class="{ 'md:w-60': focused }">
     <n-auto-complete v-model:value="searchTerm" @select="gotoRoute" :options="options" 
       clear-after-select blur-after-select>

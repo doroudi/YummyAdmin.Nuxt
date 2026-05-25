@@ -69,14 +69,9 @@ const rules: FormRules = {
 
 definePageMeta({
   layout: 'auth',
+  title: 'login'
 })
 </script>
-
-<!-- <route lang="yaml">
-meta:
-  title: login
-  authRequired: false
-</route> -->
 
 <template>
   <div class="bg flex justify-center items-center h-screen">

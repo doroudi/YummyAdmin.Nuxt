@@ -1,14 +1,10 @@
-<!-- <script setup lang="ts">
-
-</script> -->
-
-<!-- <route lang="yaml">
-meta:
-  title: reviews
-  breadcrumb:
-    - feedbacks
-    - reviews
-</route> -->
+<script setup lang="ts">
+definePageMeta({
+  title: 'reviews',
+  name: 'reviews',
+  breadcrumb: ['feedbacks', 'reviews']
+})
+</script>
 
 <template>
   <ReviewManagement />

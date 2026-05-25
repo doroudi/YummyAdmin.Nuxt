@@ -1,15 +1,10 @@
 <script setup lang="ts">
-
+definePageMeta({
+  title: 'chat',
+  name: 'chat',
+  breadcrumb: ['apps', 'chat']
+})
 </script>
-
-<!-- <route lang="yaml">
-meta:
-  title: chat
-  layout: wide
-  breadcrumb:
-    - apps
-    - chat
-</route> -->
 
 <template>
   <ChatApp />

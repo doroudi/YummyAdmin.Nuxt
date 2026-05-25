@@ -38,7 +38,8 @@
     "vooks": "^0.2.12",
     "vue": "^3.5.32",
     "vue3-apexcharts": "^1.10.0",
-    "vue3-map-chart": "^0.0.6"
+    "vue3-map-chart": "^0.0.6",
+    "@vueup/vue-quill": "^1.2.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^10.4.0",

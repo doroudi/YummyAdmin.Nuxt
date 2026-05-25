@@ -57,6 +57,14 @@ export function useRender() {
     return iconNode
   }
 
+  function renderRawIcon(icon: string, color : string | null = null) {
+    if (!icon) return
+
+    return h(NIcon, { color: color ?? undefined }, {
+      default: () => h(Icon, { icon })
+    })
+  }
+
   function renderTag(
     text: string,
     type: 'error' | 'default' | 'success' | 'warning' | 'primary' | 'info',
@@ -68,7 +76,8 @@ export function useRender() {
     return h(
       NTag,
       { type, bordered, round, size: 'small' },
-      { default: () => t(`enums.${typename}.${stateEnum[text]}`) 
+      {
+        default: () => t(`enums.${typename}.${stateEnum[text]}`)
       },
     )
   }
@@ -78,16 +87,21 @@ export function useRender() {
       NText,
       {},
       {
-        default: () => value.toLocaleString() + postfix,
+        default: () => `${value.toLocaleString()} ${postfix}`,
       },
     )
   }
 
   function renderRate(rate: number) {
-    return [
-      h(Icon, { color: 'gold', name: 'fluent:star-24-filled' }, {}),
-      h(NText, { class: 'mx-2' }, { default: () => rate }),
-    ]
+    return h(
+      NSpace,
+      { align: 'center' },
+      {
+        default: () => [
+          renderRawIcon('fluent:star-24-filled', 'gold'),
+          h(NText, {  }, { default: () => rate }),
+        ]
+      })
   }
 
   function renderProductImage(image: string, name: string) {
@@ -149,11 +163,7 @@ export function useRender() {
       { align: 'center', justify: 'start' },
       {
         default: () => [
-          h(
-            Icon,
-            { color: iconColor, size: 'large', name: icon },
-            {},
-          ),
+          renderIcon(icon),
           h(NText, {}, { default: () => label }),
         ],
       },
@@ -222,8 +232,8 @@ export function useRender() {
       {
         icon: renderIcon(
           confirmed ? 'fluent:checkmark-circle-20-filled' : 'fluent:warning-20-filled',
-          false,
-          confirmed ? 'green' : 'orange',
+          false
+          // confirmed ? 'green' : 'orange',
         ),
         default: () => email.toLowerCase(),
       },

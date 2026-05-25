@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useToDoApp } from '~/composables/useTodo';
 import type { TaskGroup } from '~/models/Todo'
-import EmojiPicker from './EmojiPicker'
+import { useColorsUtility } from '~/composables/useColorsUtility';
 
 const props = defineProps<{ show: boolean }>()
 const emits = defineEmits(['close', 'created'])

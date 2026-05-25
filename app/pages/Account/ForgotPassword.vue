@@ -2,7 +2,7 @@
 import type { FormInst, FormRules } from 'naive-ui/es/form/src/interface'
 import validations from '~/common/validations'
 
-const { isLoading, resetPassword  } = useAccount()
+const { isLoading, resetPassword } = useAccount()
 const forgetInfo = ref<{ email: string }>({ email: '' })
 const router = useRouter()
 const formRef = ref<FormInst | null>(null)
@@ -11,7 +11,7 @@ async function doResetPassword() {
     if (!errors) {
       const loginSucceed = await resetPassword(forgetInfo.value)
       if (loginSucceed) {
-        useNotification().success($t('forgot.sendEmailSuccess'))
+        useNotification().success({ title: $t('forgot.sendEmailSuccess') })
         setTimeout(() => router.push('/Account/Login'), 500)
       }
     }
@@ -79,13 +79,13 @@ meta:
 
 <style lang='scss'>
 .login-box {
-    max-width: 380px;
+  max-width: 380px;
 
-    .failed {
-        animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
-        transform: translate3d(0, 0, 0);
-        backface-visibility: hidden;
-        perspective: 1000px;
-    }
+  .failed {
+    animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
 }
 </style>
