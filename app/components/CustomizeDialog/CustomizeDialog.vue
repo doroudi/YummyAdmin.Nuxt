@@ -1,25 +1,26 @@
-<script setup>
+<script setup lang="ts">
 import { useColorsUtility } from '~/composables/useColorsUtility'
-const { primaryColors  } = useColorsUtility()
+import { useLayout } from '~/composables/useLayout'
+const { primaryColors } = useColorsUtility()
 const customColor = ref('')
-const { isRtl, isFluid, flatDesign } = useLayout()
+const { isRtl, isFluid, flatDesign, isDark, toggleTheme, setThemeColor, themeColor } = useLayout()
 function setLight() {
-  if (isDark.value) layout.toggleTheme()
+  if (isDark.value) toggleTheme()
 }
 
 function setDark() {
-  if (!layout.isDark.value) layout.toggleTheme()
+  if (!isDark.value) toggleTheme()
 }
 
 const colors = primaryColors
 const selectedColorIndex = ref(0)
-function setColor(index) {
+function setColor(index: number) {
   selectedColorIndex.value = index
-  layout.setThemeColor(colors[index])
+  setThemeColor(colors[index]!)
 }
 
 onMounted(() => {
-  selectedColorIndex.value = colors.indexOf(layout.themeColor)
+  selectedColorIndex.value = colors.indexOf(themeColor.value)
 })
 
 const colorPickerRef = ref()
@@ -27,17 +28,17 @@ async function selectColor() {
   colorPickerRef.value.click()
 }
 
-let updateInterval = ref()
+let updateInterval : any = null;
 watch(
   customColor,
-  (newColor) => {
+  (newColor: any) => {
     selectedColorIndex.value = 100
     updateInterval = setTimeout(() => {
-      layout.setThemeColor(newColor)
+      setThemeColor(newColor)
       clearTimeout(updateInterval)
     }, 200)
   },
-  { lazy: true },
+  // { lazy: true },
 )
 </script>
 
@@ -48,13 +49,13 @@ watch(
     </NTag>
 
     <n-space justify="start" size="large">
-      <NButton ghost class="p-7" :type="layout.isDark === false ? 'primary' : 'default'" size="large" @click="setLight">
+      <NButton ghost class="p-7" :type="isDark === false ? 'primary' : 'default'" size="large" @click="setLight">
         <template #icon>
           <Icon name="fluent:weather-sunny-48-regular" />
         </template>
       </NButton>
 
-      <NButton ghost class="w-full p-7" :type="layout.isDark ? 'primary' : 'default'" size="large" @click="setDark">
+      <NButton ghost class="w-full p-7" :type="isDark ? 'primary' : 'default'" size="large" @click="setDark">
         <template #icon>
           <Icon name="fluent:weather-moon-48-regular" />
         </template>
@@ -82,11 +83,11 @@ watch(
           </template>
         </NButton>
       </label>
-      <input type="color" ref="colorPickerRef" v-model="customColor" class="invisible" style="width:15px"
+      <input type="color" ref="colorPickerRef" class="invisible" style="width:15px"
         value="#1dbbce" id="colorPicker">
     </div>
   </div>
-  <div class="section">
+   <div class="section">
     <NTag type="primary" :bordered="false" size="small" class="mb-3 font-bold">
       {{ $t('customize.layout') }}
     </NTag>
@@ -104,7 +105,7 @@ watch(
       <n-switch v-model:value="flatDesign" />
       {{ $t('customize.flatDesign') }}
     </div>
-  </div>
+  </div> 
 </template>
 
 <style lang="scss" scoped>

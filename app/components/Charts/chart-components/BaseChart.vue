@@ -1,9 +1,13 @@
 <script setup lang="ts">
+import VueApexCharts from 'vue3-apexcharts'
+
 import type { ChartData, SimpleChartSeries } from '~/models/ChartData'
+import type { SimpleChartProps } from '~/models/ChartsProps'
+import type { ChartProps } from '~/models/ChartsProps'
 import { useChartOptions } from '~/composables/useChartOptions'
 import { useSimpleChartOptions } from '~/composables/useSimpleChartOptions'
 
-type LocalChartProps = {
+interface LocalChartProps {
     data?: ChartData | SimpleChartSeries | null
     colors?: string[]
     colorScheme?: string
@@ -16,10 +20,9 @@ type LocalChartProps = {
     legendPosition: 'bottom' | 'right' | 'left'
 }
 
-const props = withDefaults(defineProps<LocalChartProps>(), {
-    data: () => null as ChartData | SimpleChartSeries | null,
-    colors: () => null,
-    colorScheme: null,
+const props = withDefaults(defineProps<LocalChartProps>(),  {
+    colors: () => [],
+    colorScheme: '',
     height: 400,
     type: 'line',
     error: null,
@@ -28,8 +31,8 @@ const props = withDefaults(defineProps<LocalChartProps>(), {
 
 const { defaultOptions, safeSeries, validateChartData, showChart } =
     Array.isArray(props.data)
-        ? useSimpleChartOptions(props)
-        : useChartOptions(props)
+        ? useSimpleChartOptions(props as SimpleChartProps)
+        : useChartOptions(props as ChartProps)
 
 const activeOptions = computed(
     () =>

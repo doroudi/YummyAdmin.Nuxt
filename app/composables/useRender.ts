@@ -113,8 +113,8 @@ export function useRender() {
           h(
             NImage,
             {
-              src: image ?? './assets/images/fallback.png',
-              fallbackSrc: './assets/images/fallback.png',
+              src: image ?? '/assets/images/fallback.png',
+              fallbackSrc: '/assets/images/fallback.png',
               width: 38,
               height: 38,
               objectFit: 'contain',
@@ -140,7 +140,7 @@ export function useRender() {
             NImage,
             {
               src: image,
-              fallbackSrc: './assets/images/avatar.png',
+              fallbackSrc: '/assets/images/avatar.png',
               width: 38,
               height: 38,
               objectFit: 'contain',

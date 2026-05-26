@@ -35,8 +35,8 @@ export default defineEventHandler(
 )
 
 async function proxyToBackend(event: any, path: string) {
-    const runtimeConfig = useRuntimeConfig()
-    const backendUrl = runtimeConfig.public.apiBaseUrl
+    // const runtimeConfig = useRuntimeConfig()
+    const backendUrl = '' //runtimeConfig.public.apiBaseUrl
 
     if (!backendUrl) {
         throw createError({

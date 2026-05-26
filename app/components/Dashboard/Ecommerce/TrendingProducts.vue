@@ -5,7 +5,11 @@ import { useProducts } from '~/composables/useProducts'
 const { getTrendingProducts, trendingProducts, isLoading } = useProducts()
 const { renderPrice, renderRate, renderProductImage } = useRender()
 
-onMounted(() => getTrendingProducts(6))
+onMounted(loadItems)
+
+function loadItems() {
+  getTrendingProducts(6)
+}
 const columns: DataTableColumns<RowData> = [
   {
     title: $t('products.name'),
@@ -40,6 +44,6 @@ const columns: DataTableColumns<RowData> = [
 
 <template>
   <div>
-    <YummyDataTable :loading="isLoading" no-pagination :columns="columns" :rows="trendingProducts" :scroll-x="500" />
+    <YummyDataTable :row-key="(row: any) => row.id" :loading="isLoading" no-pagination :columns="columns" :rows="trendingProducts" :scroll-x="500" :fetch="loadItems" />
   </div>
 </template>

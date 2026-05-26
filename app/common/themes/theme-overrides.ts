@@ -8,6 +8,7 @@ export const themeOverrides: GlobalThemeOverrides = {
         borderRadius: "5px",
         borderRadiusSmall: "3px",
         borderColor: "#e4e7ec",
+        
     },
     Card: {
         borderRadius: "5px",
@@ -27,8 +28,10 @@ export const darkThemeOverrides: GlobalThemeOverrides = {
         warningColor: "#FF8000",
         borderRadius: "5px",
         borderRadiusSmall: "3px",
-        cardColor: "#0f172a",
         borderColor: "#1c2334",
+        cardColor: "#0f172a",
+        popoverColor: '#0f172a',
+        modalColor: '#1c202c',
     },
     Card: {
         borderRadius: "7px",
@@ -37,6 +40,7 @@ export const darkThemeOverrides: GlobalThemeOverrides = {
         thColor: "#1c202c",
         tdColor: "#1c2334",
         hoverColor: "#1c202c",
+        tdColorHover: '#1c202c',
     },
     Tag: {
         borderRadius: "4px",
