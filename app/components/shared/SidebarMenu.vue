@@ -30,19 +30,19 @@ onMounted(() => activateCurrentRoute())
 
 function activateCurrentRoute() {
   setTimeout(() => {
-    const keys = props.options.flatMap((m: SidebarMenuOption) =>
-      m.children
-        ? [m, ...m.children.flatMap((child) => child.children || child)]
-        : m,
+    const keys = props.options.flatMap((item: SidebarMenuOption) =>
+      item.children
+        ? [item, ...item.children.flatMap((child) => child.children || child)]
+        : item,
     )
-
+    const currentRouteName = route.name?.toString().toLowerCase().replace(/__.*/g, '')
     if (keys !== undefined) {
       selectedMenuKey.value =
-        keys.find(
-            (s: SidebarMenuOption) =>
-              s.key?.toLowerCase() === route.name?.toString().toLowerCase(),
-          )?.key ?? 'dashboard-ecommerce' //default route
-
+      keys.find(
+        (s: SidebarMenuOption) =>
+        s.key?.toLowerCase() === currentRouteName,
+      )?.key ?? 'dashboard-ecommerce' //default route
+      
       menuRef.value?.showOption(selectedMenuKey.value)
     }
   }, 20)
@@ -50,9 +50,7 @@ function activateCurrentRoute() {
 
 watch(
   () => route.name,
-  () => {
-    setTimeout(() => activateCurrentRoute(), 200)
-  },
+  () =>  setTimeout(() => activateCurrentRoute(), 200)
 )
 
 const items = computed(() =>

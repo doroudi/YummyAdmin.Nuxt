@@ -2,9 +2,6 @@
 import { NButton } from 'naive-ui'
 import { useToDoApp } from '~/composables/useTodo'
 import type { TaskGroup } from '~/models/Todo'
-import TasksList from './TasksList'
-import TodoGroupsList from './TodoGroupsList'
-import CreateGroup from './CreateGroup'
 const collapsed = ref(false)
 const { groups, loadGroups }= useToDoApp()
 const filteredGroups = ref<TaskGroup[]>([])

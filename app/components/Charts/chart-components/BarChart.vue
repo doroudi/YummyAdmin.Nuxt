@@ -1,8 +1,8 @@
 <script setup lang="ts">
 interface Props {
-  data: any
+  data: import('~/models/ChartData').ChartData
   colorScheme?: string
-  colors: string[]
+  colors?: string[]
   height: number | string
   loading?: boolean
   color: string

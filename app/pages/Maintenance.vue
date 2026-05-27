@@ -1,7 +1,8 @@
-<!-- <route lang="yaml">
-meta:
-  layout: ErrorLayout
-</route> -->
+<script setup lang="ts">
+definePageMeta({
+    layout: 'error-layout'
+})
+</script>
 
 <template>
     <div class="flex justify-center items-center h-100vh">

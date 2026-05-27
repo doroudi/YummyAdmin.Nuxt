@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { ChartData } from '~/models/ChartData'
-import reportService from '~/services/report.service'
+import { useReportService } from '~/services/report.service'
+const reportService = useReportService()
 
 const monthlySellStat = ref<ChartData | null>(null)
 const isLoading = ref(true)
@@ -18,7 +19,7 @@ async function loadData() {
 </script>
 
 <template>
-  <Card stretch-height title-size="medium">
+  <Card stretch-height title-size="normal">
     <template #title>
       <header class="flex w-full flex-row justify-between items-center pb-5" title="">
         <h3 class="title text-lg">📈 Line Chart Demo</h3>
@@ -31,11 +32,11 @@ async function loadData() {
             </template>
             {{ $t('common.refresh') }}
           </n-tooltip>
-
+          <!-- TODO: create action button component -->
           <n-tooltip placement="top" trigger="hover">
             <template #trigger>
               <n-button @click="loadData" quaternary circle>
-                <Icon name="fluent:arrow-counterclockwise-32-filled" />
+                <Icon name="fluent:settings-20-regular" />
               </n-button>
             </template>
             {{ $t('common.settings') }}

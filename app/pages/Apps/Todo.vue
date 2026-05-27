@@ -7,5 +7,5 @@ definePageMeta({
 </script>
 
 <template>
-    <ToDoApp />
+    <TodoApp />
 </template>

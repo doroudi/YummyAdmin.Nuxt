@@ -37,21 +37,16 @@ class MockRegistry {
                 handler
             })
         }
-        
-        // console.log('✅ Registered:', method, path)
     }
     
    
     findMockHandler(method: string, fullPath: string) {
         // Clean the path
         let cleanPath = fullPath.split('?')[0]
-        cleanPath = cleanPath.replace(/^\//, '')
-        cleanPath = cleanPath.replace(/\/$/, '')
-        cleanPath = cleanPath.toLowerCase()
+        cleanPath = cleanPath?.replace(/^\//, '')
+        cleanPath = cleanPath?.replace(/\/$/, '')
+        cleanPath = cleanPath?.toLowerCase()
 
-        // console.log('🔍 Looking for:', method, cleanPath)
-        
-        // First try exact match
         let handler = this.mockHandlers.find(h => 
             h.method === method && h.path.toLowerCase() === cleanPath
         )

@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { ChartData } from '~/models/ChartData'
-import reportService from '~/services/report.service'
+import { useReportService } from '~/services/report.service'
+const reportService = useReportService()
 
 const monthlySellStat = ref<ChartData | null>(null)
 const isLoading = ref(true)
@@ -26,9 +27,9 @@ const demoOptions = [
 </script>
 
 <template>
-    <Card stretch-height title-size="medium">
+    <Card stretch-height title-size="normal">
         <template #title>
-            <header class="flex w-full flex-row justify-between items-center pb-5" title="">
+            <header class="flex w-full flex-row justify-between items-center pb-5">
                 <h3 class="title text-lg">📊 Bar Chart Demo</h3>
                 <div>
                     <n-tooltip placement="top" trigger="hover">

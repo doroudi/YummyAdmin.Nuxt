@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { SidebarMenuOption  } from './SidebarMenu.vue'
 const layoutStore = useLayout()
 const { collapsed, forceCollapsed, mobileMode, mobileMenuClosed } = useLayout()
 

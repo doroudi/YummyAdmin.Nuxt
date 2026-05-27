@@ -16,6 +16,7 @@ const { isFluid, supportEnabled } = useLayout()
 const effectiveFluid = computed(() => {
   return props.isFluid || isFluid.value
 })
+const currentRouteName = useRoute().name
 </script>
 
 <template>
@@ -27,8 +28,9 @@ const effectiveFluid = computed(() => {
         <div class="relative h-full">
           <NScrollbar>
             <div class="h-full overflow-auto md:mx-auto"
-              :class="{ 'md-container': !effectiveFluid, 'md:pb-18': !fullScreen, 'p-3': !fullScreen }">
+              :class="{ 'md:container': !effectiveFluid, 'md:pb-18': !fullScreen, 'p-3': !fullScreen }">
               <n-layout-content>
+                <DarkModeContainer class="z-1" />
                 <slot />
               </n-layout-content>
             </div>

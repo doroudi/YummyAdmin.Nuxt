@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 definePageMeta({
   title: 'brands',
-  name: 'ecommerce-brands',
+  name: 'brands',
   breadcrumb: ['productManagement', 'brands']
 })
 </script>

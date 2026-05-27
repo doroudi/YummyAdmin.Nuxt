@@ -1,6 +1,6 @@
 <template>
-    <router-link to="/">
-        <n-button round size="large" primary type="warning" m="3 t8">
+    <nuxt-link to="/">
+        <n-button round size="large" primary type="warning" class="m-3 mt-8">
             <template #icon>
                 <n-icon size="1.4rem" class="home-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -15,7 +15,7 @@
             </template>
             {{ $t('common.goHome') }}
         </n-button>
-    </router-link>
+    </nuxt-link>
 </template>
 
 <style lang="scss" scoped>

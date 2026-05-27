@@ -32,7 +32,7 @@ function createFakeProfile(): Profile {
       min: 1,
       max: 20,
     })}.png`,
-    phone: faker.phone.number('0##########'),
+    phone: faker.phone.number({ style: 'national' }),
     socials: [
       { name: 'facebook', url: faker.internet.url() },
       { name: 'telegram', url: faker.internet.url() },

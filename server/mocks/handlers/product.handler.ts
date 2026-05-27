@@ -39,7 +39,7 @@ const fakeImages = [
 ]
 const products = times(27, createFakeProductListItem)
 
-registerMockHandler('GET', 'product', async (event) => {
+registerMockHandler('GET', 'product', async (event: any) => {
   const response = CreatePagedResponse<ProductListDto>(
     event,
     products,
@@ -50,7 +50,7 @@ registerMockHandler('GET', 'product', async (event) => {
   return response
 })
 
-registerMockHandler('DELETE','product/:id', ({ params }) => {
+registerMockHandler('DELETE','product/:id', (_, params) => {
   const { id } = params
   products.splice(
     products.findIndex((x) => x.id === id),

@@ -1,11 +1,16 @@
 <script setup lang="ts">
+import type { SimpleChartSeries } from '~/models/ChartData'
+
 interface Props {
-  data: any[]
+  data: SimpleChartSeries
+  loading?: boolean
+  height?: number | string
   colorScheme?: string
   colors: string[]
   showLegend?: boolean
   legendPosition?: 'bottom' | 'right' | 'left'
 }
+
 const props = withDefaults(defineProps<Props>(), {
   showLegend: true,
   legendPosition: 'bottom',

@@ -34,21 +34,21 @@ export default defineNuxtConfig({
     families: [
       {
         name: 'Inter', 
-        provider: 'local',
-        src: '~/public/Inter.woff2',
+        provider: 'google',
+        // src: '~/assets/fonts/Inter.woff2',
         display: 'swap',
         weight: [400, 700],
         style: 'normal',
-        fallbacks: ['Arial'],
+        fallbacks: ['Sans Serif','Segoe UI', 'Arial'],
       },
       {
         name: 'Quicksand', 
-        provider: 'local',
-        src: '~/public/Quicksand.woff2',
+        provider: 'google',
+        // src: '~/assets/fonts/Quicksand.woff2',
         display: 'swap',
         weight: [400, 700],
         style: 'normal',
-        fallbacks: ['Arial'],
+        fallbacks: ['Sans Serif','Segoe UI', 'Arial'],
       }
     ]
   },
