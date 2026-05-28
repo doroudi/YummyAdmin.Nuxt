@@ -145,7 +145,7 @@ registerMockHandler('GET', 'todo/groups', () => {
   return { items: createFakeTaskGroups() }
 })
 
-registerMockHandler('GET', 'todo/groups/:id/tasks', (event, params) => {
+registerMockHandler('GET', 'todo/groups/:id/tasks', (event: any, params: any) => {
   const { id } = params
   const response = createFakeTaskItems(Number.parseInt(id?.toString() ?? '1', 10))
   return response

@@ -50,7 +50,7 @@ registerMockHandler('GET', 'product', async (event: any) => {
   return response
 })
 
-registerMockHandler('DELETE','product/:id', (_, params) => {
+registerMockHandler('DELETE','product/:id', (event: any, params: any) => {
   const { id } = params
   products.splice(
     products.findIndex((x) => x.id === id),

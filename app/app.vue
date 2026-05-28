@@ -18,11 +18,13 @@ const activeThemeOverrides = computed(() => {
 watch(
   () => isDark.value,
   (newValue) => {
-    useHead({
-      htmlAttrs: {
-        class: newValue ? 'dark' : 'light'
-      }
-    })
+    if (import.meta.client) {
+      const newTheme = newValue ? 'dark' : 'light'
+
+      const htmlElement = document.documentElement
+      htmlElement.classList.remove(newValue ? 'light' : 'dark')
+      htmlElement.classList.add(newTheme)
+    }
   },
   { immediate: true }
 )
@@ -35,7 +37,6 @@ useHead({
   htmlAttrs: {
     lang: "en-US",
   },
-
 });
 
 const title = "Yummy Admin Nuxt - Nuxt 3 Starter Template with Naive UI and Tailwind CSS";

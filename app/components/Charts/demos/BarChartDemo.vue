@@ -11,7 +11,7 @@ onMounted(loadData)
 async function loadData() {
   try {
     isLoading.value = true
-    monthlySellStat.value = []
+    monthlySellStat.value = {} as ChartData
     monthlySellStat.value = await reportService.getChartDemoData(7)
   } finally {
     isLoading.value = false

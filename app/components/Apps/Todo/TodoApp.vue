@@ -8,7 +8,7 @@ const filteredGroups = ref<TaskGroup[]>([])
 const searchKeyword = ref('')
 onMounted(async () => {
   await loadGroups()
-  selectGroup(groups.value[0])
+  selectGroup(groups.value[0]!)
 })
 
 const selectedGroup = ref<TaskGroup>()
@@ -33,7 +33,7 @@ function createGroup() {
 
 function handleNewGroupCreated() {
   showCreateModal.value = false
-  selectGroup(groups.value[groups.value.length - 1])
+  selectGroup(groups.value[groups.value.length - 1]!)
 }
 </script>
 

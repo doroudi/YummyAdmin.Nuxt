@@ -22,7 +22,7 @@ const columns: DataTableColumns<RowData> = [
     key: 'actions',
     width: 110,
     render: (row) => [
-      renderActionButton('fluent:edit-32-regular', () => {}),
+      renderActionButton('fluent:edit-32-regular', () => { }),
       renderDeleteActionButton($t('common.deleteConfirm'), () =>
         handleDeleteItem(row),
       ),
@@ -41,7 +41,7 @@ const showAddDialog = ref(false)
 function handleDeleteItem(row: RowData) {
   deleteBrand(row.id)
   getItems()
-  useNotification().success(`Brand ${row.name} was deleted!`)
+  useNotification().success({ title: `Brand ${row.name} was deleted!` })
 }
 
 function rowKey(row: RowData) {
@@ -72,9 +72,8 @@ function createBrand() {
       </n-space>
 
       <SkeletonTable v-if="isLoading" :columns="columns" />
-      <n-data-table v-else remote :columns="columns" :data="brands"
-        :pagination="options" :row-key="rowKey" :scroll-x="1000" @update:filters="getItems"
-        @update:page="handlePageChange" />
+      <n-data-table v-else remote :columns="columns" :data="brands" :pagination="options" :row-key="rowKey"
+         @update:filters="getItems" @update:page="handlePageChange" />
     </n-layout-content>
 
     <n-drawer v-model:show="showAddDialog" :width="380" :placement="dialogPlacement">

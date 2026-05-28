@@ -5,7 +5,7 @@ import { registerMockHandler } from '../registry.ts'
 
 const reviews = times(65, createFakeReview)
 
-registerMockHandler('GET', 'review', async (request) => {
+registerMockHandler('GET', 'review', async (request: any) => {
   const response = CreatePagedResponse<Review>(request, reviews)
   await delay(1000)
   return response

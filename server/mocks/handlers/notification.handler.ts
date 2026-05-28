@@ -5,7 +5,7 @@ import { registerMockHandler } from '../registry.ts'
 
 const notifications = createFakeNotification()
 
-registerMockHandler('GET', 'notification', (request) => {
+registerMockHandler('GET', 'notification', (request: any) => {
   const response = CreateListResponse<Notification>(
     request,
     notifications,

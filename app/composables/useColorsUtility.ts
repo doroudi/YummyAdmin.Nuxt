@@ -1,8 +1,11 @@
 export function useColorsUtility() {
   const primaryColors = [
     '#009b43',
+    '#22c55e',
     '#DB0B51',
+    '#ec4899',
     '#0099e0',
+    '#0ea5e9',  
     '#ff7300',
     '#008f85',
     '#9575cd',

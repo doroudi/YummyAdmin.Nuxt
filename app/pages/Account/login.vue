@@ -9,6 +9,8 @@ import ThemeSwitch from '@/components/Navbar/ThemeSwitch.vue'
 import type { LoginViewModel } from '~/models/Account'
 
 const { isLoading, login, socialLogin } = useAccount()
+const { isDark } = useLayout()
+
 const loginInfo = ref<LoginViewModel>({
   username: 'Yummy',
   password: 'Admin!',
@@ -74,6 +76,7 @@ definePageMeta({
 </script>
 
 <template>
+  <debug :value="isDark" />
   <div class="bg flex justify-center items-center h-screen">
     <div class="login-box w-full px-3 md:px-0">
       <div class="md:shadow-lg bg-white dark:bg-slate-800  rounded-md w-full" :class="{ failed: loginFailed }">

@@ -227,7 +227,6 @@ export function useRender() {
         round: true,
         bordered: false,
         color: { color: 'transparent' },
-        type: confirmed ? 'success' : 'warning',
       },
       {
         icon: renderColoredIcon(

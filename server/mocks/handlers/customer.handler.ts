@@ -5,7 +5,7 @@ import { registerMockHandler } from '../registry.ts'
 
 const customers = times(65, createFakeCustomer)
 
-registerMockHandler('GET', 'customer', (request) => {
+registerMockHandler('GET', 'customer', (request: any) => {
   const response = CreatePagedResponse<Customer>(
     request,
     customers,
@@ -14,7 +14,7 @@ registerMockHandler('GET', 'customer', (request) => {
   return response
 })
 
-registerMockHandler('POST', 'customer', async (request) => {
+registerMockHandler('POST', 'customer', async (request: any) => {
   const newItem = (await request.json()) as CustomerCreateModel
   const customer: CustomerCreateModel = {
     id: faker.number.int({ max: 2000 }).toString(),
@@ -30,7 +30,7 @@ registerMockHandler('POST', 'customer', async (request) => {
   return customer
 })
 
-registerMockHandler('DELETE', 'customer/:id', ({ params }) => {
+registerMockHandler('DELETE', 'customer/:id', (event: any, params: any) => {
   const { id } = params
   const itemIndex = customers.findIndex((x) => x.id === id)
   customers.splice(itemIndex, 1)
@@ -43,11 +43,11 @@ function createFakeCustomer(): Customer {
     firstName: faker.person.firstName(),
     lastName: faker.person.lastName(),
     address: [],
-    mobile: faker.phone.number('0########'),
+    mobile: faker.phone.number({ style: 'international' }),
     joinDate: faker.date.past(),
     birthDate: faker.date.birthdate(),
     email: faker.internet.email(),
-    avatar: `./assets/images/user-avatar/${faker.number.int({
+    avatar: `/assets/images/user-avatar/${faker.number.int({
       min: 1,
       max: 20,
     })}.png`,

@@ -11,12 +11,12 @@ export const useCategories = () => {
     const categoryService = useCategoryService()
     const categories = ref<Category[]>([])
     const categoryItem = ref<Category>()
-    const isLoading = ref(true)
+    const isLoading = ref(false)
     const isLoadingStats = ref(false)
     const isSaving = ref(false)
     const categoryStats = ref<{
         summaryStats: SummaryStatDto
-        productsStat: SimpleChartSeries
+        productsByCategoryStat: SimpleChartSeries
     }>({} as any)
 
     async function getCategories(
@@ -52,7 +52,7 @@ export const useCategories = () => {
     }
 
     async function deleteCategory(id: number) {
-        await categoryService.delete(id)
+        await categoryService.remove(id)
         getCategories()
     }
 

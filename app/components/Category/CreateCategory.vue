@@ -7,7 +7,7 @@ import { useCategoryService } from '~/services/category.service'
 
 const categoryService = useCategoryService()
 const emits = defineEmits(['close'])
-const { isLoading, createCategory } = useCategories()
+const { isSaving, createCategory } = useCategories()
 const categoryItem = ref<CategoryCreateModel>({ name: '', parentId: 0 })
 const formRef = ref<FormInst | null>(null)
 const parents = ref<TreeSelectOption[]>([])
@@ -49,7 +49,7 @@ async function create() {
   formRef.value?.validate(async (errors: any) => {
     if (!errors) {
       await createCategory(categoryItem.value)
-      useNotification().success($t('categories.createdSucceed'))
+      useNotification().success({ title: $t('categories.createdSucceed') })
       emits('close')
     }
   })
@@ -60,18 +60,17 @@ async function create() {
   <n-form ref="formRef" :model="categoryItem" :rules="rules" @submit.prevent="create()">
     <div class="form-control">
       <n-form-item class="mb-5" path="name" :label="$t('categories.create.categoryName')">
-        <n-input
-          id="name" ref="nameInput" v-model:value="categoryItem.name"
-          :placeholder="$t('categories.create.categoryName')"
-        />
+        <n-input id="name" ref="nameInput" v-model:value="categoryItem.name"
+          :placeholder="$t('categories.create.categoryName')" />
       </n-form-item>
     </div>
     <div class="form-control">
       <n-form-item class="mb-5" :label="$t('categories.create.parent')">
-        <n-tree-select v-model="categoryItem.parentId" key-field="key" :options="parents" :placeholder="$t('categories.create.parent')" default-value="Root" />
+        <n-tree-select v-model="categoryItem.parentId" key-field="key" :options="parents"
+          :placeholder="$t('categories.create.parent')" default-value="Root" />
       </n-form-item>
     </div>
-    <n-button attr-type="submit" size="large" :block="true" type="primary" :loading="isLoading">
+    <n-button attr-type="submit" size="large" :block="true" type="primary" :loading="isSaving">
       {{ $t('categories.create.buttonTitle') }}
     </n-button>
   </n-form>
