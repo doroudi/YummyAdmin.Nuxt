@@ -12,21 +12,37 @@ interface LocalChartProps {
     colors?: string[]
     colorScheme?: string
     height?: number | string
-    type?: string
+    type?: 
+    | 'line'
+    | 'area'
+    | 'bar'
+    | 'pie'
+    | 'donut'
+    | 'radialBar'
+    | 'scatter'
+    | 'bubble'
+    | 'heatmap'
+    | 'candlestick'
+    | 'boxPlot'
+    | 'radar'
+    | 'polarArea'
+    | 'rangeBar'
+    | 'rangeArea'
+    | 'treemap',
     error?: any
     options?: any
     showLegend?: boolean
     loading?: boolean
-    legendPosition: 'bottom' | 'right' | 'left'
+    legendPosition?: 'bottom' | 'right' | 'left'
 }
 
-const props = withDefaults(defineProps<LocalChartProps>(),  {
-    colors: () => [],
-    colorScheme: '',
+const props = withDefaults(defineProps<LocalChartProps>(), {
+    colors: () => [], //['var(--primary-color)', 'var(--primary-color-shade1)', 'var(--primary-color-shade2)', 'var(--primary-color-shade3)'],
     height: 400,
     type: 'line',
     error: null,
     options: null,
+    legendPosition: 'bottom'
 })
 
 const { defaultOptions, safeSeries, validateChartData, showChart } =
@@ -66,8 +82,8 @@ const activeOptions = computed(
 
         <div v-else-if="showChart" class="chart-wrapper">
             <client-only>
-                <VueApexCharts v-bind="$attrs" :type="type" :options="activeOptions" :height="height" :series="safeSeries"
-                    class="chart-component" />
+                <VueApexCharts v-bind="$attrs" :type="type" :options="activeOptions" :height="height"
+                    :series="safeSeries" class="chart-component" />
             </client-only>
         </div>
 

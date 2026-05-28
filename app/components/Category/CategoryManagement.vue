@@ -2,7 +2,7 @@
 import { type DataTableColumns, NButton } from 'naive-ui/es/components'
 import type { RowData } from 'naive-ui/es/data-table/src/interface'
 import { useCategories } from '~/composables/useCategories'
-const { deleteCategory, getCategories, isLoading, categories  } = useCategories()
+const { deleteCategory, getCategories, isLoading, categories } = useCategories()
 const { renderDeleteActionButton, renderActionButton } = useRender()
 const { dialogPlacement } = useLayout()
 const collapsed = ref(useWindowSize().width.value < 600)
@@ -24,7 +24,7 @@ const columns: DataTableColumns<RowData> = [
     key: 'actions',
     width: 110,
     render: (row) => [
-      renderActionButton('fluent:edit-32-regular', () => {}),
+      renderActionButton('fluent:edit-32-regular', () => { }),
       renderDeleteActionButton($t('common.deleteConfirm'), () =>
         handleDeleteItem(row),
       ),
@@ -36,7 +36,7 @@ const showAddDialog = ref(false)
 
 function handleDeleteItem(row: RowData) {
   deleteCategory(row.id)
-  useNotification().success($t('common.deletedMessage'))
+  useNotification().success({ title: $t('common.deletedMessage') })
 }
 
 function rowKey(row: RowData) {
@@ -78,9 +78,9 @@ function createCategory() {
           </NButton>
         </n-space>
         <SkeletonTable v-if="isLoading" :columns="columns" />
-        <n-data-table v-else remote :columns="columns" :data="categories"
-          :pagination="options" :scroll-x="1000" :row-key="rowKey" @update:sorter="handleSorterChange"
-          @update:filters="handleFiltersChange" @update:page="handlePageChange" />
+        <n-data-table v-else remote :columns="columns" :data="categories" :pagination="options"
+          :row-key="rowKey" @update:sorter="handleSorterChange" @update:filters="handleFiltersChange"
+          @update:page="handlePageChange" />
       </div>
     </n-layout-content>
     <n-layout-sider bordered collapse-mode="width" :collapsed-width="0" :width="300" :collapsed="collapsed"
@@ -96,5 +96,4 @@ function createCategory() {
   </n-layout>
 </template>
 
-<style scoped lang='scss'>
-</style>
+<style scoped lang='scss'></style>

@@ -12,13 +12,13 @@ import {
 import { registerMockHandler } from '../registry.ts'
 
 const categories = times(20, createFakeCategory);
-registerMockHandler("GET", "category", async (request) => {
+registerMockHandler("GET", "category", async (request: any) => {
   const response = CreatePagedResponse<Category>(request, categories);
   await delay(800);
   return response
 });
 
-registerMockHandler("GET", "category/all", async (request) => {
+registerMockHandler("GET", "category/all", async (request: any) => {
   const response = CreateListResponse<Category>(request, categories);
   await delay(500);
   return response
@@ -40,7 +40,7 @@ registerMockHandler("GET", "category/stats", () => {
   return response
 });
 
-registerMockHandler("POST", "category", async (request) => {
+registerMockHandler("POST", "category", async (request: any) => {
   const newItem = (await request.json()) as CategoryCreateModel;
   const category: Category = {
     id: faker.number.int({ max: 2000 }),
@@ -52,7 +52,7 @@ registerMockHandler("POST", "category", async (request) => {
   return category
 });
 
-registerMockHandler("DELETE", "category/:id", (params) => {
+registerMockHandler("DELETE", "category/:id", (request: any, params: any) => {
   const { id } = params ?? "1";
   const itemIndex = categories.findIndex(
     (x) => x.id === Number.parseInt(id?.toString() ?? "1", 10),

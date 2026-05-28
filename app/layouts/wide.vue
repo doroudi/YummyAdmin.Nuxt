@@ -2,13 +2,13 @@
 import DefaultLayout from './default.vue'
 
 defineOptions({
-  name: 'WideLayout',
-  components: {
-    DefaultLayout,
-  },
+  name: 'WideLayout'
 })
 </script>
 
 <template>
-  <DefaultLayout :is-fluid="true" full-screen />
+  <DefaultLayout :is-fluid="true" full-screen>
+    <slot />  
+  </DefaultLayout>
+
 </template>

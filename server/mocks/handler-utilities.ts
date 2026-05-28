@@ -1,6 +1,5 @@
 import type { ListResult } from '../../app/models/ListResult'
 import type { PaginatedList } from '../../app/models/PagedListResult'
-import { getRequestUrl } from 'nitro'
 
 export function CreatePagedResponse<T extends { [key: string]: any }>(
     request: any,

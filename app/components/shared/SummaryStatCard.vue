@@ -28,14 +28,14 @@ const props = withDefaults(defineProps<Props>(), {
           <div class="flex flex-column items-center justify-between">
             <div class="w-25 overflow-hidden">
               <h3 class="text-gray-700 dark:text-gray-200 value">
-                <n-number-animation v-if="data" :from="0" :to="data.count" /> <span class="ms-2">
-                  {{ data?.suffix }}</span>
+                <n-number-animation v-if="data" :from="0" :to="data.count" /> 
+                <span class="ms-0">{{ data?.suffix }}</span>
               </h3>
 
               <span v-if="!loading && data && data.progress">
-                <div class="badge flex items-center"
+                <div class="badge items-center"
                   :class="data.progress && data.progress > 0 ? 'badge-success' : 'badge-error'">
-                  <Icon class="me-.5 pt-.5" size=".8rem"
+                  <Icon class="me-1 pt-1" size=".8rem"
                     :name="data.progress && data.progress> 0 ? 'fluent:arrow-up-24-filled' : 'fluent:arrow-down-24-filled'" />
                   <span>{{ `${data.progress}%` }}</span>
                 </div>
@@ -50,7 +50,7 @@ const props = withDefaults(defineProps<Props>(), {
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .dashboard-card {
   .inner {
     .icon {
@@ -74,7 +74,8 @@ const props = withDefaults(defineProps<Props>(), {
       border-radius: 4px;
       display: inline-block;
       padding: 1px 6px;
-
+      display: inline-flex;
+      
       &.badge-success {
         background-color: color-mix(in srgb, var(--success-color), var(--background) 95%);
         color: var(--success-color);

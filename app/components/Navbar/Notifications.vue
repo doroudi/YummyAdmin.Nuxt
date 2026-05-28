@@ -58,8 +58,9 @@ const badgeOffset = computed(() => [isRtl.value ? '4' : '-4', '5'])
               <n-list hoverable clickable>
                 <n-list-item v-for="item of notifications" :key="item.id">
                   <template #prefix>
-                    <div class="icon ms-2">
-                      <Icon :name="getIcon(item.type)" size="1.2rem" :color="isDark ? '#fff' : '#444'" />
+                    <div class="icon ms-2 notification-icon" :class="NotificationType[item.type].toLowerCase()">
+                      <Icon 
+                        :name="getIcon(item.type)" size="1.2rem" :color="isDark ? '#fff' : '#444'" />
                     </div>
                   </template>
                   <n-thing :title="$t(`notifications.${item.title}`)"

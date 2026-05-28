@@ -7,7 +7,7 @@ export function useSimpleChartOptions(props: SimpleChartProps) {
   const { makeLighter } = useColorsUtility()
 
   const colors = computed(() => {
-    if (!props.colorScheme && !props.colors)
+    if ((!props.colorScheme || !props.colorScheme?.length) && !props.colors.length)
       return [
         'var(--primary-color)',
         'var(--primary-color-shade1)',

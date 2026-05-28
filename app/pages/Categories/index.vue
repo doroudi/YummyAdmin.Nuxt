@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'categories',
-  name: 'ecommerce-categories',
+  name: 'categories',
   breadcrumb: ['productManagement', 'categories']
 })
 </script>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 interface Props {
-  data: any[]
+  data: import('~/models/ChartData').SimpleChartSeries
   colorScheme?: string
   colors?: string[]
   showLegend?: boolean

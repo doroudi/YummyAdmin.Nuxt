@@ -4,13 +4,13 @@ import { CreatePagedResponse, times, delay } from '../handler-utilities.ts'
 import { registerMockHandler } from '../registry.ts'
 const brands = times(17, createFakeBrand)
 
-registerMockHandler('GET', 'brand', async (request) => {
+registerMockHandler('GET', 'brand', async (request: any) => {
   const response = CreatePagedResponse<Brand>(request, brands)
   await delay(1500)
   return response
 })
 
-registerMockHandler('POST', 'brand', async (request) => {
+registerMockHandler('POST', 'brand', async (request: any) => {
   const newItem = (await request.json()) as BrandCreateModel
   const brand: Brand = {
     id: faker.number.int({ max: 2000 }).toString(),
@@ -22,7 +22,7 @@ registerMockHandler('POST', 'brand', async (request) => {
   return brand
 })
 
-registerMockHandler('DELETE', 'brand/:id', ({ params }) => {
+registerMockHandler('DELETE', 'brand/:id', (request: any, params: any) => {
   const { id } = params
   const itemIndex = brands.findIndex((x) => x.id === id)
   brands.splice(itemIndex, 1)

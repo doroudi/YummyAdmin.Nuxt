@@ -57,8 +57,8 @@ registerMockHandler('POST', 'order', async (event: any) => {
     return newOrder
 })
 
-registerMockHandler('GET', 'order/:id', async (event: any) => {
-    const id = getRouterParam(event, 'id')
+registerMockHandler('GET', 'order/:id', async (event: any, params: any) => {
+    const { id } = params
     const order = getOrders()?.find(o => o.id === id)
 
     if (!order) {

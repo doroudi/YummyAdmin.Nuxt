@@ -68,7 +68,7 @@ watch(
     </NTag>
 
     <div>
-      <NButton v-for="(color, index) of colors" :key="index" :color="color" size="medium" circle class="mx-1"
+      <NButton v-for="(color, index) of colors" :key="index" :color="color" size="small" circle class="mx-1 my-1"
         @click="setColor(index)">
         <template #icon>
           <Icon name="fluent:checkmark-48-filled" v-if="selectedColorIndex === index" />
@@ -76,7 +76,7 @@ watch(
         </template>
       </NButton>
       <label for="colorPicker">
-        <NButton class="color-picker mx-1" size="medium" circle color="#FFF" @click="selectColor()">
+        <NButton class="color-picker mx-1" size="small" circle color="#FFF" @click="selectColor()">
           <template #icon>
             <Icon name="fluent:checkmark-48-filled" v-if="selectedColorIndex === 100" />
             <span v-else />

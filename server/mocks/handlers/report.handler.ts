@@ -1,6 +1,5 @@
 import { faker } from '@faker-js/faker/locale/en'
-import { times } from '../handler-utilities.ts'
-import { delay} from '../handler-utilities.ts'
+import { times, delay } from '../handler-utilities.ts'
 import { registerMockHandler } from '../registry.ts'
 
 import type {
@@ -86,7 +85,7 @@ registerMockHandler('GET','report/monthlySellStat', () => {
     return response
 })
 
-registerMockHandler('GET','report/chartDemoData/:length', async ({ params }) => {
+registerMockHandler('GET','report/chartDemoData/:length', async (event, params) => {
     const { length } = params
     let lengthNum = Number.parseInt(length?.toString() ?? '12', 10)
     if (lengthNum > 12) lengthNum = 12
@@ -108,8 +107,8 @@ registerMockHandler('GET','report/chartDemoData/:length', async ({ params }) => 
         },
       ],
     }
-    await delay(1000)
 
+    await delay(1000)
     return response
 })
 

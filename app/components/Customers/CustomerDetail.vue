@@ -27,15 +27,13 @@ defineProps<Props>()
                 <n-tag round :bordered="false" :type="customer.phoneConfirmed ? 'success' : 'warning'">
                     {{ $t('customers.phone') }} : {{ customer.mobile }}
                     <template #icon>
-                        <template #icon>
-                            <Icon v-if="customer.phoneConfirmed" name="fluent:checkmark-circle-20-filled" />
-                            <Icon v-else name="fluent:warning-20-filled" />
-                        </template>
+                        <Icon v-if="customer.phoneConfirmed" name="fluent:checkmark-circle-20-filled" />
+                        <Icon v-else name="fluent:warning-20-filled" />
                     </template>
                 </n-tag>
             </span>
         </div>
-        <div class="row">
+         <div class="row">
             <span>
                 <NTag round>{{ $t('customers.userGroup') }}: {{ customer.userGroup }}</NTag>
             </span>
@@ -60,7 +58,7 @@ defineProps<Props>()
     .content {
         display: inline-flex;
         background: #CCC;
-        border-radius: varA(n-border-radius);
+        border-radius: var(--n-border-radius);
     }
 }
 </style>

@@ -141,18 +141,18 @@ const tasks: TaskItem[] = [
   },
 ]
 
-registerMockHandler('GET','todo/groups', () => {
+registerMockHandler('GET', 'todo/groups', () => {
   return { items: createFakeTaskGroups() }
 })
 
-registerMockHandler('GET','todo/groups/:id/tasks', ({ params }) => {
-  const id = getRouterParam(event, 'id')
-  const response =  createFakeTaskItems(Number.parseInt(id?.toString() ?? '1', 10))
+registerMockHandler('GET', 'todo/groups/:id/tasks', (event: any, params: any) => {
+  const { id } = params
+  const response = createFakeTaskItems(Number.parseInt(id?.toString() ?? '1', 10))
   return response
 })
 
-registerMockHandler('POST','todo/groups/:id/tasks', async (event: any) => {
-  const newItem = (await request.json()) as TaskCreateModel
+registerMockHandler('POST', 'todo/groups/:id/tasks', async (event: any) => {
+  const newItem = (await event.json()) as TaskCreateModel
   const task: TaskItem = {
     id: faker.number.int({ max: 2000 }),
     title: newItem.title,

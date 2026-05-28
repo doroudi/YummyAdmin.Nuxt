@@ -12,7 +12,7 @@ const total = randomInRange(2000, 4000)
       <Card>
         <div class="flex flex-row justify-between">
           <div class="flex flex-row md:pt-4">
-            <span class="text-12 me-2">👋 </span>
+            <span class="text-xlg me-2">👋 </span>
             <div>
               <h3 class="text-lg font-bold">
                 {{ $t('dashboard.welcome.title') }}

@@ -5,13 +5,13 @@ import { registerMockHandler } from '../registry.ts'
 
 const colors = times(15, createFakeColor)
 
-registerMockHandler('GET', 'color', async (request) => {
+registerMockHandler('GET', 'color', async (request: any) => {
   const response = CreatePagedResponse<Color>(request, colors)
   await delay(1000)
   return response
 })
 
-registerMockHandler('POST', 'color', async (request) => {
+registerMockHandler('POST', 'color', async (request: any) => {
   const newItem = (await request.json()) as ColorCreateModel
   const color: Color = {
     id: faker.number.int({ max: 2000 }).toString(),
@@ -22,7 +22,7 @@ registerMockHandler('POST', 'color', async (request) => {
   return color
 })
 
-registerMockHandler('DELETE', 'color/:id', ({ params }) => {
+registerMockHandler('DELETE', 'color/:id', (request: any, params: any) => {
   const { id } = params
   const itemIndex = colors.findIndex((x) => x.id === id)
   colors.splice(itemIndex, 1)

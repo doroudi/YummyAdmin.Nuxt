@@ -3,7 +3,6 @@ import { useCategories } from '~/composables/useCategories'
 const { getCategoryStats, isLoadingStats, categoryStats } = useCategories()
 
 getCategoryStats()
-
 </script>
 
 <template>
@@ -19,8 +18,8 @@ getCategoryStats()
       {{ $t('categories.topCategories') }}
     </h2>
 
-    <DonutChart :height="300"
-      :data="categoryStats.productsByCategoryStat" :show-legend="true" color-scheme="#4FC3F7" />
+    <DonutChart v-if="categoryStats.productsByCategoryStat" :height="300" :loading="isLoadingStats"
+      :data="categoryStats.productsByCategoryStat" show-legend />
   </div>
 </template>
 

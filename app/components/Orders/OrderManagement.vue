@@ -11,7 +11,6 @@ const {
   renderDate,
 } = useRender()
 const { getStatusColor, isLoading, orders, deleteItem, getOrders  } = useOrders()
-// const { proxy } = getCurrentInstance()
 
 onMounted(getItems)
 
@@ -88,6 +87,7 @@ async function handleDeleteItem(row: RowData) {
   <n-layout>
     <n-layout-content>
       <div class="px-3">
+        <!-- TODO: use YummyDataTable instead -->
         <NSpace justify="space-between" class="mb-3">
           <SearchInput v-model="options.query" @search="getItems" />
         </NSpace>

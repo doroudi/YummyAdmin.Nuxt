@@ -57,7 +57,7 @@ export function useRender() {
     return iconNode
   }
 
-  function renderRawIcon(icon: string, color : string | null = null) {
+  function renderColoredIcon(icon: string, color : string | null = null) {
     if (!icon) return
 
     return h(NIcon, { color: color ?? undefined }, {
@@ -98,7 +98,7 @@ export function useRender() {
       { align: 'center' },
       {
         default: () => [
-          renderRawIcon('fluent:star-24-filled', 'gold'),
+          renderColoredIcon('fluent:star-24-filled', 'gold'),
           h(NText, {  }, { default: () => rate }),
         ]
       })
@@ -163,7 +163,7 @@ export function useRender() {
       { align: 'center', justify: 'start' },
       {
         default: () => [
-          renderIcon(icon),
+          renderColoredIcon(icon, iconColor),
           h(NText, {}, { default: () => label }),
         ],
       },
@@ -227,13 +227,11 @@ export function useRender() {
         round: true,
         bordered: false,
         color: { color: 'transparent' },
-        // type: confirmed ? 'success' : 'warning',
       },
       {
-        icon: renderIcon(
+        icon: renderColoredIcon(
           confirmed ? 'fluent:checkmark-circle-20-filled' : 'fluent:warning-20-filled',
-          false
-          // confirmed ? 'green' : 'orange',
+          confirmed ? 'green' : 'orange',
         ),
         default: () => email.toLowerCase(),
       },

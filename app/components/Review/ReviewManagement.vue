@@ -16,6 +16,20 @@ const columns: DataTableColumns<RowData> = [
     fixed: 'left',
   },
   {
+    title: $t('reviews.product'),
+    key: 'name',
+    render: (row) =>
+      h(
+        NSpace,
+        {},
+        {
+          default: () => [
+            h(NText, {}, { default: () => `${row.product.name}` }),
+          ],
+        },
+      ),
+  },
+  {
     title: $t('reviews.rate'),
     key: 'rate',
     render(row) {
@@ -43,20 +57,7 @@ const columns: DataTableColumns<RowData> = [
       )
     },
   },
-  {
-    title: $t('reviews.product'),
-    key: 'name',
-    render: (row) =>
-      h(
-        NSpace,
-        {},
-        {
-          default: () => [
-            h(NText, {}, { default: () => `${row.product.name}` }),
-          ],
-        },
-      ),
-  },
+  
 
   {
     title: $t('reviews.customer'),

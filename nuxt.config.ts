@@ -6,13 +6,13 @@ import Components from 'unplugin-vue-components/vite'
 export default defineNuxtConfig({
   modules:
   [
-      // '@nuxt/eslint',
+      '@nuxt/eslint',
       '@nuxt/icon',
       '@nuxt/image',
       '@nuxt/scripts',
       'nuxtjs-naive-ui',
       '@nuxtjs/i18n',
-      '@nuxt/fonts',
+      //'@nuxt/fonts',
   ],
   components: [
     {
@@ -29,29 +29,29 @@ export default defineNuxtConfig({
     mode: 'css',
     cssLayer: 'base'
   },
-  fonts: {
-    provider: 'google',
-    families: [
-      {
-        name: 'Inter', 
-        provider: 'local',
-        src: '~/public/Inter.woff2',
-        display: 'swap',
-        weight: [400, 700],
-        style: 'normal',
-        fallbacks: ['Arial'],
-      },
-      {
-        name: 'Quicksand', 
-        provider: 'local',
-        src: '~/public/Quicksand.woff2',
-        display: 'swap',
-        weight: [400, 700],
-        style: 'normal',
-        fallbacks: ['Arial'],
-      }
-    ]
-  },
+  // fonts: {
+  //   provider: 'google',
+  //   families: [
+  //     {
+  //       name: 'Inter', 
+  //       provider: 'google',
+  //       // src: '~/assets/fonts/Inter.woff2',
+  //       display: 'swap',
+  //       weight: [400, 700],
+  //       style: 'normal',
+  //       fallbacks: ['Sans Serif','Segoe UI', 'Arial'],
+  //     },
+  //     {
+  //       name: 'Quicksand', 
+  //       provider: 'google',
+  //       // src: '~/assets/fonts/Quicksand.woff2',
+  //       display: 'swap',
+  //       weight: [400, 700],
+  //       style: 'normal',
+  //       fallbacks: ['Sans Serif','Segoe UI', 'Arial'],
+  //     }
+  //   ]
+  // },
   compatibilityDate: '2025-01-15',
   devtools: {
     enabled: true,

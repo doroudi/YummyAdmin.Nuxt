@@ -1,11 +1,12 @@
 <script lang="ts" setup>
 definePageMeta({
   title: 'todo',
-  name: 'todo',
+  name: 'apps-todo',
+  layout: 'wide',
   breadcrumb: ['apps', 'todo']
 })
 </script>
 
 <template>
-    <ToDoApp />
+    <TodoApp />
 </template>
