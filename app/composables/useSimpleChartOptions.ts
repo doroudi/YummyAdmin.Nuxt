@@ -1,13 +1,13 @@
 import type { ApexOptions } from 'apexcharts'
+import { useColorsUtility } from '~/composables/useColorsUtility'
 import type { SimpleChartSeries } from '~/models/ChartData'
 import type { SimpleChartProps } from '~/models/ChartsProps'
-import { useColorsUtility } from '~/composables/useColorsUtility'
 
 export function useSimpleChartOptions(props: SimpleChartProps) {
   const { makeLighter } = useColorsUtility()
 
   const colors = computed(() => {
-    if ((!props.colorScheme || !props.colorScheme?.length) && !props.colors.length)
+    if (!props.colorScheme?.length && !props.colors.length)
       return [
         'var(--primary-color)',
         'var(--primary-color-shade1)',
@@ -156,7 +156,7 @@ export function useSimpleChartOptions(props: SimpleChartProps) {
 
   watch(
     () => props.data,
-    (newData: SimpleChartSeries[]) => {
+    (newData: SimpleChartSeries[] | null) => {
       if (newData && newData.length === 0) {
         // emit('data-error', 'Invalid chart data structure')
       }

@@ -1,71 +1,71 @@
 import type { Category, CategoryCreateModel } from '~/models/Category'
 import type { SimpleChartSeries } from '~/models/ChartData'
 import {
-    defaultOptions,
-    type PagedAndSortedRequest,
+  defaultOptions,
+  type PagedAndSortedRequest,
 } from '~/models/PagedAndSortedRequest'
 import type { SummaryStatDto } from '~/models/SummaryStat'
-import {useCategoryService} from '~/services/category.service'
+import { useCategoryService } from '~/services/category.service'
 
 export const useCategories = () => {
-    const categoryService = useCategoryService()
-    const categories = ref<Category[]>([])
-    const categoryItem = ref<Category>()
-    const isLoading = ref(false)
-    const isLoadingStats = ref(false)
-    const isSaving = ref(false)
-    const categoryStats = ref<{
-        summaryStats: SummaryStatDto
-        productsByCategoryStat: SimpleChartSeries
-    }>({} as any)
+  const categoryService = useCategoryService()
+  const categories = ref<Category[]>([])
+  const categoryItem = ref<Category>()
+  const isLoading = ref(false)
+  const isLoadingStats = ref(false)
+  const isSaving = ref(false)
+  const categoryStats = ref<{
+    summaryStats: SummaryStatDto
+    productsByCategoryStat: SimpleChartSeries
+  }>({} as any)
 
-    async function getCategories(
-        options: PagedAndSortedRequest = defaultOptions,
-    ) {
-        isLoading.value = true
-        try {
-            const response = await categoryService.getPagedList(options)
-            categories.value = response.items
-            options.pageCount = Math.ceil(response.totalCount! / options.pageSize!)
-        } finally {
-            isLoading.value = false
-        }
+  async function getCategories(
+    options: PagedAndSortedRequest = defaultOptions,
+  ) {
+    isLoading.value = true
+    try {
+      const response = await categoryService.getPagedList(options)
+      categories.value = response.items
+      options.pageCount = Math.ceil(response.totalCount! / options.pageSize!)
+    } finally {
+      isLoading.value = false
     }
+  }
 
-    async function getCategoryStats() {
-        isLoadingStats.value = true
-        try {
-            categoryStats.value = await categoryService.getStats()
-        } finally {
-            isLoadingStats.value = false
-        }
+  async function getCategoryStats() {
+    isLoadingStats.value = true
+    try {
+      categoryStats.value = await categoryService.getStats()
+    } finally {
+      isLoadingStats.value = false
     }
+  }
 
-    async function createCategory(categoryItem: CategoryCreateModel) {
-        isLoading.value = true
-        try {
-            await categoryService.create<CategoryCreateModel>(categoryItem)
-            getCategories()
-        } finally {
-            isLoading.value = false
-        }
+  async function createCategory(categoryItem: CategoryCreateModel) {
+    isLoading.value = true
+    try {
+      await categoryService.create<CategoryCreateModel>(categoryItem)
+      getCategories()
+    } finally {
+      isLoading.value = false
     }
+  }
 
-    async function deleteCategory(id: number) {
-        await categoryService.remove(id)
-        getCategories()
-    }
+  async function deleteCategory(id: number) {
+    await categoryService.remove(id)
+    getCategories()
+  }
 
-    return {
-        isLoading,
-        isLoadingStats,
-        isSaving,
-        categories,
-        categoryItem,
-        getCategories,
-        createCategory,
-        deleteCategory,
-        getCategoryStats,
-        categoryStats,
-    }
+  return {
+    isLoading,
+    isLoadingStats,
+    isSaving,
+    categories,
+    categoryItem,
+    getCategories,
+    createCategory,
+    deleteCategory,
+    getCategoryStats,
+    categoryStats,
+  }
 }

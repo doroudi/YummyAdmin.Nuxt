@@ -4,7 +4,7 @@ import { useGenericService } from './generic.service'
 
 export const useNotificationsService = () => {
   const base = useGenericService<Notification, string>('notification')
-  const api = useApi('notification')
+  const _api = useApi('notification')
 
   async function getNotificationsList(): Promise<ListResult<Notification>> {
     const response = await useApi('notification').getList<Notification>('', {})
@@ -13,6 +13,6 @@ export const useNotificationsService = () => {
 
   return {
     ...base,
-    getNotificationsList
+    getNotificationsList,
   }
 }

@@ -9,13 +9,13 @@ export const useCustomerService = () => {
 
   async function getList(
     options: PagedAndSortedRequest,
-  ): Promise < PaginatedList < Customer >> {
+  ): Promise<PaginatedList<Customer>> {
     const response = await api.getPaginated<Customer>('', options)
     return response
   }
 
   return {
-    ...base, 
-    getList
+    ...base,
+    getList,
   }
 }

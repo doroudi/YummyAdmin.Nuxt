@@ -6,6 +6,7 @@ const { isLoading, resetPassword } = useAccount()
 const forgetInfo = ref<{ email: string }>({ email: '' })
 const router = useRouter()
 const formRef = ref<FormInst | null>(null)
+
 async function doResetPassword() {
   formRef.value?.validate(async (errors: any) => {
     if (!errors) {
@@ -28,14 +29,13 @@ const rules: FormRules = {
     },
   ],
 }
-</script>
 
-<route lang="yaml">
-meta:
-  title: forgetPassword
-  layout: 'auth'
+definePageMeta({
+  title: 'forgetPassword',
+  layout: 'auth',
   authRequired: false
-</route>
+})
+</script>
 
 <template>
   <div class="bg flex justify-center items-center h-screen">

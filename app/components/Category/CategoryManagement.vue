@@ -78,9 +78,8 @@ function createCategory() {
           </NButton>
         </n-space>
         <SkeletonTable v-if="isLoading" :columns="columns" />
-        <n-data-table v-else remote :columns="columns" :data="categories" :pagination="options"
-          :row-key="rowKey" @update:sorter="handleSorterChange" @update:filters="handleFiltersChange"
-          @update:page="handlePageChange" />
+        <n-data-table v-else remote :columns="columns" :data="categories" :pagination="options" :row-key="rowKey"
+          @update:sorter="handleSorterChange" @update:filters="handleFiltersChange" @update:page="handlePageChange" />
       </div>
     </n-layout-content>
     <n-layout-sider bordered collapse-mode="width" :collapsed-width="0" :width="300" :collapsed="collapsed"

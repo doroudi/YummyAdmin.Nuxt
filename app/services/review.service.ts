@@ -2,7 +2,7 @@ import type { PagedAndSortedRequest } from '~/models/PagedAndSortedRequest'
 import type { PaginatedList } from '~/models/PagedListResult'
 import type { Review } from '~/models/Review'
 
-export const  useReviewService = () => {
+export const useReviewService = () => {
   const api = useApi('review')
   async function getReviewList(
     options: PagedAndSortedRequest,

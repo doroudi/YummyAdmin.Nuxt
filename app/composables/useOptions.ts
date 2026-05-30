@@ -1,10 +1,8 @@
 import type { DataTableColumns } from 'naive-ui/es/components'
 import type { RowData } from 'naive-ui/es/data-table/src/interface'
+import { useI18n } from 'vue-i18n'
 import type { LocationQuery, LocationQueryValue } from 'vue-router'
 import type { PagedAndSortedRequest } from '~/models/PagedAndSortedRequest'
-import { useI18n } from 'vue-i18n'
-
-
 
 type Options = Partial<PagedAndSortedRequest> & {
   page: number
@@ -76,7 +74,6 @@ export function useOptions(autoBind = true) {
     pageSizes,
   })
 
-  // --- Query <-> Options sync ---
   function optionsToQuery(): LocationQuery {
     const q: LocationQuery = {}
 
@@ -107,11 +104,10 @@ export function useOptions(autoBind = true) {
     for (const [prop, raw] of Object.entries(query)) {
       const v = raw
 
-      // handle multi-value query (string[])
       if (Array.isArray(v)) {
         // keep arrays as string[]
         // you can add per-prop coercion here if you have number arrays etc.
-        ; (next as any)[prop] = v
+        ;(next as any)[prop] = v
         continue
       }
 
@@ -121,18 +117,18 @@ export function useOptions(autoBind = true) {
       // booleans
       const b = toBool(single)
       if (b !== undefined) {
-        ; (next as any)[prop] = b
+        ;(next as any)[prop] = b
         continue
       }
 
       // numbers
       const n = toInt(single)
       if (n !== undefined) {
-        ; (next as any)[prop] = n
+        ;(next as any)[prop] = n
         continue
       }
       // strings
-      ; (next as any)[prop] = single
+      ;(next as any)[prop] = single
     }
 
     options.value = next
@@ -168,9 +164,7 @@ export function useOptions(autoBind = true) {
   )
 
   // --- Naive UI binding ---
-
   function bindOptionsToDataTable(columns: DataTableColumns<RowData>) {
-    // reset sort + filters first
     columns.forEach((col: any) => {
       if (col.sorter === true) delete col.sortOrder
       if (col.filterOptionValues !== undefined) col.filterOptionValues = []
@@ -236,7 +230,7 @@ export function useOptions(autoBind = true) {
     }
 
     // If you want to preserve some other keys, add them here:
-    for (const [k, v] of Object.entries(options.value)) {
+    for (const [k, _v] of Object.entries(options.value)) {
       if (keep.has(k)) continue
       // if you have specific keys to preserve, do it here
       // e.g. if (k === 'someMode') next[k] = v

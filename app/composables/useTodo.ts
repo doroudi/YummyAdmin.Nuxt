@@ -1,93 +1,99 @@
-import type { TaskCreateModel, TaskGroup, TaskItem } from "~/models/Todo"
+import type { TaskCreateModel, TaskGroup, TaskItem } from '~/models/Todo'
 import { useTodoService } from '~/services/todo.service'
 
 export const useToDoApp = () => {
-    const todoService = useTodoService()
-    
-    const groups = ref<TaskGroup[]>([])
-    const tasks = ref<TaskItem[]>([])
+  const todoService = useTodoService()
 
-    const isLoadingGroups = ref(false)
-    const isLoadingTasks = ref(false)
+  const groups = ref<TaskGroup[]>([])
+  const tasks = ref<TaskItem[]>([])
 
-    async function loadGroups() {
-        isLoadingGroups.value = true
-        try {
-            groups.value = await todoService.loadGroups()
-        } finally {
-            isLoadingGroups.value = false
-        }
+  const isLoadingGroups = ref(false)
+  const isLoadingTasks = ref(false)
+
+  async function loadGroups() {
+    isLoadingGroups.value = true
+    try {
+      groups.value = await todoService.loadGroups()
+    } finally {
+      isLoadingGroups.value = false
     }
+  }
 
-    async function loadGroupTasks(groupId: number) {
-        isLoadingTasks.value = true
-        try {
-            tasks.value = await todoService.loadTasks(groupId)
-        } finally {
-            isLoadingTasks.value = false
-        }
+  async function loadGroupTasks(groupId: number) {
+    isLoadingTasks.value = true
+    try {
+      tasks.value = await todoService.loadTasks(groupId)
+    } finally {
+      isLoadingTasks.value = false
     }
+  }
 
-    function createGroup(group: TaskGroup) {
-        group.id = groups.value.length + 2
-        groups.value.push(group)
-        window.umami?.track('Todo:CreateGroup', { title: group.title })
+  function createGroup(group: TaskGroup) {
+    group.id = groups.value.length + 2
+    groups.value.push(group)
+    window.umami?.track('Todo:CreateGroup', { title: group.title })
+  }
+
+  function deleteGroup(id: number) {
+    const index = groups.value.findIndex((x: TaskGroup) => x.id === id)
+    if (index) groups.value.splice(index, 1)
+  }
+
+  function toggleDoneTask(id: number) {
+    const task = tasks.value.find((x: TaskItem) => x.id === id)
+    if (task) {
+      task.isDone = !task.isDone
+      task.doneDate = new Date()
     }
+  }
 
-    function deleteGroup(id: number) {
-        const index = groups.value.findIndex((x: TaskGroup) => x.id === id)
-        if (index) groups.value.splice(index, 1)
+  function toggleFavTask(id: number) {
+    const task = tasks.value.find((x: TaskItem) => x.id === id)
+    if (task) {
+      task.isFavorite = !task.isFavorite
     }
+  }
 
-    function toggleDoneTask(id: number) {
-        const task = tasks.value.find((x: TaskItem) => x.id === id)
-        if (task) {
-            task.isDone = !task.isDone
-            task.doneDate = new Date()
-        }
+  function deleteTask(id: number) {
+    const taskIndex = tasks.value.findIndex((x: TaskItem) => x.id === id)
+    if (taskIndex > -1) {
+      tasks.value.splice(taskIndex, 1)
     }
+  }
 
-    function toggleFavTask(id: number) {
-        const task = tasks.value.find((x: TaskItem) => x.id === id)
-        if (task) {
-            task.isFavorite = !task.isFavorite
-        }
-    }
-
-    function deleteTask(id: number) {
-        const taskIndex = tasks.value.findIndex((x: TaskItem) => x.id === id)
-        if (taskIndex > -1) {
-            tasks.value.splice(taskIndex, 1)
-        }
-    }
-
-    async function createTask(task: TaskCreateModel) {
-        const result = await todoService.createTask(task)
-        tasks.value.unshift({ groupId: result.id, title: task.title, isToday: false, createDate: new Date(), id: result.id })
-    }
-
-    const counts = computed(() => {
-        return groups.value.map((g: TaskGroup) => ({
-            id: g.id,
-            count: tasks.value.filter(
-                (x: TaskItem) => x.groupId === g.id && !x.isDone,
-            ).length,
-        }))
+  async function createTask(task: TaskCreateModel) {
+    const result = await todoService.createTask(task)
+    tasks.value.unshift({
+      groupId: result.id,
+      title: task.title,
+      isToday: false,
+      createDate: new Date(),
+      id: result.id,
     })
+  }
 
-    return {
-        isLoadingGroups,
-        isLoadingTasks,
-        groups,
-        tasks,
-        loadGroups,
-        loadGroupTasks,
-        createGroup,
-        createTask,
-        toggleDoneTask,
-        toggleFavTask,
-        deleteGroup,
-        deleteTask,
-        counts,
-    }
+  const counts = computed(() => {
+    return groups.value.map((g: TaskGroup) => ({
+      id: g.id,
+      count: tasks.value.filter(
+        (x: TaskItem) => x.groupId === g.id && !x.isDone,
+      ).length,
+    }))
+  })
+
+  return {
+    isLoadingGroups,
+    isLoadingTasks,
+    groups,
+    tasks,
+    loadGroups,
+    loadGroupTasks,
+    createGroup,
+    createTask,
+    toggleDoneTask,
+    toggleFavTask,
+    deleteGroup,
+    deleteTask,
+    counts,
+  }
 }

@@ -1,47 +1,50 @@
-import type { Brand, BrandCreateModel } from "~/models/Brand"
-import { defaultOptions, type PagedAndSortedRequest } from '~/models/PagedAndSortedRequest'
+import type { Brand, BrandCreateModel } from '~/models/Brand'
+import {
+  defaultOptions,
+  type PagedAndSortedRequest,
+} from '~/models/PagedAndSortedRequest'
 import { useBrandService } from '~/services/brand.service'
 
 export const useBrands = () => {
-    const brandService = useBrandService()
-    const brands = useState<Brand[]>('brands', () => [])
-    const brandItem = ref<Brand>()
-    const isLoading = ref(false)
-    const isSaving = ref(false)
+  const brandService = useBrandService()
+  const brands = useState<Brand[]>('brands', () => [])
+  const brandItem = ref<Brand>()
+  const isLoading = ref(false)
+  const isSaving = ref(false)
 
-    async function getBrands(options: PagedAndSortedRequest = defaultOptions) {
-        isLoading.value = true
-        try {
-            const response = await brandService.getPagedList(options)
-            brands.value = response.items
-            options.pageCount = Math.ceil(response.totalCount! / options.pageSize!)
-        } catch (err) {
-            console.error(err)
-        } finally {
-            isLoading.value = false
-        }
+  async function getBrands(options: PagedAndSortedRequest = defaultOptions) {
+    isLoading.value = true
+    try {
+      const response = await brandService.getPagedList(options)
+      brands.value = response.items
+      options.pageCount = Math.ceil(response.totalCount! / options.pageSize!)
+    } catch (err) {
+      console.error(err)
+    } finally {
+      isLoading.value = false
     }
+  }
 
-    async function createBrand(brandItem: BrandCreateModel) {
-        isLoading.value = true
-        try {
-            await brandService.create(brandItem)
-        } finally {
-            isLoading.value = false
-        }
+  async function createBrand(brandItem: BrandCreateModel) {
+    isLoading.value = true
+    try {
+      await brandService.create(brandItem)
+    } finally {
+      isLoading.value = false
     }
+  }
 
-    async function deleteBrand(id: string) {
-        await brandService.delete(id)
-    }
+  async function deleteBrand(id: string) {
+    await brandService.remove(id)
+  }
 
-    return {
-        isLoading,
-        isSaving,
-        brands,
-        brandItem,
-        getBrands,
-        createBrand,
-        deleteBrand,
-    }
+  return {
+    isLoading,
+    isSaving,
+    brands,
+    brandItem,
+    getBrands,
+    createBrand,
+    deleteBrand,
+  }
 }

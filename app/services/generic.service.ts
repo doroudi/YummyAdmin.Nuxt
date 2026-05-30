@@ -1,5 +1,4 @@
 import type { PagedAndSortedRequest } from '~/models/PagedAndSortedRequest'
-import type { PaginatedList } from '~/models/PagedListResult'
 
 // class GenericService<T, TKey> {
 //   private apiPrefix: string
@@ -36,7 +35,6 @@ import type { PaginatedList } from '~/models/PagedListResult'
 //   }
 // }
 // export default GenericService
-
 
 export const useGenericService = <T, TKey>(apiPrefix: string) => {
   return {

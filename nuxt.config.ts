@@ -2,7 +2,6 @@ import AutoImport from 'unplugin-auto-import/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
 
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules:
   [
@@ -12,7 +11,7 @@ export default defineNuxtConfig({
       '@nuxt/scripts',
       'nuxtjs-naive-ui',
       '@nuxtjs/i18n',
-      //'@nuxt/fonts',
+      '@nuxt/fonts',
   ],
   components: [
     {
@@ -29,29 +28,27 @@ export default defineNuxtConfig({
     mode: 'css',
     cssLayer: 'base'
   },
-  // fonts: {
-  //   provider: 'google',
-  //   families: [
-  //     {
-  //       name: 'Inter', 
-  //       provider: 'google',
-  //       // src: '~/assets/fonts/Inter.woff2',
-  //       display: 'swap',
-  //       weight: [400, 700],
-  //       style: 'normal',
-  //       fallbacks: ['Sans Serif','Segoe UI', 'Arial'],
-  //     },
-  //     {
-  //       name: 'Quicksand', 
-  //       provider: 'google',
-  //       // src: '~/assets/fonts/Quicksand.woff2',
-  //       display: 'swap',
-  //       weight: [400, 700],
-  //       style: 'normal',
-  //       fallbacks: ['Sans Serif','Segoe UI', 'Arial'],
-  //     }
-  //   ]
-  // },
+  fonts: {
+    provider: 'google',
+    families: [
+      {
+        name: 'Inter', 
+        provider: 'google',
+        display: 'swap',
+        weight: [400, 700],
+        style: 'normal',
+        fallbacks: ['Sans Serif','Segoe UI', 'Arial'],
+      },
+      {
+        name: 'Quicksand', 
+        provider: 'google',
+        display: 'swap',
+        weight: [400, 700],
+        style: 'normal',
+        fallbacks: ['Sans Serif','Segoe UI', 'Arial'],
+      }
+    ]
+  },
   compatibilityDate: '2025-01-15',
   devtools: {
     enabled: true,
@@ -67,7 +64,7 @@ export default defineNuxtConfig({
     },
   },
   build: {
-    transpile: ['vueuc', 'naive-ui', 'apexcharts', 'vue3-apexcharts']
+    transpile: ['vueuc', 'naive-ui', 'apexcharts', 'vue3-apexcharts', '@iconify/vue']
   },
   app: {
     pageTransition: { name: 'page', mode: 'in-out' },
@@ -111,14 +108,14 @@ export default defineNuxtConfig({
     ],
     langDir: '../app/locales',
     defaultLocale: 'en',
-  }
-  // eslint: {
-  //   config: {
-  //     stylistic: {
-  //       commaDangle: 'never',
-  //       braceStyle: '1tbs'
-  //     }
-  //   }
-  // },
+  },
+  eslint: {
+    config: {
+      stylistic: {
+        commaDangle: 'never',
+        braceStyle: '1tbs'
+      }
+    }
+  },
 
 })

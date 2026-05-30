@@ -11,7 +11,7 @@ async function create() {
   formRef.value?.validate(async (errors: any) => {
     if (!errors) {
       await createColor(colorItem.value)
-      useNotification().success($t('colors.createMessage'))
+      useNotification().success({ title: $t('colors.createMessage') })
       emits('close')
     }
   })
@@ -37,25 +37,19 @@ const rules: FormRules = {
   <n-form ref="formRef" :model="colorItem" :rules="rules" @submit.prevent="create()">
     <div class="form-control">
       <n-form-item class="mb-5" path="name" :label="$t('colors.create.name')">
-        <n-input
-          id="name" ref="nameInput" v-model:value="colorItem.name" autofocus
-          :placeholder="$t('brands.create.brandName')"
-        />
+        <n-input id="name" ref="nameInput" v-model:value="colorItem.name" autofocus
+          :placeholder="$t('brands.create.brandName')" />
       </n-form-item>
     </div>
     <div class="form-control flex flex-col mb-5">
       <n-form-item :label="$t('colors.create.color')">
-        <n-color-picker
-          v-model:value="colorItem.color"
-          :modes="['hex']" :show-alpha="false"
-          :swatches="[
-            '#FFFFFF',
-            '#18A058',
-            '#2080F0',
-            '#F0A020',
-            'rgba(208, 48, 80, 1)',
-          ]"
-        />
+        <n-color-picker v-model:value="colorItem.color" :modes="['hex']" :show-alpha="false" :swatches="[
+          '#FFFFFF',
+          '#18A058',
+          '#2080F0',
+          '#F0A020',
+          'rgba(208, 48, 80, 1)',
+        ]" />
       </n-form-item>
     </div>
 

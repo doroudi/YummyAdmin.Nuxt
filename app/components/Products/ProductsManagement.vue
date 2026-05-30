@@ -26,7 +26,7 @@ const columns: DataTableColumns<RowData> = [
     title: $t('products.category'),
     key: 'category',
     render: (row) => renderText(row.category.name)
-    
+
   },
   {
     title: $t('products.rate'),
@@ -178,4 +178,3 @@ function fetchProducts(options: any) {
     </n-layout-content>
   </n-layout>
 </template>
-

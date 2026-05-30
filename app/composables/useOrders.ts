@@ -1,4 +1,4 @@
-import { OrderStatus, type Order, type OrderList } from '~/models/Order'
+import { type Order, type OrderList, OrderStatus } from '~/models/Order'
 import type { PagedAndSortedRequest } from '~/models/PagedAndSortedRequest'
 import { useOrderService } from '~/services/order.service'
 
@@ -64,7 +64,6 @@ export function useOrders() {
     isLoading,
     getRecentOrders,
     deleteItem,
-    getStatusColor
+    getStatusColor,
   }
-  
 }

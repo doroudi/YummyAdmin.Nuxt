@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-const { userSettings } = useProfile()
+const { loadSettings, userSettings } = useProfile()
+loadSettings()
 </script>
 
 <template>

@@ -8,11 +8,16 @@ import type {
 
 export const useAccountService = () => {
   const login = async (loginInfo: LoginViewModel): Promise<LoginResponse> => {
-    const response = await useApi('account').get<LoginResponse>('login', loginInfo)
+    const response = await useApi('account').get<LoginResponse>(
+      'login',
+      loginInfo,
+    )
     return response
   }
 
-  const register = async (registerModel: RegisterViewModel): Promise<RegisterResponse> => {
+  const register = async (
+    registerModel: RegisterViewModel,
+  ): Promise<RegisterResponse> => {
     const response = await useApi('account').post<RegisterResponse>(
       'register',
       registerModel,
@@ -33,7 +38,6 @@ export const useAccountService = () => {
   return {
     login,
     register,
-    forgetPassword
+    forgetPassword,
   }
 }
-

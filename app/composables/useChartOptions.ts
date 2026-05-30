@@ -1,7 +1,7 @@
 import type { ApexOptions } from 'apexcharts'
+import { useColorsUtility } from '~/composables/useColorsUtility'
 import type { ChartData } from '~/models/ChartData'
 import type { ChartProps } from '~/models/ChartsProps'
-import { useColorsUtility } from '~/composables/useColorsUtility'
 
 export function useChartOptions(props: ChartProps) {
   const { makeLighter } = useColorsUtility()

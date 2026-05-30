@@ -1,4 +1,4 @@
-import { Icon } from "@iconify/vue"
+import { Icon } from '@iconify/vue'
 import {
   NBadge,
   NButton,
@@ -9,8 +9,8 @@ import {
   NTag,
   NText,
 } from 'naive-ui'
-import { RouterLink } from 'vue-router'
 import { useI18n } from 'vue-i18n'
+import { RouterLink } from 'vue-router'
 
 export function useRender() {
   const { t } = useI18n()
@@ -27,11 +27,11 @@ export function useRender() {
         default: () => [
           h(NText, { class: 'mx-2' }, { default: () => title }),
           isNew &&
-          h(
-            NTag,
-            { type: 'primary', bordered: false, round: true, size: 'small' },
-            { default: () => t('common.new') },
-          ),
+            h(
+              NTag,
+              { type: 'primary', bordered: false, round: true, size: 'small' },
+              { default: () => t('common.new') },
+            ),
         ],
       },
     )
@@ -42,7 +42,7 @@ export function useRender() {
 
     const iconNode = () =>
       h(NIcon, null, {
-        default: () => h(Icon, { icon })
+        default: () => h(Icon, { icon }),
       })
 
     if (showBadge) {
@@ -50,19 +50,23 @@ export function useRender() {
         h(
           NBadge,
           { processing: true, dot: true, type: 'success', offset: [-2, 2] },
-          { default: iconNode }
+          { default: iconNode },
         )
     }
 
     return iconNode
   }
 
-  function renderColoredIcon(icon: string, color : string | null = null) {
+  function renderColoredIcon(icon: string, color: string | null = null) {
     if (!icon) return
 
-    return h(NIcon, { color: color ?? undefined }, {
-      default: () => h(Icon, { icon })
-    })
+    return h(
+      NIcon,
+      { color: color ?? undefined },
+      {
+        default: () => h(Icon, { icon }),
+      },
+    )
   }
 
   function renderTag(
@@ -77,7 +81,7 @@ export function useRender() {
       NTag,
       { type, bordered, round, size: 'small' },
       {
-        default: () => t(`enums.${typename}.${stateEnum[text]}`)
+        default: () => t(`enums.${typename}.${stateEnum[text]}`),
       },
     )
   }
@@ -99,9 +103,10 @@ export function useRender() {
       {
         default: () => [
           renderColoredIcon('fluent:star-24-filled', 'gold'),
-          h(NText, {  }, { default: () => rate }),
-        ]
-      })
+          h(NText, {}, { default: () => rate }),
+        ],
+      },
+    )
   }
 
   function renderProductImage(image: string, name: string) {
@@ -156,7 +161,9 @@ export function useRender() {
   }
 
   function renderConfirmStatus(status: boolean, label: string) {
-    const icon = status ? 'fluent:checkmark-circle-20-filled' : 'fluent:warning-20-filled'
+    const icon = status
+      ? 'fluent:checkmark-circle-20-filled'
+      : 'fluent:warning-20-filled'
     const iconColor = status ? 'green' : 'orange'
     return h(
       NSpace,
@@ -205,7 +212,8 @@ export function useRender() {
         negativeButtonProps: { ghost: true, type: 'tertiary' },
       },
       {
-        trigger: () => renderActionButton('fluent:delete-20-regular', () => null),
+        trigger: () =>
+          renderActionButton('fluent:delete-20-regular', () => null),
         default: () => confirmMessage,
       },
     )
@@ -230,7 +238,9 @@ export function useRender() {
       },
       {
         icon: renderColoredIcon(
-          confirmed ? 'fluent:checkmark-circle-20-filled' : 'fluent:warning-20-filled',
+          confirmed
+            ? 'fluent:checkmark-circle-20-filled'
+            : 'fluent:warning-20-filled',
           confirmed ? 'green' : 'orange',
         ),
         default: () => email.toLowerCase(),

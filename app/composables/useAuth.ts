@@ -1,24 +1,24 @@
-import type { RegisterViewModel } from "~/models/Account";
+import type { RegisterViewModel } from '~/models/Account'
 
 export const useAuth = () => {
   const account = useAccount()
-  const token = useState<string | null>("token", (): string | null => null);
+  const token = useState<string | null>('token', (): string | null => null)
   const isLoading = ref(false)
 
   const setToken = (newToken: string | null) => {
-    token.value = newToken;
-    const tokenCookie = useCookie("token", {
+    token.value = newToken
+    const tokenCookie = useCookie('token', {
       secure: true,
-      sameSite: "strict",
+      sameSite: 'strict',
       maxAge: 60 * 60 * 24 * 7, // a week
-    });
+    })
 
     if (newToken) {
-      tokenCookie.value = newToken;
+      tokenCookie.value = newToken
     } else {
-      tokenCookie.value = null;
+      tokenCookie.value = null
     }
-  };
+  }
 
   const socialLogin = (provider: string): Promise<boolean> => {
     isLoading.value = true
@@ -42,27 +42,27 @@ export const useAuth = () => {
 
   const register = async (registerInfo: RegisterViewModel) => {
     try {
-      const response = await account.register(registerInfo);
+      const response = await account.register(registerInfo)
       // setToken(response.token);
       return response
     } catch (error) {
-      setToken(null);
+      setToken(null)
       // user.value = null;
-      throw error;
+      throw error
     }
-  };
+  }
 
   const logout = () => {
-    setToken(null);
-    navigateTo("/login");
-  };
+    setToken(null)
+    navigateTo('/login')
+  }
 
   const initAuth = () => {
-    const tokenCookie = useCookie("token").value;
+    const tokenCookie = useCookie('token').value
     if (tokenCookie) {
-      setToken(tokenCookie);
+      setToken(tokenCookie)
     }
-  };
+  }
 
   return {
     token,
@@ -74,5 +74,5 @@ export const useAuth = () => {
     setToken,
     register,
     resetPassword,
-  };
-};
+  }
+}

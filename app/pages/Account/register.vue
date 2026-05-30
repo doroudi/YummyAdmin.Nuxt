@@ -3,7 +3,7 @@ import type { FormInst, FormRules } from 'naive-ui/es/form/src/interface'
 
 import type { LoginViewModel } from '~/models/Account'
 
-const { isLoading, register  } = useAccount()
+const { isLoading, register } = useAccount()
 const registerInfo = ref<LoginViewModel>({ username: '', password: '' })
 const loginFailed = ref(false)
 const router = useRouter()
@@ -14,7 +14,7 @@ async function doRegister() {
     if (!errors) {
       const registerResult = await register(registerInfo.value)
       if (registerResult) {
-        useNotification().success({title: $t('register.successMessage') })
+        useNotification().success({ title: $t('register.successMessage') })
         setTimeout(() => router.push('/'), 500)
       } else {
         loginFailed.value = true
@@ -61,13 +61,12 @@ definePageMeta({
 
           <n-form ref="formRef" :model="registerInfo" :rules="rules" @submit.prevent="doRegister()">
             <n-form-item class="mb-1" path="username" :label="$t('register.username')">
-              <n-input id="name" v-model:value="registerInfo.username" autofocus :placeholder="$t('register.username')" />
+              <n-input id="name" v-model:value="registerInfo.username" autofocus
+                :placeholder="$t('register.username')" />
             </n-form-item>
             <n-form-item class="mb-1" path="password" :label="$t('register.password')">
-              <n-input
-                id="name" v-model:value="registerInfo.password" type="password" show-password-on="mousedown"
-                :placeholder="$t('register.password')"
-              />
+              <n-input id="name" v-model:value="registerInfo.password" type="password" show-password-on="mousedown"
+                :placeholder="$t('register.password')" />
             </n-form-item>
             <n-button attr-type="submit" size="large" :block="true" type="primary" :loading="isLoading">
               {{ $t('register.button') }}

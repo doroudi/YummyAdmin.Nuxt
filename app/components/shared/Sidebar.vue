@@ -182,7 +182,7 @@ const menuOptions: SidebarMenuOption[] = [
       {
         label: $t('menu.accountSettings'),
         route: '/account/profile',
-        key: 'account-profile',
+        key: 'accountSettings',
         icon: 'fluent:person-settings-20-regular',
         activeIcon: 'fluent:person-settings-20-filled',
       },

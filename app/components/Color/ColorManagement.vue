@@ -44,7 +44,7 @@ const columns: DataTableColumns<RowData> = [
 
 function handleDeleteItem(row: RowData) {
   deleteColor(row.id)
-  useNotification().success($t('colors.deleteMessage'))
+  useNotification().success({ title: $t('colors.deleteMessage') })
 }
 
 function rowKey(row: RowData) {

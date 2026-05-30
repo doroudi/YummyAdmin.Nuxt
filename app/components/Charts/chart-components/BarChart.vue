@@ -5,7 +5,6 @@ interface Props {
   colors?: string[]
   height: number | string
   loading?: boolean
-  color: string
   showLegend?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {

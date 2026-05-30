@@ -7,14 +7,14 @@ import type {
 
 export const useTodoService = () => {
   const api = useApi('todo')
-  
+
   async function loadGroups(): Promise<TaskGroup[]> {
     const response = await api.get<{ items: TaskGroup[] }>('groups')
     return response.items
   }
 
   async function loadTasks(groupId: number) {
-    const response = await api.get<TaskGroup>(`groups/${groupId}/tasks`)
+    const response = await api.get<TaskItem[]>(`groups/${groupId}/tasks`)
     return response
   }
 

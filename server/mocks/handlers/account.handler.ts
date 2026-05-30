@@ -9,7 +9,7 @@ import type {
 import {  delay } from '../handler-utilities.ts' 
 import { registerMockHandler } from '../registry.ts'
 
-registerMockHandler('POST', 'account/login', async (request) => {
+registerMockHandler('POST', 'account/login', async (request: any) => {
   const user = (await request.json()) as LoginViewModel
   if (user.username === 'Yummy' && user.password === 'Admin!') {
     const response: LoginResponse = {
@@ -30,7 +30,7 @@ registerMockHandler('POST', 'account/login', async (request) => {
   // })
 })
 
-registerMockHandler('POST', 'account/register', async (request) => {
+registerMockHandler('POST', 'account/register', async (request: any) => {
   const user = (await request.json()) as RegisterViewModel
   if (user.username.toLowerCase() === 'yummy')
     return {
@@ -46,7 +46,7 @@ registerMockHandler('POST', 'account/register', async (request) => {
   return response
 })
 
-registerMockHandler('POST', 'account/forget-password', async (request) => {
+registerMockHandler('POST', 'account/forget-password', async (request: any) => {
   const user = (await request.json()) as ForgetPasswordViewModel
   if (user.email !== 'yummy@admin.io')
     return {

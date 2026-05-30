@@ -10,7 +10,7 @@ const {
   renderDeleteActionButton,
   renderDate,
 } = useRender()
-const { getStatusColor, isLoading, orders, deleteItem, getOrders  } = useOrders()
+const { getStatusColor, isLoading, orders, deleteItem, getOrders } = useOrders()
 
 onMounted(getItems)
 
@@ -92,8 +92,8 @@ async function handleDeleteItem(row: RowData) {
           <SearchInput v-model="options.query" @search="getItems" />
         </NSpace>
         <SkeletonTable v-if="isLoading" :columns="columns" />
-        <n-data-table remote :columns="columns" :data="orders" :pagination="options" :row-key="rowKey"
-          :scroll-x="1000" @update:sorter="getItems" @update:filters="getItems" @update:page="handlePageChange" />
+        <n-data-table remote :columns="columns" :data="orders" :pagination="options" :row-key="rowKey" :scroll-x="1000"
+          @update:sorter="getItems" @update:filters="getItems" @update:page="handlePageChange" />
       </div>
     </n-layout-content>
   </n-layout>
