@@ -1,7 +1,7 @@
 # Yummy Admin Nuxt
 
 [![CI](https://github.com/doroudi/YummyAdmin/actions/workflows/ci.yml/badge.svg)](https://github.com/doroudi/YummyAdmin/actions/workflows/ci.yml)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/24e54305-5d97-447e-adba-ed0a7c18513e/deploy-status)](https://app.netlify.com/sites/yummy-admin/deploys)
+![Vercel Deploy](https://deploy-badge.vercel.app/vercel/yummy-admin-nuxt)
 [![Static Badge](https://img.shields.io/badge/Fa-IR?style=flat&label=Lang)](https://github.com/doroudi/YummyAdmin/blob/main/README.fa-ir.md)
 [![Static Badge](https://img.shields.io/badge/Zh-CN?style=flat&label=Lang&color=red)](https://github.com/doroudi/YummyAdmin/blob/main/README.zh-cn.md)
 <a href="https://coff.ee/doroudi"><img src="https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png" height="20px"></a>
@@ -11,12 +11,12 @@ Free Nuxt AdminPanel based on Naive UI and Tailwind CSS. Fairly complete with a 
 ![Preview](/docs/banner-dark.png "Preview")
 
 <p align='center'>
-   <a href="https://yummynuxt.netlify.app/">🌏 Live Demo</a>
-   <a href="https://yummynuxt.netlify.app?theme=dark">🌑 Dark Mode</a>
+   <a href="https://yummy-admin-nuxt.vercel.app/">🌏 Live Demo</a>
+   <a href="https://yummy-admin-nuxt.vercel.app?theme=dark">🌑 Dark Mode</a>
    <br>
    Other languages demo:<br />
-   <a href="https://yummynuxt.netlify.app?lang=fa"> Persian</a> |
-   <a href="https://yummynuxt.netlify.app?lang=zh"> Chines</a>
+   <a href="https://yummy-admin-nuxt.vercel.app?lang=fa"> Persian</a> |
+   <a href="https://yummy-admin-nuxt.vercel.app?lang=zh"> Chines</a>
 </p>
 
 ![Preview](/docs/banner-light.png "Preview Light")
@@ -28,8 +28,8 @@ Free Nuxt AdminPanel based on Naive UI and Tailwind CSS. Fairly complete with a 
 ### Clone to local
 
 ```bash
-npx degit https://github.com/doroudi/yummyadmin.nuxt yummy-admin
-cd yummy-admin
+npx degit https://github.com/doroudi/yummyadmin.nuxt yummy-admin-nuxt
+cd yummy-admin-nuxt
 pnpm i # If you don't have pnpm installed, run: npm install -g pnpm
 ```
 

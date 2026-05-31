@@ -12,6 +12,7 @@ export default defineNuxtConfig({
       'nuxtjs-naive-ui',
       '@nuxtjs/i18n',
       '@nuxt/fonts',
+      '@vercel/speed-insights'
   ],
   components: [
     {
