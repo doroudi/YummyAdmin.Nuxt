@@ -11,12 +11,12 @@ Free Nuxt AdminPanel based on Naive UI and Tailwind CSS. Fairly complete with a 
 ![Preview](/docs/banner-dark.png "Preview")
 
 <p align='center'>
-   <a href="https://yummy-admin.netlify.app/">🌏 Live Demo</a>
-   <a href="https://yummy-admin.netlify.app?theme=dark">🌑 Dark Mode</a>
+   <a href="https://yummynuxt.netlify.app/">🌏 Live Demo</a>
+   <a href="https://yummynuxt.netlify.app?theme=dark">🌑 Dark Mode</a>
    <br>
    Other languages demo:<br />
-   <a href="https://yummy-admin.netlify.app?lang=fa"> Persian</a> |
-   <a href="https://yummy-admin.netlify.app?lang=zh"> Chines</a>
+   <a href="https://yummynuxt.netlify.app?lang=fa"> Persian</a> |
+   <a href="https://yummynuxt.netlify.app?lang=zh"> Chines</a>
 </p>
 
 ![Preview](/docs/banner-light.png "Preview Light")
