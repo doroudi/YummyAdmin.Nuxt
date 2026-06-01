@@ -5,14 +5,15 @@ import Components from 'unplugin-vue-components/vite'
 export default defineNuxtConfig({
   modules:
   [
-      '@nuxt/eslint',
-      '@nuxt/icon',
-      '@nuxt/image',
-      '@nuxt/scripts',
-      'nuxtjs-naive-ui',
-      '@nuxtjs/i18n',
-      '@nuxt/fonts',
-      '@vercel/speed-insights'
+    '@nuxt/eslint',
+    '@nuxt/icon',
+    '@nuxt/image',
+    '@nuxt/scripts',
+    'nuxtjs-naive-ui',
+    '@nuxtjs/i18n',
+    '@nuxt/fonts',
+    '@vercel/speed-insights',
+    'nuxt-booster',
   ],
   components: [
     {
@@ -65,10 +66,28 @@ export default defineNuxtConfig({
     },
   },
   build: {
-    transpile: ['vueuc', 'naive-ui', 'apexcharts', 'vue3-apexcharts', '@iconify/vue']
+    transpile: ['vueuc', 'naive-ui', 'apexcharts', 'vue3-apexcharts', '@iconify/vue', 'nuxt-booster',]
   },
   app: {
     pageTransition: { name: 'page', mode: 'in-out' },
+  },
+  booster: {
+
+    detection: {
+      performance: true,
+      browserSupport: true
+    },
+
+    performanceMetrics: {
+      device: {
+        hardwareConcurrency: { min: 2, max: 48 },
+        deviceMemory: { min: 2 }
+      },
+      timing: {
+        fcp: 800,
+        dcl: 1200
+      }
+    },
   },
   vite: {
     plugins: [

@@ -59,6 +59,7 @@
     "cross-env": "^7.0.3",
     "eslint": "^10.4.1",
     "lefthook": "^2.0.13",
+    "nuxt-booster": "^3.3.2",
     "postcss": "^8.5.15",
     "sass-embedded": "^1.100.0",
     "taze": "^0.11.4",

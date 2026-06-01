@@ -36,6 +36,7 @@ useHead({
   link: [{ rel: "icon", href: "/favicon.ico" }],
   htmlAttrs: {
     lang: "en-US",
+    class: isDark.value ? 'dark' : 'light'
   },
 });
 
@@ -93,8 +94,8 @@ const notificationPlacement = computed(() => isRtl ? 'bottom-left' : 'bottom-rig
 </script>
 
 <template>
-  <NConfigProvider :preflight-style-disabled="true" :theme="activeTheme" :theme-overrides="activeThemeOverrides"
-    :rtl="isRtl ? rtlStyles : []" inline-theme-disabled>
+  <NConfigProvider  :theme="activeTheme" :theme-overrides="activeThemeOverrides"
+    :rtl="isRtl ? rtlStyles : []">
     <NuxtLoadingIndicator />
     <NMessageProvider :placement="notificationPlacement">
       <NNotificationProvider :placement="notificationPlacement">
@@ -102,7 +103,7 @@ const notificationPlacement = computed(() => isRtl ? 'bottom-left' : 'bottom-rig
           <NDialogProvider>
             <NuxtRouteAnnouncer />
             <NuxtLayout>
-              <NuxtPage />
+              <NuxtPage critical />
             </NuxtLayout>
           </NDialogProvider>
         </NModalProvider>
