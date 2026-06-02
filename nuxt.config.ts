@@ -9,11 +9,11 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxt/image',
     '@nuxt/scripts',
-    'nuxtjs-naive-ui',
+    '@bg-dev/nuxt-naiveui',
     '@nuxtjs/i18n',
     '@nuxt/fonts',
     '@vercel/speed-insights',
-    'nuxt-booster',
+    '@nuxt/hints',
   ],
   components: [
     {
@@ -66,29 +66,19 @@ export default defineNuxtConfig({
     },
   },
   build: {
-    transpile: ['vueuc', 'naive-ui', 'apexcharts', 'vue3-apexcharts', '@iconify/vue', 'nuxt-booster',]
+    transpile: ['vueuc', 'naive-ui', 'apexcharts', 'vue3-apexcharts', '@iconify/vue', 'nuxt-booster', 'nuxt-booster']
+  },
+  naiveui: {
+    colorModePreference: 'system',  // 'light', 'dark', or 'system'
+    iconSize: 18,
+    themeConfig: {
+      // Optional: Define default theme overrides here
+    }
   },
   app: {
     pageTransition: { name: 'page', mode: 'in-out' },
   },
-  booster: {
 
-    detection: {
-      performance: true,
-      browserSupport: true
-    },
-
-    performanceMetrics: {
-      device: {
-        hardwareConcurrency: { min: 2, max: 48 },
-        deviceMemory: { min: 2 }
-      },
-      timing: {
-        fcp: 800,
-        dcl: 1200
-      }
-    },
-  },
   vite: {
     plugins: [
       AutoImport({

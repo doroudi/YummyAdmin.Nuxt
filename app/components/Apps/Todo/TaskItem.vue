@@ -52,11 +52,10 @@ function handleSelect(action: string) {
 <template>
     <div class="task-item flex justify-between items-center bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 px-3 py-3.5 rounded-md"
         :class="{ done: isDone, favorite: task.isFavorite }" @contextmenu="handleContextMenu">
-        <div class="flex items-center">
-            <NCheckbox v-model:checked="isDone" @update:checked="update" class="me-2 circle">
+        <div class="flex items-center todo-item">
+            <NCheckbox v-model:checked="isDone" @update:checked="update" class="me-2">
                 <span>{{ task.title }}</span>
             </NCheckbox>
-
         </div>
         <NButton text @click="toggleFav" me-1>
             <template #icon>
@@ -71,13 +70,13 @@ function handleSelect(action: string) {
 
 </template>
 
-<style scoped lang="scss">
-.circle {
+<style lang="scss">
+.todo-item {
     --n-border-radius: 50%;
-    --n-size: 20px;
-    --n-border: 1px solid #FFF;
+    --n-size: 22px;
+    --n-border: 2px solid #FFF;
 
-    .n-checkbox .n-checkbox-box {
+    .n-checkbox .n-checkbox-box{
         border-radius: 50% !important;
     }
 }

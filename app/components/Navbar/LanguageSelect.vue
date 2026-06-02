@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import ChineseIcon from '../CustomIcons/ChineseIcon.vue'
-import EnglandIcon from '../CustomIcons/EnglandIcon.vue'
-import PersianIcon from '../CustomIcons/PersianIcon.vue'
+import { LazyEnglandIcon, LazyChineseIcon, LazyPersianIcon } from '#components';
+
+// import ChineseIcon from '../CustomIcons/ChineseIcon.vue'
+// import EnglandIcon from '../CustomIcons/EnglandIcon.vue'
+// import PersianIcon from '../CustomIcons/PersianIcon.vue'
 
 defineProps<{ showTitle?: boolean }>()
 
@@ -31,13 +33,13 @@ function renderLabel(label: string, language: string) {
 function getLanguageIcon(language: string) {
   switch (language) {
     case 'en':
-      return EnglandIcon
+      return LazyEnglandIcon
     case 'fa':
-      return PersianIcon
+      return LazyPersianIcon
     case 'zh':
-      return ChineseIcon
+      return LazyChineseIcon
     default:
-      return EnglandIcon
+      return LazyEnglandIcon
   }
 }
 

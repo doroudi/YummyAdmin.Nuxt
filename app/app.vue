@@ -94,21 +94,26 @@ const notificationPlacement = computed(() => isRtl ? 'bottom-left' : 'bottom-rig
 </script>
 
 <template>
-  <NConfigProvider  :theme="activeTheme" :theme-overrides="activeThemeOverrides"
-    :rtl="isRtl ? rtlStyles : []">
-    <NuxtLoadingIndicator />
-    <NMessageProvider :placement="notificationPlacement">
-      <NNotificationProvider :placement="notificationPlacement">
-        <NModalProvider>
-          <NDialogProvider>
-            <NuxtRouteAnnouncer />
-            <NuxtLayout>
-              <NuxtPage critical />
-            </NuxtLayout>
-          </NDialogProvider>
-        </NModalProvider>
-      </NNotificationProvider>
-    </NMessageProvider>
-    <!-- <NGlobalStyle /> -->
-  </NConfigProvider>
+  <NaiveConfig :theme-config="activeTheme">
+
+    <!-- <naive-config :theme="activeTheme" :theme-overrides="activeThemeOverrides"> -->
+    <!-- <NConfigProvider :preflight-style-disabled="true" :theme="activeTheme" :theme-overrides="activeThemeOverrides"
+      :rtl="isRtl ? rtlStyles : []" inline-theme-disabled> -->
+      <NuxtLoadingIndicator />
+      <NMessageProvider :placement="notificationPlacement">
+        <NNotificationProvider :placement="notificationPlacement">
+          <NModalProvider>
+            <NDialogProvider>
+              <NuxtRouteAnnouncer />
+              <NuxtLayout>
+                <NuxtPage />
+              </NuxtLayout>
+            </NDialogProvider>
+          </NModalProvider>
+        </NNotificationProvider>
+      </NMessageProvider>
+      <!-- <NGlobalStyle /> -->
+    <!-- </NConfigProvider> -->
+    <!-- </naive-config> -->
+  </NaiveConfig>
 </template>

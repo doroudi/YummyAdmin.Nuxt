@@ -21,7 +21,7 @@ function toggleDialog() {
             </div>
           </template>
           <div class="px-1">
-            <CustomizeDialog />
+            <LazyCustomizeDialog />
           </div>
         </n-popover>
       </template>
