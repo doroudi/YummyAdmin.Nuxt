@@ -1,20 +1,22 @@
 import AutoImport from 'unplugin-auto-import/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
+import { themeOverrides, darkThemeOverrides } from './app/common/themes/theme-overrides'
+import colors from "tailwindcss/colors";
 
 export default defineNuxtConfig({
   modules:
-  [
-    '@nuxt/eslint',
-    '@nuxt/icon',
-    '@nuxt/image',
-    '@nuxt/scripts',
-    '@bg-dev/nuxt-naiveui',
-    '@nuxtjs/i18n',
-    '@nuxt/fonts',
-    '@vercel/speed-insights',
-    '@nuxt/hints',
-  ],
+    [
+      '@nuxt/eslint',
+      '@nuxt/icon',
+      '@nuxt/image',
+      '@nuxt/scripts',
+      '@bg-dev/nuxt-naiveui',
+      '@nuxtjs/i18n',
+      '@nuxt/fonts',
+      '@vercel/speed-insights',
+      '@nuxt/hints',
+    ],
   components: [
     {
       path: '~/components',
@@ -34,20 +36,20 @@ export default defineNuxtConfig({
     provider: 'google',
     families: [
       {
-        name: 'Inter', 
+        name: 'Inter',
         provider: 'google',
         display: 'swap',
         weight: [400, 700],
         style: 'normal',
-        fallbacks: ['Sans Serif','Segoe UI', 'Arial'],
+        fallbacks: ['Sans Serif', 'Segoe UI', 'Arial'],
       },
       {
-        name: 'Quicksand', 
+        name: 'Quicksand',
         provider: 'google',
         display: 'swap',
         weight: [400, 700],
         style: 'normal',
-        fallbacks: ['Sans Serif','Segoe UI', 'Arial'],
+        fallbacks: ['Sans Serif', 'Segoe UI', 'Arial'],
       }
     ]
   },
@@ -66,19 +68,79 @@ export default defineNuxtConfig({
     },
   },
   build: {
-    transpile: ['vueuc', 'naive-ui', 'apexcharts', 'vue3-apexcharts', '@iconify/vue', 'nuxt-booster', 'nuxt-booster']
+    transpile: ['vueuc', 'naive-ui', 'apexcharts', 'vue3-apexcharts', '@iconify/vue']
   },
+  // naiveui: {
+
+  //   themeConfig: {
+  //     shared: {
+  //       ...themeOverrides
+  //     },
+  //     light: {
+  //       ...themeOverrides
+  //     },
+  //     dark: {
+  //       ...darkThemeOverrides
+  //     },
+  //     // ...generateTailwindColorThemes(),
+  //   },
+
+  // },
   naiveui: {
-    colorModePreference: 'system',  // 'light', 'dark', or 'system'
-    iconSize: 18,
+    colorModePreference: 'light',
     themeConfig: {
-      // Optional: Define default theme overrides here
-    }
+      shared: {
+        common: {
+          primaryColor: '#00ad4c',
+          errorColor: '#FF0055',
+          warningColor: '#FF8000',
+          borderRadius: '5px',
+          borderRadiusSmall: '3px',
+        },
+        Card: {
+          borderRadius: '5px',
+        },
+        Tag: {
+          borderRadius: '4px',
+        },
+        Notification: {
+          padding: '15px',
+        },
+      },
+      light: {
+        common: {
+          bodyColor: '#EEE',
+          borderColor: '#e4e7ec',
+        },
+      },
+      dark: {
+        
+        common: {
+          borderColor: '#1c2334',
+          cardColor: '#0f172a',
+          popoverColor: '#0f172a',
+          modalColor: '#1c202c',
+          bodyColor: '#283046',
+        },
+        
+        DataTable: {
+          thColor: '#1c202c',
+          tdColor: '#1c2334',
+          hoverColor: '#1c202c',
+          tdColorHover: '#1c202c',
+        },
+        
+      },
+    },
   },
+  // naiveui: {
+  //   themeConfig: {
+  //     ...generateTailwindColorThemes(),
+  //   },
+  // },
   app: {
     pageTransition: { name: 'page', mode: 'in-out' },
   },
-
   vite: {
     plugins: [
       AutoImport({

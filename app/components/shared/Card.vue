@@ -22,7 +22,7 @@ const { flatDesign } = useLayout()
           <slot name="title" />
         </div>
         <div v-else-if="title">
-          <h3 class="title pb-2 text-dark-400 dark:text-light-800 mix-blend-difference" :class="`title-${titleSize}`">
+          <h3 class="title pb-2 text-dark-400 dark:text-light-800" :class="`title-${titleSize}`">
             {{ title }}
           </h3>
         </div>

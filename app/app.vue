@@ -94,8 +94,7 @@ const notificationPlacement = computed(() => isRtl ? 'bottom-left' : 'bottom-rig
 </script>
 
 <template>
-  <NaiveConfig :theme-config="activeTheme">
-
+  <NaiveConfig :rtl="isRtl ? rtlStyles : []" preflight-style-disabled inline-theme-disabled>
     <!-- <naive-config :theme="activeTheme" :theme-overrides="activeThemeOverrides"> -->
     <!-- <NConfigProvider :preflight-style-disabled="true" :theme="activeTheme" :theme-overrides="activeThemeOverrides"
       :rtl="isRtl ? rtlStyles : []" inline-theme-disabled> -->
