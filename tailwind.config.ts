@@ -15,6 +15,9 @@ export default {
     theme: {
         
     },
+    corePlugins: {
+        preflight: false  // Disable Tailwind's base style reset
+    },
     plugins: [],
 }
 

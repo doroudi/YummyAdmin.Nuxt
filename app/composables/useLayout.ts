@@ -1,4 +1,5 @@
 import { useWindowSize } from '@vueuse/core'
+// import colors from "tailwindcss/colors";
 
 export const useLayout = () => {
   const collapsed = useState('collapsed', () => false)
@@ -8,7 +9,7 @@ export const useLayout = () => {
   const activeLanguage = useState('activeLanguage', () => 'en')
   const isRtl = useState('isRtl', () => false)
   const themeColor = useState('themeColor', () => '#00ad4c')
-  const isDark = useState('isDark', () => true)
+  const isDark = useState('isDark', () => false)
   const isWelcomeShown = ref(false)
   const isFluid = useState('isFluid', () => false)
   const flatDesign = useState('flatDesign', () => true)
@@ -42,10 +43,9 @@ export const useLayout = () => {
   }
 
   function toggleTheme() {
+    const { colorModePreference } = useNaiveColorMode()
     isDark.value = !isDark.value
-    window.umami?.track('ToggleDarkMode', {
-      theme: isDark.value ? 'Dark' : 'Light',
-    })
+    colorModePreference.set(isDark.value? "dark" : "light");
   }
 
   function changeLanguage(lang: string) {

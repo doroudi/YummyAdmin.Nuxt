@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import Sidebar from '~/components/shared/Sidebar.vue';
-import SupportProject from '~/components/shared/SupportProject.vue';
 const props = defineProps({
   isFluid: {
     type: Boolean,
@@ -38,7 +37,7 @@ const effectiveFluid = computed(() => {
       </div>
     </n-layout>
     <!-- you can remove it -->
-    <SupportProject v-if="supportEnabled" />
+    <LazySupportProject v-if="supportEnabled" />
   </n-layout>
 </template>
 

@@ -22,9 +22,12 @@
     "up": "taze major -I"
   },
   "dependencies": {
+    "@bg-dev/nuxt-naiveui": "^2.0.0",
+    "@css-render/vue3-ssr": "^0.15.14",
     "@iconify-json/fluent": "^1.2.48",
     "@iconify/vue": "^5.0.1",
     "@nuxt/fonts": "^0.14.0",
+    "@nuxt/hints": "1.1.2",
     "@nuxt/icon": "^2.2.2",
     "@nuxt/image": "^2.0.0",
     "@nuxt/scripts": "^0.13.4",
@@ -59,7 +62,6 @@
     "cross-env": "^7.0.3",
     "eslint": "^10.4.1",
     "lefthook": "^2.0.13",
-    "nuxt-booster": "^3.3.2",
     "postcss": "^8.5.15",
     "sass-embedded": "^1.100.0",
     "taze": "^0.11.4",
