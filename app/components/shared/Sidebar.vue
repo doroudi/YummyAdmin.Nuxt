@@ -17,7 +17,7 @@ const menuOptions: SidebarMenuOption[] = [
     children: [
       {
         label: $t('menu.eCommerce'),
-        key: 'dashboard-ecommerce',
+        key: 'index',
         icon: 'fluent-chart-multiple-20-regular',
         activeIcon: 'fluent-chart-multiple-20-filled' ,
         route: '/',

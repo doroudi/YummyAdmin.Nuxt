@@ -1,16 +1,16 @@
 <script setup lang="ts">
-const { renderLabel, renderIcon } = useRender()
+const { renderLinkedLabel, renderIcon } = useRender()
 const { profile, loadUserProfile } = useProfile()
 onMounted(loadUserProfile)
 const items: any[] = [
   {
     icon: renderIcon('fluent:settings-20-regular'),
-    label: () => renderLabel($t('userMenu.profile'), '/account/profile'),
+    label: () => renderLinkedLabel($t('userMenu.profile'), '/account/profile'),
     key: 'options',
   },
   {
     icon: renderIcon('fluent:door-arrow-right-20-regular'),
-    label: () => renderLabel($t('userMenu.logout'), '/account/login'),
+    label: () => renderLinkedLabel($t('userMenu.logout'), '/account/login'),
     key: 'login',
   },
 ]

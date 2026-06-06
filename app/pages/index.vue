@@ -13,9 +13,13 @@ if (route.query.theme) {
   layout.setDarkTheme(theme === 'dark')
 }
 
-useRouter().replace('/dashboard/ecommerce')
+definePageMeta({
+  title: 'dashboard',
+  name: 'index',
+  breadcrumb: ['dashboard']
+})
 </script>
 
 <template>
-  Here we go!
+  <EcommerceDashboard />
 </template>

@@ -10,28 +10,32 @@ import {
   NText,
 } from 'naive-ui'
 import { useI18n } from 'vue-i18n'
-import { RouterLink } from 'vue-router'
+import { NuxtLink } from '#components'
+// import { useLocalePath } from '#imports'
+// import { RouterLink } from 'vue-router'
 
 export function useRender() {
   const { t } = useI18n()
-
-  function renderLabel(title: string, path: string, isNew = false) {
+  function renderLinkedLabel(title: string, path: string, isNew = false) {
+    const localePath = useLocalePath()
+    const convertedPath = localePath(path)
+    const to = {
+      to: convertedPath
+    }
     return h(
-      RouterLink,
+      NuxtLink,
       {
-        to: {
-          path,
-        },
+        ...to,
       },
       {
         default: () => [
           h(NText, { class: 'mx-2' }, { default: () => title }),
           isNew &&
-            h(
-              NTag,
-              { type: 'primary', bordered: false, round: true, size: 'small' },
-              { default: () => t('common.new') },
-            ),
+          h(
+            NTag,
+            { type: 'primary', bordered: false, round: true, size: 'small' },
+            { default: () => t('common.new') },
+          ),
         ],
       },
     )
@@ -255,7 +259,7 @@ export function useRender() {
     renderRate,
     renderProductImage,
     renderUserAvatar,
-    renderLabel,
+    renderLinkedLabel,
     renderText,
     renderDate,
     renderActionButton,

@@ -13,7 +13,6 @@
         "pnpm",
         "Shabnam",
         "sider",
-        "umami",
         "unocss",
         "unplugin",
         "Vite",
@@ -40,5 +39,5 @@
         "titleBar.inactiveBackground": "#0a141e99",
         "titleBar.inactiveForeground": "#e7e7e799"
     },
-    "editor.occurrencesHighlight": false,
+    "editor.occurrencesHighlight": "singleFile",
 }

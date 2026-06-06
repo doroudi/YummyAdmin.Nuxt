@@ -24,7 +24,6 @@ function createGroup() {
     groupItem.value.bgColor = color ?? 'transparent'
     store.createGroup(groupItem.value)
     emits('created')
-    window.umami?.track('Todo:CreateGroup', { title: groupItem.value.title })
     groupItem.value = defaultTaskGroup
     selectedColorIndex.value = -1
 }

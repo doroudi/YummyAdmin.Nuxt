@@ -31,7 +31,6 @@ export const useToDoApp = () => {
   function createGroup(group: TaskGroup) {
     group.id = groups.value.length + 2
     groups.value.push(group)
-    window.umami?.track('Todo:CreateGroup', { title: group.title })
   }
 
   function deleteGroup(id: number) {

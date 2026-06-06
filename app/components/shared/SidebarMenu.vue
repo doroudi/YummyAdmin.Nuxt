@@ -24,7 +24,7 @@ const props = defineProps<Props>()
 const route = useRoute()
 const selectedMenuKey = ref('dashboard')
 const menuRef = ref<MenuInst | null>(null)
-const { renderIcon, renderLabel } = useRender()
+const { renderIcon, renderLinkedLabel } = useRender()
 
 onMounted(() => activateCurrentRoute())
 
@@ -64,7 +64,7 @@ function convertToMenuOption(item: SidebarMenuOption): MenuOption {
     label: item.route
       ? () =>
           item.label !== undefined
-            ? renderLabel(item.label, item.route!, item.isNew ?? false)
+            ? renderLinkedLabel(item.label, item.route!, item.isNew ?? false)
             : () => null
       : () => item.label,
     icon:

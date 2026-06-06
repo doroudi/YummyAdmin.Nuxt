@@ -30,8 +30,6 @@ export const useLayout = () => {
   function toggleSidebar() {
     if (mobileMode.value) mobileMenuClosed.value = false
     else collapsed.value = !collapsed.value
-
-    window.umami?.track({ ToggleSidebar: mobileMenuClosed.value })
   }
 
   function closeSidebar() {
@@ -53,13 +51,11 @@ export const useLayout = () => {
     locale.value = lang
     const dir = lang === 'fa' ? 'rtl' : 'ltr' // t('direction')
     isRtl.value = dir !== null && dir === 'rtl'
-    window.umami?.track('LanguageChange', { language: lang })
     // showWelcome()
   }
 
   function setThemeColor(color: string) {
     themeColor.value = color
-    window.umami?.track('ChangeTheme', { color })
   }
 
   function showWelcome() {

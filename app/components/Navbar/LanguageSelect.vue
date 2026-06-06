@@ -1,14 +1,9 @@
 <script setup lang="ts">
 import { LazyEnglandIcon, LazyChineseIcon, LazyPersianIcon } from '#components';
-
-// import ChineseIcon from '../CustomIcons/ChineseIcon.vue'
-// import EnglandIcon from '../CustomIcons/EnglandIcon.vue'
-// import PersianIcon from '../CustomIcons/PersianIcon.vue'
-
 defineProps<{ showTitle?: boolean }>()
 
 const { activeLanguage, changeLanguage, resetWelcomeState } = useLayout()
-const { availableLocales } = useI18n()
+const { availableLocales, setLocale } = useI18n()
 const language = ref(activeLanguage)
 const languages = availableLocales.sort(sortLangs).map((x) => {
   return {
@@ -17,8 +12,9 @@ const languages = availableLocales.sort(sortLangs).map((x) => {
   }
 })
 
-function update(lang: string) {
+function update(lang: any) {
   changeLanguage(lang)
+  setLocale(lang)
   resetWelcomeState()
   setTimeout(() => window.location.reload(), 1500)
 }

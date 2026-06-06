@@ -29,9 +29,6 @@ function selectGroup(item: TaskGroup | undefined) {
   if (item === undefined) return
   if (props.selectedGroup && item && props.selectedGroup.id === item.id) return
   emits('select', item)
-
-  if (item!.id !== 1)
-    window.umami?.track('Todo:SelectGroup', { title: item!.title })
 }
 
 const showDropdown = ref(false)
@@ -51,16 +48,11 @@ function handleContextMenu(item: any, e: MouseEvent) {
 const store = useToDoApp()
 function handleSelect(action: string) {
   if (action === 'delete') {
-    store.deleteGroup(selectedMenuId.value)
+    store.deleteGroup(selectedMenuId.value!)
     emits('select', undefined)
   }
   showDropdown.value = false
 }
-
-// function getCount(groupId: number) {
-//   const items = [store.tasks.value]
-//   return items.filter((x: TaskItem) => x.groupId === groupId && !x.isDone).length
-// }
 </script>
 
 <template>

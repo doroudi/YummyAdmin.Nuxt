@@ -1,8 +1,7 @@
 import AutoImport from 'unplugin-auto-import/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
-import { themeOverrides, darkThemeOverrides } from './app/common/themes/theme-overrides'
-import colors from "tailwindcss/colors";
+import { yummyAdminThemeConfig } from './app/common/themes/theme-overrides'
 
 export default defineNuxtConfig({
   modules:
@@ -16,6 +15,7 @@ export default defineNuxtConfig({
       '@nuxt/fonts',
       '@vercel/speed-insights',
       '@nuxt/hints',
+      '@vercel/analytics'
     ],
   components: [
     {
@@ -70,74 +70,10 @@ export default defineNuxtConfig({
   build: {
     transpile: ['vueuc', 'naive-ui', 'apexcharts', 'vue3-apexcharts', '@iconify/vue']
   },
-  // naiveui: {
-
-  //   themeConfig: {
-  //     shared: {
-  //       ...themeOverrides
-  //     },
-  //     light: {
-  //       ...themeOverrides
-  //     },
-  //     dark: {
-  //       ...darkThemeOverrides
-  //     },
-  //     // ...generateTailwindColorThemes(),
-  //   },
-
-  // },
   naiveui: {
     colorModePreference: 'light',
-    themeConfig: {
-      shared: {
-        common: {
-          primaryColor: '#00ad4c',
-          errorColor: '#FF0055',
-          warningColor: '#FF8000',
-          borderRadius: '5px',
-          borderRadiusSmall: '3px',
-        },
-        Card: {
-          borderRadius: '5px',
-        },
-        Tag: {
-          borderRadius: '4px',
-        },
-        Notification: {
-          padding: '15px',
-        },
-      },
-      light: {
-        common: {
-          bodyColor: '#EEE',
-          borderColor: '#e4e7ec',
-        },
-      },
-      dark: {
-        
-        common: {
-          borderColor: '#1c2334',
-          cardColor: '#0f172a',
-          popoverColor: '#0f172a',
-          modalColor: '#1c202c',
-          bodyColor: '#283046',
-        },
-        
-        DataTable: {
-          thColor: '#1c202c',
-          tdColor: '#1c2334',
-          hoverColor: '#1c202c',
-          tdColorHover: '#1c202c',
-        },
-        
-      },
-    },
+    themeConfig: yummyAdminThemeConfig.themeConfig,
   },
-  // naiveui: {
-  //   themeConfig: {
-  //     ...generateTailwindColorThemes(),
-  //   },
-  // },
   app: {
     pageTransition: { name: 'page', mode: 'in-out' },
   },
