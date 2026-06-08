@@ -6,22 +6,22 @@ export const useReportService = () => {
   const api = useApi('report')
 
   async function getSummaryReport(): Promise<DashboardSummaryStatDto> {
-    const response = await api.get<DashboardSummaryStatDto>('Summary')
+    const response = await api.get<DashboardSummaryStatDto>('summary')
     return response
   }
 
   async function getRevenueStat(period: string): Promise<any> {
-    const response = await api.get<any>(`Revenue/${period}`)
+    const response = await api.get<any>(`revenue/${period}`)
     return response
   }
 
   async function getUsersGenderStat(): Promise<any> {
-    const response = await api.get<any>('UsersGender')
+    const response = await api.get<any>('usersGender')
     return response
   }
 
   async function getUsersLocationStat(): Promise<any> {
-    const response = await api.get<any>('UsersLocation')
+    const response = await api.get<any>('usersLocation')
     return response
   }
 

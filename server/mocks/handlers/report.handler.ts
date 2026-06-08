@@ -35,7 +35,7 @@ registerMockHandler('GET','report/summary', () => {
     return response
 })
 
-registerMockHandler('GET','report/revenue/:period', (event, params) => {
+registerMockHandler('GET','report/revenue/:period', (event: any, params: any) => {
     const { period } = params;
     // const { period } = params
     let min = 10
@@ -85,7 +85,7 @@ registerMockHandler('GET','report/monthlySellStat', () => {
     return response
 })
 
-registerMockHandler('GET','report/chartDemoData/:length', async (event, params) => {
+registerMockHandler('GET','report/chartDemoData/:length', async (event: any, params: any) => {
     const { length } = params
     let lengthNum = Number.parseInt(length?.toString() ?? '12', 10)
     if (lengthNum > 12) lengthNum = 12

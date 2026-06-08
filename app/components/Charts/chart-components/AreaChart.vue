@@ -5,7 +5,7 @@ interface Props {
   colors: string[]
   height: number | string
   loading?: boolean
-  color: string
+  color?: string
 }
 const props = withDefaults(defineProps<Props>(), {
   colors: () => [

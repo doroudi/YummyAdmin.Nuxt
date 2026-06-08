@@ -26,5 +26,5 @@ const props = withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <BaseChart v-bind="$attrs" :type="'line'" :height="22" :data="data" :colors="colors" />
+  <BaseChart v-bind="$attrs" :type="'line'" :height="300" :data="data" :colors="colors" />
 </template>

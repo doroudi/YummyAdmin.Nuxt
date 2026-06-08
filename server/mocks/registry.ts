@@ -1,6 +1,8 @@
 type MockHandler = {
     method: string
     path: string
+    pattern?: RegExp
+    paramNames?: string[]
     handler: (event: any, params?: any) => any
 }
 
@@ -21,7 +23,7 @@ class MockRegistry {
                 }) + '$'
             )
 
-            
+            console.log(`☑️ ${method}:${path}, patter: ${pattern}, paramNames: ${paramNames}`)
             this.mockHandlers.push({ 
                 method, 
                 path, 
@@ -42,13 +44,13 @@ class MockRegistry {
    
     findMockHandler(method: string, fullPath: string) {
         // Clean the path
-        let cleanPath = fullPath.split('?')[0]
+        let cleanPath = fullPath.split('?')[0]!
         cleanPath = cleanPath?.replace(/^\//, '')
         cleanPath = cleanPath?.replace(/\/$/, '')
-        cleanPath = cleanPath?.toLowerCase()
+        // cleanPath = cleanPath?.toLowerCase()
 
         let handler = this.mockHandlers.find(h => 
-            h.method === method && h.path.toLowerCase() === cleanPath
+            h.method === method && h.path === cleanPath
         )
         
         if (handler) {
@@ -60,11 +62,12 @@ class MockRegistry {
             if (h.method !== method) continue
             if (!h.pattern) continue
             
+            console.log("💚 ~ MockRegistry ~ findMockHandler ~ cleanPath:", cleanPath)
             const match = cleanPath.match(h.pattern)
             if (match) {
                 const params: Record<string, string> = {}
                 h.paramNames?.forEach((name, index) => {
-                    params[name] = match[index + 1]
+                    params[name] = match[index + 1]!
                 })
                 return { handler: h.handler, params }
             }

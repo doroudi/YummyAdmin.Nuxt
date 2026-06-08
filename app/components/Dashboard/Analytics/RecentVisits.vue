@@ -3,7 +3,9 @@ import { type DataTableColumns, NText } from 'naive-ui/es/components'
 import type { RowData } from 'naive-ui/es/data-table/src/interface'
 import SkeletonTable from '~/components/shared/SkeletonTable.vue'
 import { useAnalyticsDashboard } from '~/composables/useAnalyticsDashboard'
-const { isLoadingVisits, visitsStatData } = useAnalyticsDashboard()
+const { isLoadingVisits, visitsStatData, getVisitsStat } = useAnalyticsDashboard()
+
+onMounted(getVisitsStat)
 
 const columns: DataTableColumns<RowData> = [
     {

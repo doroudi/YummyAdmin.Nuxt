@@ -18,7 +18,7 @@ const { flatDesign } = useLayout()
       <div
         class="card-content dark:bg-slate-900 rounded-md border-solid border-color-default p-4 relative z-10"
         :class="{ 'shadow-lg': !flatDesign, 'drop-shadow-md': !flatDesign, 'border-1': flatDesign, 'h-full': stretchHeight }">
-        <div v-if="slots.title" class="mix-blend-difference">
+        <div v-if="slots.title">
           <slot name="title" />
         </div>
         <div v-else-if="title">
