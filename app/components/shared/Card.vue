@@ -6,7 +6,8 @@ interface Props {
 }
 withDefaults(defineProps<Props>(), { titleSize: 'normal', stretch: false })
 const slots = useSlots()
-const { flatDesign } = useLayout()
+const layoutStore = useLayoutStore()
+const { flatDesign } = storeToRefs(layoutStore)
 </script>
 
 <template>

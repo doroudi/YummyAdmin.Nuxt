@@ -3,7 +3,8 @@ import { type DataTableColumns, NButton } from 'naive-ui/es/components'
 import type { RowData } from 'naive-ui/es/data-table/src/interface'
 import { useColors } from '~/composables/useColors'
 
-const { dialogPlacement } = useLayout()
+const layoutStore = useLayoutStore()
+const { dialogPlacement } = storeToRefs(layoutStore)
 const showAddDialog = ref(false)
 
 const { deleteColor, getColors, isLoading, colors } = useColors()

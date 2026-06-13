@@ -1,9 +1,10 @@
 <script setup lang="ts">
-const { collapsed, forceCollapsed, setSupportEnabled } = useLayout()
+const layoutStore = useLayoutStore()
+const { collapsed, forceCollapsed } = storeToRefs(layoutStore)
 
 onMounted(() => {
   getGithubStarsCount()
-  setSupportEnabled()
+  layoutStore.setSupportEnabled()
 })
 
 const starsCount = ref<number>()

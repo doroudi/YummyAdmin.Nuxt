@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { SidebarMenuOption  } from './SidebarMenu.vue'
-const layoutStore = useLayout()
-const { collapsed, forceCollapsed, mobileMode, mobileMenuClosed } = useLayout()
+const layoutStore = useLayoutStore()
+const { collapsed, forceCollapsed, mobileMode, mobileMenuClosed } = storeToRefs(layoutStore)
 
 const effectiveCollapsed = computed(() => {
   if (mobileMode.value) return mobileMenuClosed.value
@@ -229,7 +229,7 @@ router.beforeEach(() => {
 .logo-container {
   display: flex;
   align-items: center;
-  padding: 1.5rem 0.8rem 0.5rem 1.1rem;
+  padding: 1.2rem 0.8rem 0.5rem 1.1rem;
   transition: all 100ms;
   line-height: 1;
 
@@ -270,7 +270,7 @@ router.beforeEach(() => {
 
 .collapsed {
   .logo-container {
-    padding: 1.5rem 0.5rem 0.5rem .5rem;
+    padding: 1.2rem 0.5rem 0.5rem .5rem;
   }
 
   .main-title {

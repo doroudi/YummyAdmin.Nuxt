@@ -4,7 +4,8 @@ import type { RowData } from 'naive-ui/es/data-table/src/interface'
 import { useCategories } from '~/composables/useCategories'
 const { deleteCategory, getCategories, isLoading, categories } = useCategories()
 const { renderDeleteActionButton, renderActionButton } = useRender()
-const { dialogPlacement } = useLayout()
+const layoutStore = useLayoutStore()
+const { dialogPlacement } = storeToRefs(layoutStore)
 const collapsed = ref(useWindowSize().width.value < 600)
 
 onMounted(getItems)

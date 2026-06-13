@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { NotificationType } from '@/models/Notification'
-const { isRtl, isDark } = useLayout()
+const layoutStore = useLayoutStore()
+const { isRtl, isDark } = storeToRefs(layoutStore)
 const { getNotifications, notifications, clearAll } = useNotifications()
 onMounted(getNotifications)
 
@@ -32,7 +33,7 @@ const badgeOffset = computed(() => [isRtl.value ? '4' : '-4', '5'])
           <template #trigger>
             <n-button quaternary circle>
               <template #icon>
-                <n-badge dot type="success" processing :offset="badgeOffset" >
+                <n-badge dot type="success" processing :offset="badgeOffset">
                   <Icon name="fluent:alert-28-regular" class="shake-item" size="1.4rem" />
                 </n-badge>
               </template>
@@ -59,8 +60,7 @@ const badgeOffset = computed(() => [isRtl.value ? '4' : '-4', '5'])
                 <n-list-item v-for="item of notifications" :key="item.id">
                   <template #prefix>
                     <div class="icon ms-2 notification-icon" :class="NotificationType[item.type].toLowerCase()">
-                      <Icon 
-                        :name="getIcon(item.type)" size="1.2rem" :color="isDark ? '#fff' : '#444'" />
+                      <Icon :name="getIcon(item.type)" size="1.2rem" :color="isDark ? '#fff' : '#444'" />
                     </div>
                   </template>
                   <n-thing :title="$t(`notifications.${item.title}`)"

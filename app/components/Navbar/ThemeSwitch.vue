@@ -1,5 +1,7 @@
 <script setup lang='ts'>
-const { isDark, toggleTheme, } = useLayout()
+const layoutStore = useLayoutStore()
+const { isDark } = storeToRefs(layoutStore)
+const { toggleTheme } = useLayoutStore()
 </script>
 
 <template>
@@ -25,7 +27,7 @@ const { isDark, toggleTheme, } = useLayout()
           </template>
         </n-button>
       </template>
-      <span>{{ $t('button.toggle_dark') }}</span>
+      <span>{{ $t('button.toggle_dark') }} - {{ isDark }}</span>
     </n-tooltip>
   </div>
 </template>

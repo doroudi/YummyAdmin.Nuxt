@@ -3,7 +3,8 @@ import { type DataTableColumns, NButton, NIcon } from 'naive-ui/es/components'
 import type { RowData } from 'naive-ui/es/data-table/src/interface'
 import { useBrands } from '~/composables/useBrands'
 
-const { dialogPlacement } = useLayout()
+const layoutStore = useLayoutStore()
+const { dialogPlacement } = storeToRefs(layoutStore)
 const { getBrands, deleteBrand, brands, isLoading } = useBrands()
 const { renderActionButton, renderDeleteActionButton } = useRender()
 

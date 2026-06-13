@@ -1,5 +1,6 @@
 <script setup lang="ts">
-const { collapsed, isRtl, mobileMode, toggleSidebar } = useLayout()
+const layoutStore = useLayoutStore()
+const { collapsed, isRtl, mobileMode } = storeToRefs(layoutStore)
 </script>
 
 <template>
@@ -8,7 +9,7 @@ const { collapsed, isRtl, mobileMode, toggleSidebar } = useLayout()
       <div class="flex items-center">
         <div flex w-full justify-start items-center>
           <img v-if="mobileMode" width="35" src="~/assets/images/logo.png" alt="logo" class="logo">
-          <n-button mx-2 size="small" quaternary circle :class="{ 'rotate-180': isRtl }" @click="toggleSidebar">
+          <n-button mx-2 size="small" quaternary circle :class="{ 'rotate-180': isRtl }" @click="layoutStore.toggleSidebar()">
             <template #icon>
               <Icon size="1.2rem" name="fluent:navigation-20-regular" v-if="mobileMode" />
               <Icon size="1.2rem" name="fluent:panel-left-expand-20-regular" v-else-if="collapsed" />

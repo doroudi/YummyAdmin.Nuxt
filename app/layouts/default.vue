@@ -10,8 +10,8 @@ const props = defineProps({
     default: false,
   },
 })
-
-const { isFluid, supportEnabled } = useLayout()
+const layoutStore = useLayoutStore()
+const { isFluid, supportEnabled } = storeToRefs(layoutStore)
 const effectiveFluid = computed(() => {
   return props.isFluid || isFluid.value
 })

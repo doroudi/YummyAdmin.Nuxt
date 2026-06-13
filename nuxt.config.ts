@@ -15,8 +15,21 @@ export default defineNuxtConfig({
       '@nuxt/fonts',
       '@vercel/speed-insights',
       '@nuxt/hints',
-      '@vercel/analytics'
+      '@vercel/analytics',
+      '@pinia/nuxt',
+      'pinia-plugin-persistedstate/nuxt'
     ],
+
+  devServer: {
+    port: 4000
+  },
+  piniaPluginPersistedstate: {
+    storage: 'cookies',
+    cookieOptions: {
+      sameSite: 'lax',
+    },
+    debug: true,
+  },
   components: [
     {
       path: '~/components',
@@ -89,7 +102,6 @@ export default defineNuxtConfig({
               'useLoadingBar'
             ]
           },
-          // '@vueuse/head',
           '@vueuse/core'
         ]
       }),

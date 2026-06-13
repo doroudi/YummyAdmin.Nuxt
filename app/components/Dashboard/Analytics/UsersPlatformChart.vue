@@ -11,7 +11,8 @@ const total = computed(() =>
   registersSource.value.reduce((a: any, b: any) => a + b.value, 0),
 )
 
-const { isRtl } = useLayout()
+const layout = useLayoutStore()
+const { isRtl } = storeToRefs(layout)
 const legendPosition = computed(() =>
   isRtl.value ? 'left' : 'right',
 )

@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { useDashboard } from '~/composables/useDashboard'
 const { getSummaryStat } = useDashboard()
-const { isWelcomeShown, showWelcome } = useLayout()
+const layoutStore = useLayoutStore()
+const { isWelcomeShown } = storeToRefs(layoutStore)
 
 onMounted(() => {
   getSummaryStat()
   if (!isWelcomeShown) {
-    showWelcome()
+    layoutStore.showWelcome()
   }
 })
 </script>

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { LazyEnglandIcon, LazyChineseIcon, LazyPersianIcon } from '#components';
 defineProps<{ showTitle?: boolean }>()
-
-const { activeLanguage, changeLanguage, resetWelcomeState } = useLayout()
+const layoutStore = useLayoutStore()
+const { activeLanguage } = storeToRefs(layoutStore)
 const { availableLocales, setLocale } = useI18n()
 const language = ref(activeLanguage)
 const languages = availableLocales.sort(sortLangs).map((x) => {
@@ -13,9 +13,9 @@ const languages = availableLocales.sort(sortLangs).map((x) => {
 })
 
 function update(lang: any) {
-  changeLanguage(lang)
+  layoutStore.changeLanguage(lang)
   setLocale(lang)
-  resetWelcomeState()
+  layoutStore.resetWelcomeState()
   setTimeout(() => window.location.reload(), 1500)
 }
 

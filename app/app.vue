@@ -1,22 +1,27 @@
 <script setup lang="ts">
-import rtlStyles from "~/common/themes/rtl-styles";
+import rtlStyles from "~/common/themes/rtl-styles"
 
-const { isDark, isRtl, themeColor } = useLayout()
+const { colorModePreference } = useNaiveColorMode()
+const layoutStore = useLayoutStore()
+const { isDark, isRtl, themeColor } = storeToRefs(layoutStore)
 const { makeLighter } = useColorsUtility()
 
 watch(
   () => isDark.value,
   (newValue) => {
     if (import.meta.client) {
-      const newTheme = newValue ? 'dark' : 'light'
+      console.log("🌑 ~ isDark:", newValue)
+      // const newTheme = newValue ? 'dark' : 'light'
+      colorModePreference.set(newValue ? "dark" : "light");
 
-      const htmlElement = document.documentElement
-      htmlElement.classList.remove(newValue ? 'light' : 'dark')
-      htmlElement.classList.add(newTheme)
+      // const htmlElement = document.documentElement
+      // htmlElement.classList.remove(newValue ? 'light' : 'dark')
+      // htmlElement.classList.add(newTheme)
     }
   },
   { immediate: true }
 )
+
 
 useHead({
   meta: [
@@ -25,7 +30,7 @@ useHead({
   link: [{ rel: "icon", href: "/favicon.ico" }],
   htmlAttrs: {
     lang: "en-US",
-    class: [ isDark.value ? 'dark' : 'light', isRtl.value ? 'rtl' : 'ltr' ].join(' ')
+    class: [ isRtl.value ? 'rtl' : 'ltr' ].join(' ')
   },
 });
 
@@ -48,8 +53,6 @@ watch(
   },
   { immediate: true },
 )
-
-
 
 function setThemeColor(newValue: string) {
   if (newValue === '')

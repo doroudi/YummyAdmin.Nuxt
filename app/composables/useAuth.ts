@@ -20,17 +20,7 @@ export const useAuth = () => {
     }
   }
 
-  const socialLogin = (provider: string): Promise<boolean> => {
-    isLoading.value = true
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        if (provider !== 'apple') resolve(true)
-        else resolve(false)
-
-        isLoading.value = false
-      }, 1500)
-    })
-  }
+ 
 
   const resetPassword = (forgetInfo: any) => {
     return Promise.resolve(forgetInfo)
@@ -67,7 +57,6 @@ export const useAuth = () => {
   return {
     token,
     isLoading,
-    socialLogin,
     isAuthenticated,
     logout,
     initAuth,

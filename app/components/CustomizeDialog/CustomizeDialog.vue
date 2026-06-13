@@ -3,20 +3,22 @@ import { useColorsUtility } from '~/composables/useColorsUtility'
 import { useLayout } from '~/composables/useLayout'
 const { primaryColors } = useColorsUtility()
 const customColor = ref('')
-const { isRtl, isFluid, flatDesign, isDark, toggleTheme, setThemeColor, themeColor } = useLayout()
+const layoutStore = useLayoutStore()
+const { isRtl, isFluid, flatDesign, isDark, themeColor } = storeToRefs(layoutStore)
+
 function setLight() {
-  if (isDark.value) toggleTheme()
+  if (isDark.value) layoutStore.toggleTheme()
 }
 
 function setDark() {
-  if (!isDark.value) toggleTheme()
+  if (!isDark.value) layoutStore.toggleTheme()
 }
 
 const colors = primaryColors
 const selectedColorIndex = ref(0)
 function setColor(index: number) {
   selectedColorIndex.value = index
-  setThemeColor(colors[index]!)
+  layoutStore.setThemeColor(colors[index]!)
 }
 
 onMounted(() => {
@@ -34,7 +36,7 @@ watch(
   (newColor: any) => {
     selectedColorIndex.value = 100
     updateInterval = setTimeout(() => {
-      setThemeColor(newColor)
+      layoutStore.setThemeColor(newColor)
       clearTimeout(updateInterval)
     }, 200)
   },

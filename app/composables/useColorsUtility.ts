@@ -13,7 +13,7 @@ export function useColorsUtility() {
   ]
 
   function buildThemeColorSeries(count: number) {
-    const color = useLayout().themeColor.value
+    const color = useLayoutStore().themeColor
     const series = []
     for (let i = 0; i < count; i++) series.push(makeDarker(color, 1 + i * 0.2))
 
