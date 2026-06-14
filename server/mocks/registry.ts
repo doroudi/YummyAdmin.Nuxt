@@ -23,7 +23,6 @@ class MockRegistry {
                 }) + '$'
             )
 
-            console.log(`☑️ ${method}:${path}, patter: ${pattern}, paramNames: ${paramNames}`)
             this.mockHandlers.push({ 
                 method, 
                 path, 
@@ -62,7 +61,6 @@ class MockRegistry {
             if (h.method !== method) continue
             if (!h.pattern) continue
             
-            console.log("💚 ~ MockRegistry ~ findMockHandler ~ cleanPath:", cleanPath)
             const match = cleanPath.match(h.pattern)
             if (match) {
                 const params: Record<string, string> = {}

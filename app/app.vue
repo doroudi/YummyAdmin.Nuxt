@@ -16,7 +16,7 @@ useHead({
   },
 });
 
-const title = "Yummy Admin Nuxt - Nuxt 3 Starter Template with Naive UI and Tailwind CSS";
+const title = "Yummy Admin Nuxt - Nuxt 4 Starter Template with Naive UI and Tailwind CSS";
 const description = ".";
 
 useSeoMeta({

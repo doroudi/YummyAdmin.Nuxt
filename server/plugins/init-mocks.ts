@@ -24,8 +24,7 @@ export default defineNitroPlugin(async () => {
     const { mockHandlers } = await import('../mocks/registry')
     
     if (mockHandlers.length > 0) {
-      const preview = mockHandlers.slice(0, 5).map(h => `${h.method} ${h.path}`).join(', ')
-      console.log(`📋 Sample handlers: ${preview}...`)
+      const preview = mockHandlers.slice(0, 5).map((h: any) => `${h.method} ${h.path}`).join(', ')
     }
   } catch (error) {
     console.error('❌ Failed to load mock handlers:', error)

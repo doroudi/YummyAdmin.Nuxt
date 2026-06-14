@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useColorsUtility } from '~/composables/useColorsUtility'
-import { useLayout } from '~/composables/useLayout'
 const { primaryColors } = useColorsUtility()
 const customColor = ref('')
 const layoutStore = useLayoutStore()
