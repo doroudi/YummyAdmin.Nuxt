@@ -1,8 +1,8 @@
 import { faker } from '@faker-js/faker/locale/en'
 import type { Category } from '../../../app/models/Category.ts'
 import { type ProductListDto, ProductStatus } from '../../../app/models/Product.ts'
-import { CreatePagedResponse, times, delay } from '../handler-utilities.ts'
-import { registerMockHandler } from '../registry.ts'
+import { CreatePagedResponse, times, delay } from '../handler-utilities'
+import { registerMockHandler } from '../registry'
 
 let counter = 0
 const fakeImages = [

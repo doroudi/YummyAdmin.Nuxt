@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker/locale/en'
-import { registerMockHandler } from '../registry.ts'
+import { registerMockHandler } from '../registry'
 import type { TaskCreateModel, TaskGroup, TaskItem } from '../../../app/models/Todo.ts'
 
 const tasks: TaskItem[] = [

@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker/locale/en'
 import type { Profile, ProfileSettings } from '../../../app/models/Profile.ts'
-import { registerMockHandler } from '../registry.ts'
+import { registerMockHandler } from '../registry'
 
 registerMockHandler('GET', 'profile/user-profile', () => {
   const response = createFakeProfile()

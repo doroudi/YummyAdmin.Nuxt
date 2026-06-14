@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker/locale/en'
-import { CreatePagedResponse, times, delay } from '../handler-utilities.ts'
+import { CreatePagedResponse, times, delay } from '../handler-utilities'
 import type { Color, ColorCreateModel } from '../../../app/models/Color.ts'
-import { registerMockHandler } from '../registry.ts'
+import { registerMockHandler } from '../registry'
 
 const colors = times(15, createFakeColor)
 

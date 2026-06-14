@@ -1,27 +1,9 @@
 <script setup lang="ts">
 import rtlStyles from "~/common/themes/rtl-styles"
 
-const { colorModePreference } = useNaiveColorMode()
 const layoutStore = useLayoutStore()
-const { isDark, isRtl, themeColor } = storeToRefs(layoutStore)
+const { isRtl, themeColor } = storeToRefs(layoutStore)
 const { makeLighter } = useColorsUtility()
-
-watch(
-  () => isDark.value,
-  (newValue) => {
-    if (import.meta.client) {
-      console.log("🌑 ~ isDark:", newValue)
-      // const newTheme = newValue ? 'dark' : 'light'
-      colorModePreference.set(newValue ? "dark" : "light");
-
-      // const htmlElement = document.documentElement
-      // htmlElement.classList.remove(newValue ? 'light' : 'dark')
-      // htmlElement.classList.add(newTheme)
-    }
-  },
-  { immediate: true }
-)
-
 
 useHead({
   meta: [

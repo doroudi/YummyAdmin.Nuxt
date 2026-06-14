@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker/locale/en'
 import type { Customer, CustomerCreateModel } from '../../../app/models/Customer.ts'
-import { CreatePagedResponse, times } from '../handler-utilities.ts'
-import { registerMockHandler } from '../registry.ts'
+import { CreatePagedResponse, times } from '../handler-utilities'
+import { registerMockHandler } from '../registry'
 
 const customers = times(65, createFakeCustomer)
 

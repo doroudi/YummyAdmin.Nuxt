@@ -1,8 +1,8 @@
 import { faker } from '@faker-js/faker/locale/en'
-import { times } from '../handler-utilities.ts'
+import { times } from '../handler-utilities'
 // import type { RequestHandler, WebSocketHandler, WebSocketLink } from 'msw'
 // import { ws } from 'msw'
-import type { ChatItem } from '../../../app/models/Chat.ts'
+import type { ChatItem } from '../../../app/models/Chat'
 
 const chatMessages: Array<ChatItem> = times(10, createFakeChatMessage)
 export const chat: WebSocketLink = ws.link('wss://localhost:7000/chat')

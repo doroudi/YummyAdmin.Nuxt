@@ -5,9 +5,9 @@ import type {
   LoginViewModel,
   RegisterResponse,
   RegisterViewModel,
-} from '../../../app/models/Account.ts'
-import {  delay } from '../handler-utilities.ts' 
-import { registerMockHandler } from '../registry.ts'
+} from '../../../app/models/Account'
+import {  delay } from '../handler-utilities' 
+import { registerMockHandler } from '../registry'
 
 registerMockHandler('POST', 'account/login', async (request: any) => {
   const user = (await request.json()) as LoginViewModel

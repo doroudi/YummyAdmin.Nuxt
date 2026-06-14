@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker/locale/en'
-import { times, delay } from '../handler-utilities.ts'
-import { registerMockHandler } from '../registry.ts'
+import { times, delay } from '../handler-utilities'
+import { registerMockHandler } from '../registry'
 
 import type {
   ChartData,

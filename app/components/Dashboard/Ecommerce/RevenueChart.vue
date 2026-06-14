@@ -95,7 +95,7 @@ const total = computed(() =>
           </p>
         </div>
 
-        <SwitchSelect v-model:value="period" :ranges="ranges" @update:value="updatePeriod" />
+        <SwitchSelect v-if="revenueStat.length" v-model:value="period" :ranges="ranges" @update:value="updatePeriod" />
         <div v-if="revenueStat.length" class="my-2 -mx-4">
           <client-only>
             <VueApexCharts type="area" width="100%" height="150" :options="chartOptions" :series="series" />

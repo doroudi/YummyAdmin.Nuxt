@@ -1,7 +1,8 @@
 import { faker } from '@faker-js/faker/locale/en'
-import type { Brand, BrandCreateModel } from '../../../app/models/Brand.ts'
-import { CreatePagedResponse, times, delay } from '../handler-utilities.ts'
-import { registerMockHandler } from '../registry.ts'
+import type { Brand, BrandCreateModel } from '../../../app/models/Brand'
+import { CreatePagedResponse, times, delay } from '../handler-utilities'
+import { registerMockHandler } from '../registry'
+
 const brands = times(17, createFakeBrand)
 
 registerMockHandler('GET', 'brand', async (request: any) => {

@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker/locale/en'
 import { type Notification, NotificationType } from '../../../app/models/Notification.ts'
-import { CreateListResponse } from '../handler-utilities.ts'
-import { registerMockHandler } from '../registry.ts'
+import { CreateListResponse } from '../handler-utilities'
+import { registerMockHandler } from '../registry'
 
 const notifications = createFakeNotification()
 

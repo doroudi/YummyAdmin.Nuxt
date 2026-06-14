@@ -9,7 +9,7 @@ import {
   times,
   delay,
 } from "../handler-utilities.ts";
-import { registerMockHandler } from '../registry.ts'
+import { registerMockHandler } from '../registry'
 
 const categories = times(20, createFakeCategory);
 registerMockHandler("GET", "category", async (request: any) => {

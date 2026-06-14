@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker/locale/en'
 import type { Review } from '../../../app/models/Review.ts'
-import { CreatePagedResponse, times, delay } from '../handler-utilities.ts'
-import { registerMockHandler } from '../registry.ts'
+import { CreatePagedResponse, times, delay } from '../handler-utilities'
+import { registerMockHandler } from '../registry'
 
 const reviews = times(65, createFakeReview)
 

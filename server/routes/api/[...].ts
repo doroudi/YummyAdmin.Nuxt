@@ -1,4 +1,3 @@
-import loadMockHandlers from '../../mocks/load-handlers'
 import { findMockHandler } from '../../mocks/registry'
 
 export default defineEventHandler(
@@ -8,8 +7,6 @@ export default defineEventHandler(
         const path = event.path.replace(/^\/api\//, '')
 
         if (mockMode) {
-            await loadMockHandlers()
-            
             const handler =
                 findMockHandler(
                     event.method,
@@ -35,7 +32,7 @@ export default defineEventHandler(
 )
 
 async function proxyToBackend(event: any, path: string) {
-    // const runtimeConfig = useRuntimeConfig()
+    const runtimeConfig = useRuntimeConfig()
     const backendUrl = '' //runtimeConfig.public.apiBaseUrl
 
     if (!backendUrl) {
