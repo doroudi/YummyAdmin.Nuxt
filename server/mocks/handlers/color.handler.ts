@@ -14,7 +14,7 @@ registerMockHandler('GET', 'color', async (request: any) => {
 registerMockHandler('POST', 'color', async (request: any) => {
   const newItem = (await request.json()) as ColorCreateModel
   const color: Color = {
-    id: faker.number.int({ max: 2000 }).toString(),
+    id: faker.number.int({ max: 2000 }),
     name: newItem.name,
     color: newItem.color,
   }
@@ -74,7 +74,7 @@ function createFakeColor(): Color {
   ]
   const color = faker.helpers.arrayElement(colors)
   return {
-    id: faker.number.int().toString(),
+    id: faker.number.int(),
     name: color,
     color,
   }

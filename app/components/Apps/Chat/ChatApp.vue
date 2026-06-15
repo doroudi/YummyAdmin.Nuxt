@@ -12,12 +12,12 @@ onBeforeUnmount(() => {
   if (status.value === 'OPEN') disconnect()
 })
 
-function handleLoadChatMessages(chatId: number) {
+function handleLoadChatMessages(chatId: string) {
   loadChatMessages(chatId)
 }
 
 const searchKeyword = ref('')
-const filteredChats = ref([])
+const filteredChats = ref<ChatItem[]>([])
 
 function searchInList(keyword: string) {
   searchKeyword.value = keyword
@@ -55,6 +55,7 @@ function searchInList(keyword: string) {
 .n-layout {
   padding: 0;
 }
+
 .chat-layout {
   height: calc(100vh - 30px);
 }

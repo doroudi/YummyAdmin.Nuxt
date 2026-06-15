@@ -342,7 +342,7 @@ reviews:
   rate: Rate
 support:
   buyMeCoffee:
-    title: Buy me coffee
+    title: Buy me a coffee
     tooltip: Support this project by buying me a coffee
   github:
     title: Star On Github

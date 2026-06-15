@@ -11,7 +11,7 @@ const props = defineProps({
   },
 })
 const layoutStore = useLayoutStore()
-const { isFluid, supportEnabled } = storeToRefs(layoutStore)
+const { isFluid } = storeToRefs(layoutStore)
 const effectiveFluid = computed(() => {
   return props.isFluid || isFluid.value
 })
@@ -37,7 +37,7 @@ const effectiveFluid = computed(() => {
       </div>
     </n-layout>
     <!-- you can remove it -->
-    <LazySupportProject v-if="supportEnabled" />
+    <LazySupportProject  />
   </n-layout>
 </template>
 

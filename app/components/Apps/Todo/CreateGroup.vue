@@ -46,14 +46,14 @@ function createGroup() {
                     </NTag>
                 </div>
                 <div>
-                    <NButton key="-1" color="#EEE" size="medium" circle class="mx-1"
+                    <NButton key="-1" color="#EEE" size="medium" circle class="m1"
                         @click="setColor(-1)">
                         <template #icon>
                             <Icon name="fluent:checkmark-48-filled" color="#333" v-if="selectedColorIndex === -1" />
                             <span v-else />
                         </template>
                     </NButton>
-                    <NButton v-for="(color, index) of colors" :key="index" :color="color" size="medium" circle class="mx-1" @click="setColor(index)">
+                    <NButton v-for="(color, index) of colors" :key="index" :color="color" size="medium" circle class="m1" @click="setColor(index)">
                         <template #icon>
                             <Icon name="fluent:checkmark-48-filled" v-if="selectedColorIndex === index" />
                             <span v-else />

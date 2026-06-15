@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import rtlStyles from "~/common/themes/rtl-styles"
+const { colorModePreference } = useNaiveColorMode()
 
 const layoutStore = useLayoutStore()
-const { isRtl, themeColor } = storeToRefs(layoutStore)
+const { isRtl, isDark, themeColor } = storeToRefs(layoutStore)
 const { makeLighter } = useColorsUtility()
 
 useHead({
@@ -28,6 +29,16 @@ useSeoMeta({
   twitterImage: "https://github.com/doroudi/YummyAdmin/blob/main/docs/banner-dark.png?raw=true",
   twitterCard: "summary_large_image",
 });
+
+watch(
+  () => isDark.value,
+  (newValue) => {
+    if (import.meta.client) {
+      colorModePreference.set(newValue ? "dark" : "light")
+    }
+  },
+  { immediate: true }
+)
 
 watch(
   () => themeColor.value, (newValue: string) => {

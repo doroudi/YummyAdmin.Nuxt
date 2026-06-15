@@ -13,7 +13,7 @@ export const useLayoutStore = defineStore('layout', () => {
     const isWelcomeShown = ref(false)
     const isFluid = ref(false)
     const flatDesign = ref(true)
-    const supportEnabled = ref(false)
+    const supportEnabled = ref(true)
     const locale = ref('en')
 
     const dialogPlacement = computed(() => (isRtl.value ? 'left' : 'right'))

@@ -9,7 +9,7 @@ export const useChatApp = () => {
   const unwatch: (() => void) | null = null
 
   const { status, data, send, open, close } = useWebSocket(
-    `wss://${import.meta.env.VITE_BASE_URL}/chat`,
+    `wss://localhost:4000/ws/chat`,
   )
 
   async function connect() {

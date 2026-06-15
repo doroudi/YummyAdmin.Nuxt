@@ -37,7 +37,8 @@ export default defineNuxtConfig({
   ],
   runtimeConfig: {
     public: {
-      apiMock: false
+      apiMock: false,
+      appUrl: process.env.NUXT_PUBLIC_APP_URL || 'http://localhost:4000'
     }
   },
   icon: {
@@ -117,6 +118,9 @@ export default defineNuxtConfig({
       options: {
         target: 'es2022'
       }
+    },
+    experimental: {
+      websocket: true
     }
   },
   i18n: {
@@ -136,42 +140,4 @@ export default defineNuxtConfig({
       }
     }
   },
-  // hooks: {
-  //   'nitro:build:public-assets': async () => {
-  //     const fs = await import('fs/promises')
-  //     const path = await import('path')
-
-  //     const srcDirMocks = path.join(process.cwd(), 'server', 'mocks')
-  //     const destDirMocks = path.join(process.cwd(), '.output', 'server', 'mocks')
-
-  //     try {
-  //       await fs.mkdir(destDirMocks, { recursive: true })
-  //       const files = await fs.readdir(srcDirMocks)
-  //       for (const file of files.filter(x => x.endsWith('.ts'))) {
-  //         await fs.copyFile(
-  //           path.join(srcDirMocks, file),
-  //           path.join(destDirMocks, file)
-  //         )
-  //       }
-  //     } catch (error) {
-  //       console.error('Failed to copy handler files:', error)
-  //     }
-
-  //     const srcDir = path.join(process.cwd(), 'server', 'mocks', 'handlers')
-  //     const destDir = path.join(process.cwd(), '.output', 'server', 'mocks', 'handlers')
-
-  //     try {
-  //       await fs.mkdir(destDir, { recursive: true })
-  //       const files = await fs.readdir(srcDir)
-  //       for (const file of files) {
-  //         await fs.copyFile(
-  //           path.join(srcDir, file),
-  //           path.join(destDir, file)
-  //         )
-  //       }
-  //     } catch (error) {
-  //       console.error('Failed to copy handler files:', error)
-  //     }
-  //   }
-  // },
 })
