@@ -1,30 +1,36 @@
 <script setup lang="ts">
-import type { ChartData, SimpleChartSeries } from '~/models/ChartData'
+import BaseChart from './BaseChart.vue'
+import type { ChartData } from '~/models/ChartData'
+import type { ChartLegendPosition, ChartOption } from '~/models/ChartsProps'
 
 interface Props {
-  data?: ChartData | SimpleChartSeries | null
-  colors?: string[]
-  colorScheme?: string
+  data?: ChartData | null
+  colors?: string[] | null
+  colorScheme?: string | null
   height?: number | string
-  error?: any
-  options?: any
-  showLegend?: boolean
   loading?: boolean
+  error?: string | null
+  options?: ChartOption | null
+  showLegend?: boolean
+  legendPosition?: ChartLegendPosition
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  colors: () => [
-    'var(--primary-color)',
-    'var(--primary-color-shade1)',
-    'var(--primary-color-shade2)',
-    'var(--primary-color-shade3)',
-  ],
+withDefaults(defineProps<Props>(), {
+  data: null,
+  colors: null,
+  colorScheme: null,
   height: 400,
   loading: false,
-  data: null,
+  error: null,
+  options: null,
+  // Cartesian charts have always rendered without a legend here; pass
+  // `show-legend` to turn one on.
+  showLegend: false,
+  legendPosition: 'bottom',
 })
 </script>
 
 <template>
-  <BaseChart v-bind="$attrs" :type="'line'" :height="300" :data="data" :colors="colors" />
+  <BaseChart type="line" v-bind="$attrs" :data="data" :colors="colors" :color-scheme="colorScheme" :height="height"
+    :loading="loading" :error="error" :options="options" :show-legend="showLegend" :legend-position="legendPosition" />
 </template>

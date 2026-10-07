@@ -59,9 +59,9 @@ importers:
       '@vueuse/core':
         specifier: ^10.11.1
         version: 10.11.1(vue@3.5.35(typescript@5.9.3))
-      apexcharts:
-        specifier: ^5.13.0
-        version: 5.13.0
+      echarts:
+        specifier: ^6.1.0
+        version: 6.1.0
       glob:
         specifier: ^13.0.6
         version: 13.0.6
@@ -101,9 +101,9 @@ importers:
       vue:
         specifier: ^3.5.35
         version: 3.5.35(typescript@5.9.3)
-      vue3-apexcharts:
-        specifier: ^1.11.1
-        version: 1.11.1(apexcharts@5.13.0)(vue@3.5.35(typescript@5.9.3))
+      vue-echarts:
+        specifier: ^8.3.0
+        version: 8.3.1(echarts@6.1.0)(vue@3.5.35(typescript@5.9.3))
       vue3-map-chart:
         specifier: ^0.0.6
         version: 0.0.6(vue@3.5.35(typescript@5.9.3))
@@ -3204,9 +3204,6 @@ packages:
     resolution: {integrity: sha512-KMReFUr0B4t+D+OBkjR3KYqvocp2XaSzO55UcB6mgQMd3KbcE+mWTyvVV7D/zsdEbNnV6acZUutkiHQXvTr1Rw==}
     engines: {node: '>= 8'}
 
-  apexcharts@5.13.0:
-    resolution: {integrity: sha512-PJuXT6zdiCbv0IkX5cqkKFVIIh+9v3kqP9zsOHEGpIWi7DfTgzvfOKc8icw6G3/ulR3V1alDDUtOVH0zWCWGEQ==}
-
   archiver-utils@5.0.2:
     resolution: {integrity: sha512-wuLJMmIBQYCsGZgYLTy5FIB2pF6Lfb6cXMSF8Qywwk3t20zWnAi7zLcQFdKQmIB8wyZpY5ER38x08GbwtR2cLA==}
     engines: {node: '>= 14'}
@@ -3769,6 +3766,9 @@ packages:
 
   eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
+
+  echarts@6.1.0:
+    resolution: {integrity: sha512-q0yaFPggC9FUdsWH4blavRWFmxdrIodbkoKNAjJudAI6CA9gNPxHtV2RcZNEepZVlk4yvBYkOkbk6HIVpIyHZA==}
 
   ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
@@ -6226,6 +6226,9 @@ packages:
   ts-interface-checker@0.1.13:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
 
+  tslib@2.3.0:
+    resolution: {integrity: sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==}
+
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
 
@@ -6608,6 +6611,12 @@ packages:
   vue-devtools-stub@0.1.0:
     resolution: {integrity: sha512-RutnB7X8c5hjq39NceArgXg28WZtZpGc3+J16ljMiYnFhKvd8hITxSWQSQ5bvldxMDU6gG5mkxl1MTQLXckVSQ==}
 
+  vue-echarts@8.3.1:
+    resolution: {integrity: sha512-wN9ycF1+P8j3aajxawRT6R/8asZNBejl1kK2M2/Lk6wCdK2XG+YK39sDfZLF8S5UaBbNZqzN1joObtRhmhORJg==}
+    peerDependencies:
+      echarts: ^6.0.0
+      vue: ^3.3.0
+
   vue-eslint-parser@10.4.0:
     resolution: {integrity: sha512-Vxi9pJdbN3ZnVGLODVtZ7y4Y2kzAAE2Cm0CZ3ZDRvydVYxZ6VrnBhLikBsRS+dpwj4Jv4UCv21PTEwF5rQ9WXg==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
@@ -6643,12 +6652,6 @@ packages:
     hasBin: true
     peerDependencies:
       typescript: '>=5.0.0'
-
-  vue3-apexcharts@1.11.1:
-    resolution: {integrity: sha512-MbN3vg8bMG19wc0Lm1HkeQvODgLm56DgpIxtNUO0xpf/JCzYWVGE4jzXp2JISzy2s3Kul1yOxNQUYsLvKQ5L9g==}
-    peerDependencies:
-      apexcharts: '>=5.10.0'
-      vue: '>=3.0.0'
 
   vue3-map-chart@0.0.6:
     resolution: {integrity: sha512-6DTyrrYzNS8gntUnZBrLHtiqfa4R12hB4akZtcQIpP44A5ZRiPcBBDw8FTS/G5G+OT9l9n2EswQe+uBfIWTa1g==}
@@ -6795,6 +6798,9 @@ packages:
   zip-stream@6.0.1:
     resolution: {integrity: sha512-zK7YHHz4ZXpW89AHXUPbQVGKI7uvkd3hzusTdotCg1UxyaVtg0zFJSTfW/Dq5f7OBBVnq6cZIaC8Ti4hb6dtCA==}
     engines: {node: '>= 14'}
+
+  zrender@6.1.0:
+    resolution: {integrity: sha512-oEGMDB6pOP2S6OwRR4PdVv610zrjnA3Bh+JnSG12fYJlBKjtNAoEb5fSUoCOOINlH96I2fU38/A2UpRKs67xYQ==}
 
 snapshots:
 
@@ -9731,8 +9737,6 @@ snapshots:
       normalize-path: 3.0.0
       picomatch: 2.3.2
 
-  apexcharts@5.13.0: {}
-
   archiver-utils@5.0.2:
     dependencies:
       glob: 10.5.0
@@ -10270,6 +10274,11 @@ snapshots:
   duplexer@0.1.2: {}
 
   eastasianwidth@0.2.0: {}
+
+  echarts@6.1.0:
+    dependencies:
+      tslib: 2.3.0
+      zrender: 6.1.0
 
   ee-first@1.1.1: {}
 
@@ -13349,6 +13358,8 @@ snapshots:
 
   ts-interface-checker@0.1.13: {}
 
+  tslib@2.3.0: {}
+
   tslib@2.8.1: {}
 
   tsx@4.22.3:
@@ -13758,6 +13769,11 @@ snapshots:
 
   vue-devtools-stub@0.1.0: {}
 
+  vue-echarts@8.3.1(echarts@6.1.0)(vue@3.5.35(typescript@5.9.3)):
+    dependencies:
+      echarts: 6.1.0
+      vue: 3.5.35(typescript@5.9.3)
+
   vue-eslint-parser@10.4.0(eslint@10.4.1(jiti@1.21.7)):
     dependencies:
       debug: 4.4.3
@@ -13808,11 +13824,6 @@ snapshots:
       '@volar/typescript': 2.4.28
       '@vue/language-core': 3.3.3
       typescript: 5.9.3
-
-  vue3-apexcharts@1.11.1(apexcharts@5.13.0)(vue@3.5.35(typescript@5.9.3)):
-    dependencies:
-      apexcharts: 5.13.0
-      vue: 3.5.35(typescript@5.9.3)
 
   vue3-map-chart@0.0.6(vue@3.5.35(typescript@5.9.3)):
     dependencies:
@@ -13963,3 +13974,7 @@ snapshots:
       archiver-utils: 5.0.2
       compress-commons: 6.0.2
       readable-stream: 4.7.0
+
+  zrender@6.1.0:
+    dependencies:
+      tslib: 2.3.0

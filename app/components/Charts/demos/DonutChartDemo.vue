@@ -1,32 +1,43 @@
 <script lang="ts" setup>
-import type { ChartData } from '~/models/ChartData'
-import { useReportService } from '~/services/report.service'
-const reportService = useReportService()
+import type { SimpleChartSeries } from '~/models/ChartData'
 
-const monthlySellStat = ref<ChartData | null>(null)
-const isLoading = ref(true)
-onMounted(async () => {
-  try {
-    isLoading.value = true
-    monthlySellStat.value = await reportService.getMonthlySellStat()
-  } finally {
-    isLoading.value = false
-  }
-})
+// Demo data - swap for a service call the way the other chart demos do.
+function buildData(): SimpleChartSeries[] {
+  return [
+    { name: 'Desktop', value: 4321 },
+    { name: 'Mobile', value: 5001 },
+    { name: 'Tablet', value: 1112 },
+    { name: 'Unknown', value: 880 },
+  ]
+}
 
-function handleChartClick() {}
+const data = ref<SimpleChartSeries[]>(buildData())
+const isLoading = ref(false)
 
-function handleDataError() {}
-
-function retryLoad() {}
+function reload() {
+  isLoading.value = true
+  data.value = buildData()
+  isLoading.value = false
+}
 </script>
 
 <template>
-    <ChartComponent :data="monthlySellStat" :loading="isLoading" :height="400" chart-type="donut"
-        @chart-click="handleChartClick" @data-error="handleDataError">
-        <template #error-action>
-            <n-button @click="retryLoad">Retry</n-button>
-        </template>
-    </ChartComponent>
-    <!-- <BarChart :loading="isLoading" :height="300" :data="monthlySellStat" :colors="colors" /> -->
+  <Card stretch-height title-size="normal">
+    <template #title>
+      <header class="flex w-full flex-row justify-between items-center pb-5">
+        <h3 class="title text-lg">🍩 Donut Chart Demo</h3>
+        <n-tooltip placement="top" trigger="hover">
+          <template #trigger>
+            <n-button quaternary circle>
+              <Icon name="fluent:arrow-counterclockwise-32-filled" @click="reload" />
+            </n-button>
+          </template>
+          {{ $t('common.refresh') }}
+        </n-tooltip>
+      </header>
+    </template>
+    <div class="pt-2">
+      <DonutChart :data="data" :loading="isLoading" :height="300" />
+    </div>
+  </Card>
 </template>

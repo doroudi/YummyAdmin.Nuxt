@@ -1,70 +1,152 @@
 <script setup lang="ts">
-import VueApexCharts from 'vue3-apexcharts'
-
 import type { ChartData, SimpleChartSeries } from '~/models/ChartData'
-import type { SimpleChartProps } from '~/models/ChartsProps'
-import type { ChartProps } from '~/models/ChartsProps'
-import { useChartOptions } from '~/composables/useChartOptions'
-import { useSimpleChartOptions } from '~/composables/useSimpleChartOptions'
+import type {
+  ChartLegendPosition,
+  ChartOption,
+  ChartType,
+  ChartProps,
+  SimpleChartProps,
+} from '~/models/ChartsProps'
+import {
+  AreaChart as UipkgeAreaChart,
+  BarChart as UipkgeBarChart,
+  DonutChart as UipkgeDonutChart,
+  LineChart as UipkgeLineChart,
+  PieChart as UipkgePieChart,
+  PolarBarChart as UipkgePolarBarChart,
+  RadarChart as UipkgeRadarChart,
+} from '~/components/ui/charts'
+import { cn } from '~/common/utils/cn'
 
-interface LocalChartProps {
-    data?: ChartData | SimpleChartSeries | null
-    colors?: string[]
-    colorScheme?: string
-    height?: number | string
-    type?: 
-    | 'line'
-    | 'area'
-    | 'bar'
-    | 'pie'
-    | 'donut'
-    | 'radialBar'
-    | 'scatter'
-    | 'bubble'
-    | 'heatmap'
-    | 'candlestick'
-    | 'boxPlot'
-    | 'radar'
-    | 'polarArea'
-    | 'rangeBar'
-    | 'rangeArea'
-    | 'treemap',
-    error?: any
-    options?: any
-    showLegend?: boolean
-    loading?: boolean
-    legendPosition?: 'bottom' | 'right' | 'left'
+const { t } = useI18n()
+
+type LocalChartProps = {
+  data?: ChartData | SimpleChartSeries[] | null
+  colors?: string[] | null
+  colorScheme?: string | null
+  height?: number | string
+  type?: ChartType
+  error?: string | null
+  options?: ChartOption | null
+  showLegend?: boolean
+  loading?: boolean
+  legendPosition?: ChartLegendPosition
 }
 
 const props = withDefaults(defineProps<LocalChartProps>(), {
-    colors: () => [], //['var(--primary-color)', 'var(--primary-color-shade1)', 'var(--primary-color-shade2)', 'var(--primary-color-shade3)'],
-    height: 400,
-    type: 'line',
-    error: null,
-    options: null,
-    legendPosition: 'bottom'
+  data: null,
+  colors: null,
+  colorScheme: null,
+  height: 400,
+  type: 'line',
+  error: null,
+  options: null,
+  showLegend: true,
+  loading: false,
+  legendPosition: 'bottom',
 })
 
-const { defaultOptions, safeSeries, validateChartData, showChart } =
-    Array.isArray(props.data)
-        ? useSimpleChartOptions(props as SimpleChartProps)
-        : useChartOptions(props as ChartProps)
-
-const activeOptions = computed(
-    () =>
-        showChart && {
-            ...defaultOptions.value,
-            ...props.options,
-        },
+/** Numbers become px; strings pass through, so `height="100%"` works. */
+const heightStyle = computed(() =>
+  typeof props.height === 'number' ? `${props.height}px` : props.height,
 )
-</script>
 
+// `ChartData` drives the cartesian wrappers, `SimpleChartSeries[]` the
+// share-of-total ones. Both models are built unconditionally (they are just
+// computeds) and the template picks the matching one.
+const isSimpleData = computed(() => Array.isArray(props.data))
+
+const cartesian = useChartOptions(props as unknown as ChartProps)
+const simple = useSimpleChartOptions(props as unknown as SimpleChartProps)
+
+// `any` is deliberate: the runtime component is one of several wrappers with
+// different required props, and `chartProps` is built to match whichever one is
+// picked. A union type here would make `v-bind` unprovable for all of them.
+const chartComponent = computed<any>(() => {
+  if (isSimpleData.value) {
+    switch (props.type) {
+      case 'donut':
+        return UipkgeDonutChart
+      case 'polarArea':
+        return UipkgePolarBarChart
+      default:
+        return UipkgePieChart
+    }
+  }
+
+  switch (props.type) {
+    case 'area':
+      return UipkgeAreaChart
+    case 'bar':
+      return UipkgeBarChart
+    case 'radar':
+      return UipkgeRadarChart
+    default:
+      return UipkgeLineChart
+  }
+})
+
+const chartProps = computed<Record<string, any>>(() => {
+  const height = props.height
+  const common = { height }
+
+  if (isSimpleData.value) {
+    const option = simple.chartOption.value
+    const data = simple.simpleData.value
+
+    return props.type === 'polarArea'
+      ? {
+          ...common,
+          data: data.map((item: { name: string; value: number }) => ({
+            category: item.name,
+            value: item.value,
+          })),
+          option,
+        }
+      : { ...common, data, option }
+  }
+
+  const option = cartesian.chartOption.value
+
+  if (props.type === 'radar') {
+    return {
+      ...common,
+      data: cartesian.radarData.value,
+      indicators: cartesian.radarIndicators.value,
+      option,
+    }
+  }
+
+  return {
+    ...common,
+    data: cartesian.rows.value,
+    xField: 'x',
+    yField: cartesian.fields.value,
+    option,
+  }
+})
+
+const hasData = computed(() =>
+  isSimpleData.value ? simple.showChart.value : cartesian.showChart.value,
+)
+
+// A single object `v-bind` is required - two `v-bind` (one with no argument)
+// on the same element is a compile error. Caller attributes win, and their
+// class is merged rather than replaced.
+const attrs = useAttrs()
+
+const chartBindings = computed(() => ({
+  ...chartProps.value,
+  ...attrs,
+  class: cn('chart-component', attrs.class as string | undefined),
+}))
+</script>
 
 <template>
     <div class="chart-container">
         <div v-if="loading" class="chart-loading">
             <div class="loading-spinner"></div>
-            <p class="loading-text">{{ $t('charts.loading') }}</p>
+            <p class="loading-text">{{ t('charts.loading') }}</p>
         </div>
 
         <div v-else-if="error" class="chart-error">
@@ -75,20 +157,13 @@ const activeOptions = computed(
             </button>
         </div>
 
-        <div v-else-if="!data || !validateChartData(data)" class="chart-no-data">
+        <div v-else-if="!hasData" class="chart-no-data">
             <div class="no-data-icon">📊</div>
-            <p class="no-data-text">{{ $t('charts.notData') }}</p>
+            <p class="no-data-text">{{ t('charts.notData') }}</p>
         </div>
 
-        <div v-else-if="showChart" class="chart-wrapper">
-            <client-only>
-                <VueApexCharts v-bind="$attrs" :type="type" :options="activeOptions" :height="height"
-                    :series="safeSeries" class="chart-component" />
-            </client-only>
-        </div>
-
-        <div v-else class="chart-fallback">
-            <p>{{ $t('charts.unableToDisplay') }}</p>
+        <div v-else class="chart-wrapper">
+            <component :is="chartComponent" v-bind="chartBindings" />
         </div>
 
         <div v-if="$slots.footer" class="chart-footer">
@@ -112,7 +187,7 @@ const activeOptions = computed(
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: v-bind(height + 'px');
+    height: v-bind(heightStyle);
     border-radius: var(--border-radius);
     ;
     padding: 2rem;

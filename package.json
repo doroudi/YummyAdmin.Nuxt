@@ -39,7 +39,7 @@
     "@vuelidate/validators": "^2.0.4",
     "@vueup/vue-quill": "^1.2.0",
     "@vueuse/core": "^10.11.1",
-    "apexcharts": "^5.13.0",
+    "echarts": "^6.1.0",
     "glob": "^13.0.6",
     "lefthook": "^2.1.9",
     "moment": "^2.30.1",
@@ -53,7 +53,7 @@
     "tsx": "^4.22.3",
     "vooks": "^0.2.12",
     "vue": "^3.5.35",
-    "vue3-apexcharts": "^1.11.1",
+    "vue-echarts": "^8.3.0",
     "vue3-map-chart": "^0.0.6"
   },
   "devDependencies": {
