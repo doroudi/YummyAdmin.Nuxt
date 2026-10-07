@@ -50,7 +50,7 @@ export const useGenericService = <T, TKey>(apiPrefix: string) => {
 
     create: <TModel>(item: TModel) => useApi(apiPrefix).post<T>('', item),
 
-    edit: (id: TKey, item: T) => useApi(apiPrefix).put<T>(`${id}`, item),
+    edit: <TModel>(id: TKey, item: TModel) => useApi(apiPrefix).put<T>(`${id}`, item),
 
     remove: (id: TKey) => useApi(apiPrefix).delete<boolean>(`${id}`),
   }

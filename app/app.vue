@@ -6,6 +6,9 @@ const layoutStore = useLayoutStore()
 const { isRtl, isDark, themeColor } = storeToRefs(layoutStore)
 const { makeLighter } = useColorsUtility()
 
+/** Fixed 5th series colour, so multi-series charts stay distinguishable. */
+const ACCENT_CHART_COLOR = '#ff7300'
+
 useHead({
   meta: [
     { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -60,6 +63,15 @@ function setThemeColor(newValue: string) {
     document.documentElement.style.setProperty('--primary-color-shade1', shade1)
     document.documentElement.style.setProperty('--primary-color-shade2', shade2)
     document.documentElement.style.setProperty('--primary-color-shade3', shade3)
+
+    // ECharts-based charts (vendored uipkge primitives) read --chart-1..5.
+    // They cannot use var(--primary-color) directly: the canvas renderer needs
+    // a resolved colour string.
+    document.documentElement.style.setProperty('--chart-1', newValue)
+    document.documentElement.style.setProperty('--chart-2', shade1)
+    document.documentElement.style.setProperty('--chart-3', shade2)
+    document.documentElement.style.setProperty('--chart-4', shade3)
+    document.documentElement.style.setProperty('--chart-5', ACCENT_CHART_COLOR)
   }
 }
 

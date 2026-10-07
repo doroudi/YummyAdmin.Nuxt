@@ -21,6 +21,59 @@ Free Nuxt AdminPanel based on Naive UI and Tailwind CSS. Fairly complete with a 
 
 ![Preview](/docs/banner-light.png "Preview Light")
 
+## Charts
+
+Charts are built on **[Apache ECharts 6](https://echarts.apache.org)** through the
+**[uipkge](https://uipkge.dev/vue/charts) chart registry** — copy-paste,
+theme-token-driven ECharts wrappers vendored into `app/components/ui/charts/`. See that
+folder's [README](./app/components/ui/charts/README.md) for provenance and the
+adaptations made for this project.
+
+They replace `apexcharts` / `vue3-apexcharts`, which are no longer dependencies.
+
+|                    | ApexCharts (previous)              | uipkge + ECharts (current)                                    |
+| ------------------ | ---------------------------------- | ------------------------------------------------------------- |
+| Distribution       | npm dependency, options-object API | Registry source vendored into `app/`, yours to edit           |
+| Extensibility      | Limited to Apex's option surface   | Full ECharts option escape hatch per chart                    |
+| Chart families     | ~20                                | 66 — cartesian, circular, hierarchy, flow, distribution, maps |
+| Theming            | CSS-var options per chart          | `--chart-1..5` tokens resolved at runtime                     |
+| Dark mode / accent | Manual overrides                   | Automatic — one token change repaints every canvas            |
+
+The app-facing wrappers stay in `app/components/Charts/chart-components/`, so **page
+code did not change**:
+
+```vue
+<script setup lang="ts">
+const months: ChartData = {
+  labels: ['Jan', 'Feb', 'Mar'],
+  series: [{ name: 'Revenue', data: [1200, 900, 1500] }],
+}
+</script>
+
+<template>
+  <!-- same props as before: data / colors / height / loading / legend-position -->
+  <BarChart :data="months" :height="320" legend-position="right" />
+</template>
+```
+
+| Wrapper                       | Renders                                     |
+| ----------------------------- | ------------------------------------------- |
+| `<LineChart>` / `<AreaChart>` | Multi-series line / filled area             |
+| `<BarChart>`                  | Vertical, grouped or stacked bars           |
+| `<PieChart>` / `<DonutChart>` | Share-of-total, with centre KPI             |
+| `<PolarChart>`                | Radial bar (polar coordinate bar)           |
+| `<RadarChart>`                | Spider chart with auto-computed axis maxima |
+| `<Sparkline>`                 | Axis-less mini trend, used by `SummaryStatCard` and the revenue card |
+
+Every wrapper accepts `ChartData` (`{ labels, series }`) or `SimpleChartSeries[]`
+(`{ name, value }[]`) and renders through `BaseChart`, which also owns the loading,
+error, empty and footer states. Need something the wrappers don't cover? Pass a raw
+ECharts option through the `options` prop, or drop to the vendored `RawChart`.
+
+> Charts render to `<canvas>` and resolve their colours from live CSS custom properties,
+> so a theme or dark-mode switch repaints them without a re-mount. They are wrapped in
+> `<ClientOnly>`, so the canvas is only ever created in the browser.
+
 ## Try it now
 
 > Yummy Admin Nuxt requires Node >=20.0

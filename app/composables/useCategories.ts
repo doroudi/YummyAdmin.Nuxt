@@ -16,7 +16,7 @@ export const useCategories = () => {
   const isSaving = ref(false)
   const categoryStats = ref<{
     summaryStats: SummaryStatDto
-    productsByCategoryStat: SimpleChartSeries
+    productsByCategoryStat: SimpleChartSeries[]
   }>({} as any)
 
   async function getCategories(

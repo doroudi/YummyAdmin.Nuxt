@@ -33,6 +33,12 @@ export default defineNuxtConfig({
     {
       path: '~/components',
       pathPrefix: false,
+      // The vendored uipkge chart primitives are imported explicitly (see
+      // app/components/ui/charts/index.ts). `pathPrefix: false` registers every
+      // component under its bare basename, so leaving them in the scan would
+      // shadow the app's own wrappers in `components/Charts/chart-components`,
+      // which share names like `AreaChart` and `BarChart`.
+      ignore: ['ui/charts/**'],
     },
   ],
   runtimeConfig: {
@@ -81,7 +87,7 @@ export default defineNuxtConfig({
     },
   },
   build: {
-    transpile: ['vueuc', 'naive-ui', 'apexcharts', 'vue3-apexcharts', '@iconify/vue']
+    transpile: ['vueuc', 'naive-ui', 'echarts', 'vue-echarts', '@iconify/vue']
   },
   naiveui: {
     colorModePreference: 'light',
