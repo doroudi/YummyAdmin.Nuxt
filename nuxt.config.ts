@@ -1,7 +1,52 @@
+import { defineNuxtModule } from 'nuxt/kit'
 import AutoImport from 'unplugin-auto-import/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
 import { yummyAdminThemeConfig } from './app/common/themes/theme-overrides'
+
+/**
+ * Client-side pre-bundling fix for Naive UI's dev startup cost.
+ *
+ * Naive UI ships as ~780 loose ES modules (`naive-ui/es/**`, and `es/components.mjs`
+ * alone re-exports 100 of them). Nuxt turns every `build.transpile` entry into Vite's
+ * `optimizeDeps.exclude` for the client, which switches dependency pre-bundling *off*
+ * for that package on the browser side. Because `@bg-dev/nuxt-naiveui` pushes
+ * `naive-ui` into `build.transpile` during development, the first render had to
+ * transform and download all of those modules individually instead of loading a single
+ * esbuild-pre-bundled chunk — that is what made the first render take minutes. Once
+ * Vite had cached the whole graph, later renders were fast.
+ *
+ * The exclusion cannot simply be dropped from `build.transpile`, because Nuxt derives
+ * `ssr.noExternal` for the server from the same list, and on the server Naive UI must
+ * stay Vite-transformed: its ESM entry points import named exports from the
+ * CommonJS-only `vueuc`, which Node cannot interop on its own.
+ *
+ * So this module removes the exclusion for the client only. The server keeps the
+ * original behaviour, and so does the production build.
+ */
+const naiveUiClientPrebundle = defineNuxtModule({
+  meta: { name: 'naive-ui-client-prebundle' },
+  setup(_options, nuxt) {
+    // `vite:extendConfig` is the per-environment hook: it is called with the browser
+    // config and with the server config separately.
+    nuxt.hook('vite:extendConfig', (config, environment) => {
+      if (!environment?.isClient || !Array.isArray(config.optimizeDeps?.exclude)) {
+        return
+      }
+
+      const preBundled = new Set([
+        'naive-ui',
+        'vueuc',
+        '@css-render/vue3-ssr',
+        '@iconify/vue'
+      ])
+
+      config.optimizeDeps.exclude = config.optimizeDeps.exclude.filter(
+        (entry) => typeof entry !== 'string' || !preBundled.has(entry)
+      )
+    })
+  }
+})
 
 export default defineNuxtConfig({
   modules:
@@ -11,6 +56,7 @@ export default defineNuxtConfig({
       '@nuxt/image',
       '@nuxt/scripts',
       '@bg-dev/nuxt-naiveui',
+      naiveUiClientPrebundle,
       '@nuxtjs/i18n',
       '@nuxt/fonts',
       '@vercel/speed-insights',
@@ -115,6 +161,26 @@ export default defineNuxtConfig({
         resolvers: [NaiveUiResolver()]
       })
     ],
+    optimizeDeps: {
+      // Nuxt's client entry is virtual, so Vite's dependency scanner cannot discover
+      // what the app imports. Listing these explicitly makes esbuild pre-bundle them
+      // while the dev server boots, instead of optimizing them lazily during the first
+      // page render (which also forces a full page reload).
+      include: [
+        'naive-ui',
+        'naive-ui/es/components',
+        'naive-ui/es/_internal/scrollbar/styles/rtl',
+        'naive-ui/es/alert/styles',
+        'naive-ui/es/button/styles',
+        'naive-ui/es/dialog/styles',
+        'naive-ui/es/drawer/styles',
+        'naive-ui/es/input/styles',
+        'naive-ui/es/message/styles',
+        'naive-ui/es/table/styles',
+        'naive-ui/es/tag/styles',
+        '@iconify/vue'
+      ]
+    },
     build: {
       target: 'es2022'
     }

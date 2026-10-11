@@ -38,7 +38,7 @@ const total = computed(() =>
         </div>
 
         <SwitchSelect v-if="revenueStat.length" v-model:value="period" :ranges="ranges" @update:value="updatePeriod" />
-        <div v-if="revenueStat.length" class="my-2 -mx-4">
+        <div v-if="revenueStat.length" class="my-2 -mx-11">
           <Sparkline :data="revenueStat" width="100%" :height="150" color="var(--primary-color)" />
         </div>
       </div>
