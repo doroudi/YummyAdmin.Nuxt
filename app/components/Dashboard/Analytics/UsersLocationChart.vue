@@ -26,7 +26,12 @@ function arrayToKeyValue(arr: LocationChartSeries[]) {
 
 <template>
   <Card class="p-2" :title="$t('dashboard.locationChart.title')">
-    <MapChart v-if="!isLoading" :data="locationData" base-color="var(--primary-color)" height="450" />
+    <MapChart
+      v-if="!isLoading"
+      :data="locationData"
+      base-color="var(--primary-color)"
+      height="450"
+    />
   </Card>
 </template>
 

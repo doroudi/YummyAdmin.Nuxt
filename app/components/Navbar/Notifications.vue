@@ -29,7 +29,12 @@ const badgeOffset = computed(() => [isRtl.value ? '4' : '-4', '5'])
   <div v-bind="$attrs">
     <n-tooltip placement="top" trigger="hover">
       <template #trigger>
-        <n-popover class="notifications" trigger="click" :show-arrow="true" style="width: 270px;max-height: 450px;">
+        <n-popover
+          class="notifications"
+          trigger="click"
+          :show-arrow="true"
+          style="width: 270px; max-height: 450px"
+        >
           <template #trigger>
             <n-button quaternary circle>
               <template #icon>
@@ -49,22 +54,35 @@ const badgeOffset = computed(() => [isRtl.value ? '4' : '-4', '5'])
               {{ $t('notifications.clear') }}
             </NButton>
           </template>
-          <n-empty v-if="!notifications.length" class="m-5" :description="$t('notifications.empty')">
+          <n-empty
+            v-if="!notifications.length"
+            class="m-5"
+            :description="$t('notifications.empty')"
+          >
             <template #icon>
               <Icon name="fluent:mail-inbox-20-regular" />
             </template>
           </n-empty>
-          <NScrollbar v-else style="max-height:300px">
+          <NScrollbar v-else style="max-height: 300px">
             <div class="notifications-list">
               <n-list hoverable clickable>
                 <n-list-item v-for="item of notifications" :key="item.id">
                   <template #prefix>
-                    <div class="icon ms-2 notification-icon" :class="NotificationType[item.type].toLowerCase()">
-                      <Icon :name="getIcon(item.type)" size="1.2rem" :color="isDark ? '#fff' : '#444'" />
+                    <div
+                      class="icon ms-2 notification-icon"
+                      :class="NotificationType[item.type].toLowerCase()"
+                    >
+                      <Icon
+                        :name="getIcon(item.type)"
+                        size="1.2rem"
+                        :color="isDark ? '#fff' : '#444'"
+                      />
                     </div>
                   </template>
-                  <n-thing :title="$t(`notifications.${item.title}`)"
-                    :description="$t(`notifications.${item.key}`, item.data ?? {})" />
+                  <n-thing
+                    :title="$t(`notifications.${item.title}`)"
+                    :description="$t(`notifications.${item.key}`, item.data ?? {})"
+                  />
                 </n-list-item>
               </n-list>
             </div>

@@ -20,8 +20,6 @@ export const useAuth = () => {
     }
   }
 
- 
-
   const resetPassword = (forgetInfo: any) => {
     return Promise.resolve(forgetInfo)
   }
@@ -42,9 +40,9 @@ export const useAuth = () => {
     }
   }
 
-  const logout = () => {
+  const logout = async () => {
     setToken(null)
-    navigateTo('/login')
+    await navigateTo('/login')
   }
 
   const initAuth = () => {

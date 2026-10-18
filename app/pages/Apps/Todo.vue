@@ -3,10 +3,10 @@ definePageMeta({
   title: 'todo',
   name: 'apps-todo',
   layout: 'wide',
-  breadcrumb: ['apps', 'todo']
+  breadcrumb: ['apps', 'todo'],
 })
 </script>
 
 <template>
-    <TodoApp />
+  <TodoApp />
 </template>

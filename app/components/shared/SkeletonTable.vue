@@ -53,16 +53,21 @@ const skeletonData = computed(() => {
 </script>
 
 <template>
-  <n-data-table :row-key="rowKey" v-bind="$attrs" :columns="skeletonColumns" :data="skeletonData"
-    class="skeleton-table" />
+  <n-data-table
+    :row-key="rowKey"
+    v-bind="$attrs"
+    :columns="skeletonColumns"
+    :data="skeletonData"
+    class="skeleton-table"
+  />
 </template>
 
 <style scoped>
 .skeleton-table :deep(.n-data-table-th) {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 .skeleton-table :deep(.n-data-table-td) {
-    padding: 12px;
+  padding: 12px;
 }
 </style>

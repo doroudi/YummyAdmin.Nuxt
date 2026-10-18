@@ -1,8 +1,5 @@
 import type { Color, ColorCreateModel } from '~/models/Color'
-import {
-  defaultOptions,
-  type PagedAndSortedRequest,
-} from '~/models/PagedAndSortedRequest'
+import { defaultOptions, type PagedAndSortedRequest } from '~/models/PagedAndSortedRequest'
 import { useColorService } from '~/services/color.service'
 
 export const useColors = () => {
@@ -29,7 +26,7 @@ export const useColors = () => {
     isLoading.value = true
     try {
       await colorService.create(colorItem)
-      getColors(defaultOptions)
+      await getColors(defaultOptions)
     } finally {
       isLoading.value = false
     }

@@ -11,146 +11,155 @@
 // @use 'utils/progress';
 
 :root {
-    --primary-color: #00ad4c;
-    --primary-color-shade1: #008a3c;
-    --primary-color-shade2: #007935;
-    --primary-color-shade3: #007935;
-    --background: #EEE;
-    --main-content: #FFF;
-    --border-color: #e0dfdf74;
-    --background-dark: #283046;
-    --second-background: #FFF;
-    --success-color: #00ad4c;
-    --error-color: #ff4d4f;
+  --primary-color: #00ad4c;
+  --primary-color-shade1: #008a3c;
+  --primary-color-shade2: #007935;
+  --primary-color-shade3: #007935;
+  --background: #eee;
+  --main-content: #fff;
+  --border-color: #e0dfdf74;
+  --background-dark: #283046;
+  --second-background: #fff;
+  --success-color: #00ad4c;
+  --error-color: #ff4d4f;
 
-    /* Chart tokens consumed by the vendored uipkge charts
+  /* Chart tokens consumed by the vendored uipkge charts
        (see app/components/ui/charts/useChartTheme.ts).
        app/app.vue rewrites --chart-1..5 whenever the theme colour changes. */
-    --chart-1: #00ad4c;
-    --chart-2: #008a3c;
-    --chart-3: #007935;
-    --chart-4: #00692e;
-    --chart-5: #ff7300;
-    --muted-foreground: #6e6b7b;
-    --popover: #ffffff;
-    --popover-foreground: #2f2b3d;
+  --chart-1: #00ad4c;
+  --chart-2: #008a3c;
+  --chart-3: #007935;
+  --chart-4: #00692e;
+  --chart-5: #ff7300;
+  --muted-foreground: #6e6b7b;
+  --popover: #ffffff;
+  --popover-foreground: #2f2b3d;
 }
-
 
 .dark {
-    --background: var(--background-dark);
-    --main-content: #212637;
-    --border-color: #20253578;
-    --second-background: #1e293b;
+  --background: var(--background-dark);
+  --main-content: #212637;
+  --border-color: #20253578;
+  --second-background: #1e293b;
 
-    /* ECharts paints on a canvas, so these have to be resolved colours -
+  /* ECharts paints on a canvas, so these have to be resolved colours -
        `.dark` overrides in utils/_override.scss cannot reach them. */
-    --muted-foreground: #b8b6c3;
-    --popover: #2b3144;
-    --popover-foreground: #e9e9ec;
+  --muted-foreground: #b8b6c3;
+  --popover: #2b3144;
+  --popover-foreground: #e9e9ec;
 }
-
 
 html,
 body,
 .n-drawer,
 #app {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    font-family: 'Inter var',
-        'ui-sans-serif',
-        'system-ui',
-        'sans-serif',
-        'Apple Color Emoji',
-        'Segoe UI Emoji',
-        'Segoe UI Symbol',
-        'Noto Color Emoji'
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family:
+    'Inter var', 'ui-sans-serif', 'system-ui', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
 body {
-    background-color: var(--background);
-    background-size: cover;
-    max-height: 100vh;
-    max-width: 100vw;
-    overflow: hidden;
+  background-color: var(--background);
+  background-size: cover;
+  max-height: 100vh;
+  max-width: 100vw;
+  overflow: hidden;
 
-    &::selection {
-        background: color-mix(in srgb, var(--primary-color), var(--background) 85%)
-    }
+  &::selection {
+    background: color-mix(in srgb, var(--primary-color), var(--background) 85%);
+  }
 }
 
 .ql-editor {
-    font-family: 'Inter var', 'ui-sans-serif', ;
+  font-family: 'Inter var', 'ui-sans-serif';
 }
 
+// RTL: apply `direction` to the app root, never to <body>.
+//
+// naive-ui teleports overlays (popover / dropdown / select menu / tooltip) into
+// <body>, and vueuc positions them with a logical inset (`inset-inline-start: 0`)
+// combined with a *physical* `translateX(x)`. If <body> is RTL, that logical
+// inset resolves to `right: 0`, so the overlay is anchored to the right edge and
+// the LTR-based translateX leaves it on the wrong side of the screen (measured:
+// dropdown at x 1332-1444 with its trigger at x 20). Keeping the positioning
+// container LTR is what makes the geometry correct; the overlay's own content is
+// still RTL through its `.n-*--rtl` classes and the rules below.
+//
+// In the Vue version of this app the `rtl` class sits on <body>, so `.rtl body`
+// never matched and <body> stayed LTR. Here the class is on <html> (so it is
+// server-rendered), which made `.rtl body` match and broke every overlay.
 .rtl {
+  body {
+    font-family: Shabnam;
+  }
 
-    html,
-    body,
-    .n-drawer,
-    #app {
-        font-family: Shabnam;
-        direction: rtl;
+  // Nuxt renders the app into #__nuxt; #app is kept for the Vue build.
+  #__nuxt,
+  #app,
+  .n-drawer {
+    font-family: Shabnam;
+    direction: rtl;
 
-        .p-component {
-            font-family: Shabnam;
-        }
+    .p-component {
+      font-family: Shabnam;
     }
+  }
 
-    .n-notification-main__content,
-    .n-base-select-menu .n-base-select-option {
-        font-family: Shabnam !important;
-    }
+  .n-notification-main__content,
+  .n-base-select-menu .n-base-select-option {
+    font-family: Shabnam !important;
+  }
 
-    .ql-editor {
-        font-family: Shabnam;
-        text-align: right;
-    }
+  .ql-editor {
+    font-family: Shabnam;
+    text-align: right;
+  }
 
-    .rtl-rotate {
-        transform: rotate(180deg);
-    }
+  .rtl-rotate {
+    transform: rotate(180deg);
+  }
 }
 
 .main-content {
-    background: var(--main-content);
-    height: calc(100vh - 1.3rem);
-    border-radius: 10px;
-    padding-bottom: 0.2rem;
-    overflow-y: hidden;
+  background: var(--main-content);
+  height: calc(100vh - 1.3rem);
+  border-radius: 10px;
+  padding-bottom: 0.2rem;
+  overflow-y: hidden;
 }
 
 .page-title {
-    font-size: 1.1rem;
+  font-size: 1.1rem;
 }
 
 .dark {
-    .p-button.p-button-text.p-button-plain {
-        color: #e4e4e4;
-    }
+  .p-button.p-button-text.p-button-plain {
+    color: #e4e4e4;
+  }
 
-    .p-sidebar {
-        color: #e4e4e4;
-    }
+  .p-sidebar {
+    color: #e4e4e4;
+  }
 }
 
 .text-primary {
-    color: var(--primary-color);
+  color: var(--primary-color);
 }
 
-
 .box-row {
-    display: flex;
-    flex-direction: column;
-    justify-content: stretch;
-    align-items: stretch;
-    width: 100%;
-    flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: stretch;
+  width: 100%;
+  flex: 1;
 }
 
 @media screen and (min-width: 640px) {
-    .box-row {
-        flex-direction: row;
-    }
+  .box-row {
+    flex-direction: row;
+  }
 }

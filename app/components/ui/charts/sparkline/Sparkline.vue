@@ -79,7 +79,9 @@ const mergedOption = computed(() => {
   // pass new data, the rest stays).
   const userOption: any = props.option ?? {}
   const { series: userSeries, ...userRest } = userOption
-  const mergedSeries = Array.isArray(userSeries) ? series.map((s, i) => ({ ...s, ...(userSeries[i] ?? {}) })) : series
+  const mergedSeries = Array.isArray(userSeries)
+    ? series.map((s, i) => ({ ...s, ...userSeries[i] }))
+    : series
 
   return {
     grid: { left: 0, right: 0, top: 2, bottom: 2 },

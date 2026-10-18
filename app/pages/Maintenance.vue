@@ -1,17 +1,17 @@
 <script setup lang="ts">
 definePageMeta({
-    layout: 'error-layout'
+  layout: 'error-layout',
 })
 </script>
 
 <template>
-    <div class="flex justify-center items-center h-100vh">
-        <div class="error-message z-10">
-            <img src="@/assets/images/maintenance.svg" class="w-130" />
-            <p class="text-lg mt-8 dark:text-white">
-                {{ $t('common.maintenanceDetail') }}
-            </p>
-            <BackHomeButton />
-        </div>
+  <div class="flex justify-center items-center h-100vh">
+    <div class="error-message z-10">
+      <img src="@/assets/images/maintenance.svg" class="w-130" />
+      <p class="text-lg mt-8 dark:text-white">
+        {{ $t('common.maintenanceDetail') }}
+      </p>
+      <BackHomeButton />
     </div>
+  </div>
 </template>

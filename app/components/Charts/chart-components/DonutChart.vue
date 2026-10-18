@@ -29,6 +29,17 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <BaseChart type="donut" v-bind="$attrs" :data="data" :colors="colors" :color-scheme="colorScheme" :height="height"
-    :loading="loading" :error="error" :options="options" :show-legend="showLegend" :legend-position="legendPosition" />
+  <BaseChart
+    type="donut"
+    v-bind="$attrs"
+    :data="data"
+    :colors="colors"
+    :color-scheme="colorScheme"
+    :height="height"
+    :loading="loading"
+    :error="error"
+    :options="options"
+    :show-legend="showLegend"
+    :legend-position="legendPosition"
+  />
 </template>

@@ -18,7 +18,13 @@ const { flatDesign } = storeToRefs(layoutStore)
     <div class="card-container" :class="{ 'h-full': stretchHeight }">
       <div
         class="card-content dark:bg-slate-900 rounded-md border-solid border-color-default p-4 relative z-10"
-        :class="{ 'shadow-lg': !flatDesign, 'drop-shadow-md': !flatDesign, 'border-1': flatDesign, 'h-full': stretchHeight }">
+        :class="{
+          'shadow-lg': !flatDesign,
+          'drop-shadow-md': !flatDesign,
+          'border-1': flatDesign,
+          'h-full': stretchHeight,
+        }"
+      >
         <div v-if="slots.title">
           <slot name="title" />
         </div>
@@ -41,7 +47,7 @@ const { flatDesign } = storeToRefs(layoutStore)
   position: relative;
 
   .card-content {
-    --un-bg-opacity: .7;
+    --un-bg-opacity: 0.7;
   }
   .title {
     font-size: 1.1rem;
@@ -49,8 +55,8 @@ const { flatDesign } = storeToRefs(layoutStore)
   }
 
   .title-small {
-    font-size: .9rem;
-    padding-bottom: .2rem;
+    font-size: 0.9rem;
+    padding-bottom: 0.2rem;
   }
 
   .title-large {

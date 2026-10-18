@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Sidebar from '~/components/shared/Sidebar.vue';
+import Sidebar from '~/components/shared/Sidebar.vue'
 const props = defineProps({
   isFluid: {
     type: Boolean,
@@ -25,8 +25,14 @@ const effectiveFluid = computed(() => {
         <Navbar />
         <div class="relative h-full">
           <NScrollbar>
-            <div class="h-full overflow-auto md:mx-auto"
-              :class="{ 'md:container': !effectiveFluid, 'md:pb-[70px]': !fullScreen, 'p-3': !fullScreen }">
+            <div
+              class="h-full overflow-auto md:mx-auto"
+              :class="{
+                'md:container': !effectiveFluid,
+                'md:pb-[70px]': !fullScreen,
+                'p-3': !fullScreen,
+              }"
+            >
               <n-layout-content>
                 <!-- <DarkModeContainer class="z-1" /> -->
                 <slot />
@@ -37,10 +43,9 @@ const effectiveFluid = computed(() => {
       </div>
     </n-layout>
     <!-- you can remove it -->
-    <LazySupportProject  />
+    <LazySupportProject />
   </n-layout>
 </template>
-
 
 <style lang="scss">
 .n-layout {
@@ -50,13 +55,13 @@ const effectiveFluid = computed(() => {
 
 .dark {
   .main-content {
-    --un-bg-opacity: .6;
+    --un-bg-opacity: 0.6;
     background: rgb(30 41 59 / var(--un-bg-opacity)) !important;
   }
 }
 
 .main-content {
-  --un-bg-opacity: .4;
+  --un-bg-opacity: 0.4;
   background: #ffffffcc !important;
 }
 </style>

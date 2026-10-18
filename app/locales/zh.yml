@@ -256,7 +256,7 @@ notifications:
   stats: 统计
   orderSubmitted: 新订单已提交
   passwordExpire: 您的密码将在 {count} 天后过期
-  customerRegister: "昨天有 {count} 位新客户注册"
+  customerRegister: '昨天有 {count} 位新客户注册'
   stockWarning: 产品库存不足
   orderCanceled: 订单已取消
 notify:

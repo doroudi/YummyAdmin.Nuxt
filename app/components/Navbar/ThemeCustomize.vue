@@ -1,4 +1,4 @@
-<script setup lang='ts'>
+<script setup lang="ts">
 const showCustomizeDialog = ref(false)
 
 function toggleDialog() {
@@ -10,7 +10,7 @@ function toggleDialog() {
   <div v-bind="$attrs">
     <n-tooltip placement="top" trigger="hover">
       <template #trigger>
-        <n-popover trigger="click" :show-arrow="false" style="width: 390px;max-height: 550px;">
+        <n-popover trigger="click" :show-arrow="false" style="width: 390px; max-height: 550px">
           <template #trigger>
             <div v-bind="$attrs">
               <n-button quaternary circle @click="toggleDialog()">

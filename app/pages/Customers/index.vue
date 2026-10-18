@@ -2,7 +2,7 @@
 definePageMeta({
   title: 'customers',
   name: 'customers',
-  breadcrumb: ['eCommerce', 'customers']
+  breadcrumb: ['eCommerce', 'customers'],
 })
 </script>
 

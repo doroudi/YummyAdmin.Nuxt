@@ -27,7 +27,7 @@ async function loadData() {
           <n-tooltip placement="top" trigger="hover">
             <template #trigger>
               <n-button quaternary circle @click="loadData">
-                <Icon name="fluent:arrow-counterclockwise-32-filled"  />
+                <Icon name="fluent:arrow-counterclockwise-32-filled" />
               </n-button>
             </template>
             {{ $t('common.refresh') }}

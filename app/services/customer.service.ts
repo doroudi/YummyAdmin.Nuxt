@@ -7,9 +7,7 @@ export const useCustomerService = () => {
   const base = useGenericService<Customer, string>('customer')
   const api = useApi('customer')
 
-  async function getList(
-    options: PagedAndSortedRequest,
-  ): Promise<PaginatedList<Customer>> {
+  async function getList(options: PagedAndSortedRequest): Promise<PaginatedList<Customer>> {
     const response = await api.getPaginated<Customer>('', options)
     return response
   }

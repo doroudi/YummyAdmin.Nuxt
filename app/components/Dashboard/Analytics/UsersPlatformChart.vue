@@ -7,15 +7,11 @@ const registersSource = ref<any[]>([
   { name: 'Unknown', value: 880 },
 ])
 
-const total = computed(() =>
-  registersSource.value.reduce((a: any, b: any) => a + b.value, 0),
-)
+const total = computed(() => registersSource.value.reduce((a: any, b: any) => a + b.value, 0))
 
 const layout = useLayoutStore()
 const { isRtl } = storeToRefs(layout)
-const legendPosition = computed(() =>
-  isRtl.value ? 'left' : 'right',
-)
+const legendPosition = computed(() => (isRtl.value ? 'left' : 'right'))
 </script>
 
 <template>
@@ -26,11 +22,13 @@ const legendPosition = computed(() =>
     <p class="text-xsm text-coolgray font-light pb-2">
       {{ $t('dashboard.userPlatforms.subtitle') }}
     </p>
-    <DonutChart :height="200" 
+    <DonutChart
+      :height="200"
       show-legend
       :colors="['#da2c38', '#226f54', '#87c38f', '#f4f0bb']"
-      :data="registersSource" 
-      :legend-position="legendPosition" />
+      :data="registersSource"
+      :legend-position="legendPosition"
+    />
   </Card>
 </template>
 

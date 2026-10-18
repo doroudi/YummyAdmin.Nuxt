@@ -2,12 +2,10 @@
 definePageMeta({
   title: 'orders',
   name: 'orders',
-  breadcrumb: ['ecommerce', 'orders']
+  breadcrumb: ['ecommerce', 'orders'],
 })
-
 </script>
 
 <template>
   <OrderManagement />
 </template>
-

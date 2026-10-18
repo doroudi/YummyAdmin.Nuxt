@@ -5,10 +5,7 @@ import { useCustomerService } from '~/services/customer.service'
 export const useCustomers = () => {
   const customerService = useCustomerService()
   const customers = useState<Customer[]>('customer-list', () => [])
-  const customerItem = useState<Customer | undefined>(
-    'customer-item',
-    () => undefined,
-  )
+  const customerItem = useState<Customer | undefined>('customer-item', () => undefined)
   const isLoading = useState<boolean>('customer-loading', () => false)
   const isSaving = useState<boolean>('customer-saving', () => false)
 

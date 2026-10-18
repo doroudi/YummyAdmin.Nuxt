@@ -1,4 +1,4 @@
-<script setup lang='ts'>
+<script setup lang="ts">
 import type { FormInst, FormRules } from 'naive-ui/es/form'
 import type { UploadFileInfo } from 'naive-ui/es/upload'
 import { useBrands } from '~/composables/useBrands'
@@ -60,8 +60,13 @@ function handlePreview(file: UploadFileInfo) {
   <n-form ref="formRef" :model="brandItem" :rules="rules" @submit.prevent="create()">
     <div class="form-control">
       <n-form-item class="mb-5" path="name" :label="$t('brands.create.brandName')">
-        <n-input id="name" ref="nameInput" v-model:value="brandItem.name" autofocus
-          :placeholder="$t('brands.create.brandName')" />
+        <n-input
+          id="name"
+          ref="nameInput"
+          v-model:value="brandItem.name"
+          autofocus
+          :placeholder="$t('brands.create.brandName')"
+        />
       </n-form-item>
     </div>
     <div class="form-control flex flex-col mb-5">
@@ -72,9 +77,14 @@ function handlePreview(file: UploadFileInfo) {
 
     <div class="form-control">
       <n-form-item class="mb-5" path="image" :label="$t('brands.create.image')">
-        <n-upload list-type="image-card" accept="image/png, image/jpeg" :max="1" @preview="handlePreview" />
+        <n-upload
+          list-type="image-card"
+          accept="image/png, image/jpeg"
+          :max="1"
+          @preview="handlePreview"
+        />
         <n-modal v-model:show="showModal" preset="card" style="width: 600px" title="A Cool Picture">
-          <img :src="previewImageUrl" style="width: 100%">
+          <img :src="previewImageUrl" style="width: 100%" />
         </n-modal>
       </n-form-item>
     </div>

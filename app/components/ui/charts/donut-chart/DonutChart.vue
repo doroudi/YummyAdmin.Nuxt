@@ -58,7 +58,10 @@ const summary = computed(() => props.centerLabel ?? String(total.value))
 const mergedOption = computed(() => {
   const half = props.type === 'half'
   const outer = half ? 82 : 78
-  const inner = Math.max(0, +(outer * (1 - Math.max(0, Math.min(0.95, props.thickness)))).toFixed(1))
+  const inner = Math.max(
+    0,
+    +(outer * (1 - Math.max(0, Math.min(0.95, props.thickness)))).toFixed(1),
+  )
   const series = [
     {
       type: 'pie',
@@ -75,8 +78,16 @@ const mergedOption = computed(() => {
     },
   ]
   const userOption: any = props.option ?? {}
-  const { series: userSeries, tooltip: userTooltip, legend: userLegend, title: userTitle, ...userRest } = userOption
-  const mergedSeries = Array.isArray(userSeries) ? series.map((s, i) => ({ ...s, ...(userSeries[i] ?? {}) })) : series
+  const {
+    series: userSeries,
+    tooltip: userTooltip,
+    legend: userLegend,
+    title: userTitle,
+    ...userRest
+  } = userOption
+  const mergedSeries = Array.isArray(userSeries)
+    ? series.map((s, i) => ({ ...s, ...userSeries[i] }))
+    : series
   return {
     color: chartColors.value,
     title: props.showTotal

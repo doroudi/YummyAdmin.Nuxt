@@ -10,8 +10,10 @@ defineProps<Props>()
 </script>
 
 <template>
-  <div class="chat-message flex flex-col gap-2 p-3 bg-gray-100 dark:bg-gray-700"
-    :class="{ 'self-message': selfMessage, 'last': last }">
+  <div
+    class="chat-message flex flex-col gap-2 p-3 bg-gray-100 dark:bg-gray-700"
+    :class="{ 'self-message': selfMessage, last: last }"
+  >
     <span v-html="message.content"></span>
     <div class="time text-xs text-gray-500 text-end -mb-2 dark:text-gray-400">
       {{ new Date(message.created).toLocaleTimeString() }}
@@ -42,7 +44,7 @@ defineProps<Props>()
     border-bottom-left-radius: 0;
 
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       bottom: 0;
       left: -9px;
@@ -53,7 +55,7 @@ defineProps<Props>()
     }
 
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       bottom: 1px;
       left: -29px;
@@ -75,7 +77,7 @@ defineProps<Props>()
     border-bottom-left-radius: 0.7rem;
 
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       bottom: 0;
       right: -9px;
@@ -87,7 +89,7 @@ defineProps<Props>()
     }
 
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       bottom: 1px;
       right: -29px;
@@ -105,7 +107,7 @@ defineProps<Props>()
   .chat-message {
     &.last {
       border-bottom-right-radius: 0;
-      border-bottom-left-radius: .7rem;
+      border-bottom-left-radius: 0.7rem;
       &::before {
         right: -9px;
         left: auto;

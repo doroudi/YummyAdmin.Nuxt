@@ -74,9 +74,7 @@ export const useToDoApp = () => {
   const counts = computed(() => {
     return groups.value.map((g: TaskGroup) => ({
       id: g.id,
-      count: tasks.value.filter(
-        (x: TaskItem) => x.groupId === g.id && !x.isDone,
-      ).length,
+      count: tasks.value.filter((x: TaskItem) => x.groupId === g.id && !x.isDone).length,
     }))
   })
 

@@ -1,0 +1,14 @@
+catalog:
+  vite: npm:@voidzero-dev/vite-plus-core@1.3.0
+  vite-plus: 1.3.0
+# Nuxt 4 builds through its own Vite 7: `@nuxt/vite-builder` declares `vite@^7.3.3`
+# and only supports the rolldown/Vite 8 path as an opt-in peer. The generated
+# `overrides: vite@*: "catalog:"` entry routed Nuxt's Vite through
+# @voidzero-dev/vite-plus-core (Vite 8) and broke `nuxt build` with
+# ERR_MODULE_NOT_FOUND: Cannot find package 'rolldown'. Keep it unapplied until
+# Nuxt ships Vite 8 support.
+peerDependencyRules:
+  allowAny:
+    - vite
+  allowedVersions:
+    vite: '*'

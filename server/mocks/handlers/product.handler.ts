@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker/locale/en'
 import type { Category } from '../../../app/models/Category.ts'
-import { type ProductListDto, ProductStatus } from '../../../app/models/Product.ts'
+import { type ProductListDto, ProductStatus } from '../../../app/models/Product'
 import { CreatePagedResponse, times, delay } from '../handler-utilities'
 import { registerMockHandler } from '../registry'
 
@@ -40,17 +40,12 @@ const fakeImages = [
 const products = times(27, createFakeProductListItem)
 
 registerMockHandler('GET', 'product', async (event: any) => {
-  const response = CreatePagedResponse<ProductListDto>(
-    event,
-    products,
-    'name',
-    ['status'],
-  )
+  const response = CreatePagedResponse<ProductListDto>(event, products, 'name', ['status'])
   await delay(1000)
   return response
 })
 
-registerMockHandler('DELETE','product/:id', (event: any, params: any) => {
+registerMockHandler('DELETE', 'product/:id', (event: any, params: any) => {
   const { id } = params
   products.splice(
     products.findIndex((x) => x.id === id),
@@ -70,7 +65,7 @@ function createFakeProductListItem(): ProductListDto {
     status: faker.helpers.enumValue(ProductStatus),
     stock: faker.datatype.boolean(),
     category: createFakeCategory(),
-    image: `https://i.imgur.com/${fakeImages[counter++]}.jpeg`, //faker.image.urlPicsumPhotos({ height: 400, width: 400 }),
+    image: faker.image.urlPicsumPhotos({ height: 400, width: 400 }),
   }
 }
 

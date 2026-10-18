@@ -1,8 +1,5 @@
 import type { Brand, BrandCreateModel } from '~/models/Brand'
-import {
-  defaultOptions,
-  type PagedAndSortedRequest,
-} from '~/models/PagedAndSortedRequest'
+import { defaultOptions, type PagedAndSortedRequest } from '~/models/PagedAndSortedRequest'
 import { useBrandService } from '~/services/brand.service'
 
 export const useBrands = () => {

@@ -40,18 +40,13 @@ export function useChartOptions(props: ChartProps) {
   })
 
   /** Positional field keys handed to the ECharts wrapper. */
-  const fields = computed<string[]>(() =>
-    seriesNames.value.map((_, i) => `s${i}`),
-  )
+  const fields = computed<string[]>(() => seriesNames.value.map((_, i) => `s${i}`))
 
   const palette = computed<string[]>(() => {
-    if (props.colors && props.colors.length > 0)
-      return props.colors.map(resolveCssColor)
+    if (props.colors && props.colors.length > 0) return props.colors.map(resolveCssColor)
 
     if (props.colorScheme) {
-      return seriesNames.value.map((_, i) =>
-        makeLighter(props.colorScheme ?? '', 1 - i * 0.25),
-      )
+      return seriesNames.value.map((_, i) => makeLighter(props.colorScheme ?? '', 1 - i * 0.25))
     }
 
     return chartColors.value
@@ -80,8 +75,7 @@ export function useChartOptions(props: ChartProps) {
   const radarIndicators = computed(() =>
     safeLabels.value.map((label, index) => {
       let max = 0
-      for (const field of fields.value)
-        max = Math.max(max, Number(rows.value[index]?.[field]) || 0)
+      for (const field of fields.value) max = Math.max(max, Number(rows.value[index]?.[field]) || 0)
 
       return { name: label, max: max > 0 ? Math.ceil(max * 1.1) : 1 }
     }),
@@ -146,8 +140,8 @@ export function useChartOptions(props: ChartProps) {
     const userSeries = Array.isArray(user.series) ? user.series : null
     const seriesCount = Math.max(baseSeries.length, userSeries?.length ?? 0)
     const series = Array.from({ length: seriesCount }, (_, index) => ({
-      ...(baseSeries[index] ?? {}),
-      ...(userSeries?.[index] ?? {}),
+      ...baseSeries[index],
+      ...userSeries?.[index],
     }))
 
     const base: ChartOption = {
@@ -180,13 +174,11 @@ export function useChartOptions(props: ChartProps) {
 
   const validateChartData = (data: ChartData | null): boolean => {
     if (!data) return false
-    if (!data.series || !Array.isArray(data.series) || data.series.length === 0)
-      return false
+    if (!data.series || !Array.isArray(data.series) || data.series.length === 0) return false
     if (!data.labels || !Array.isArray(data.labels)) return false
 
     return data.series.every(
-      (series: any) =>
-        series && typeof series === 'object' && Array.isArray(series.data),
+      (series: any) => series && typeof series === 'object' && Array.isArray(series.data),
     )
   }
 

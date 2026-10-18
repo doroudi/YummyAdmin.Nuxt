@@ -6,11 +6,7 @@ import { registerMockHandler } from '../registry'
 const customers = times(65, createFakeCustomer)
 
 registerMockHandler('GET', 'customer', (request: any) => {
-  const response = CreatePagedResponse<Customer>(
-    request,
-    customers,
-    'firstName',
-  )
+  const response = CreatePagedResponse<Customer>(request, customers, 'firstName')
   return response
 })
 

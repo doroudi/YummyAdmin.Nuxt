@@ -29,7 +29,7 @@ async function selectColor() {
   colorPickerRef.value.click()
 }
 
-let updateInterval : any = null;
+let updateInterval: any = null
 watch(
   customColor,
   (newColor: any) => {
@@ -50,13 +50,25 @@ watch(
     </NTag>
 
     <n-space justify="start" size="large">
-      <NButton ghost class="p-7" :type="isDark === false ? 'primary' : 'default'" size="large" @click="setLight">
+      <NButton
+        ghost
+        class="p-7"
+        :type="isDark === false ? 'primary' : 'default'"
+        size="large"
+        @click="setLight"
+      >
         <template #icon>
           <Icon name="fluent:weather-sunny-48-regular" />
         </template>
       </NButton>
 
-      <NButton ghost class="w-full p-7" :type="isDark ? 'primary' : 'default'" size="large" @click="setDark">
+      <NButton
+        ghost
+        class="w-full p-7"
+        :type="isDark ? 'primary' : 'default'"
+        size="large"
+        @click="setDark"
+      >
         <template #icon>
           <Icon name="fluent:weather-moon-48-regular" />
         </template>
@@ -69,8 +81,15 @@ watch(
     </NTag>
 
     <div>
-      <NButton v-for="(color, index) of colors" :key="index" :color="color" size="small" circle class="mx-1 my-1"
-        @click="setColor(index)">
+      <NButton
+        v-for="(color, index) of colors"
+        :key="index"
+        :color="color"
+        size="small"
+        circle
+        class="mx-1 my-1"
+        @click="setColor(index)"
+      >
         <template #icon>
           <Icon name="fluent:checkmark-48-filled" v-if="selectedColorIndex === index" />
           <span v-else />
@@ -84,11 +103,17 @@ watch(
           </template>
         </NButton>
       </label>
-      <input type="color" ref="colorPickerRef" class="invisible" style="width:15px"
-        value="#1dbbce" id="colorPicker">
+      <input
+        type="color"
+        ref="colorPickerRef"
+        class="invisible"
+        style="width: 15px"
+        value="#1dbbce"
+        id="colorPicker"
+      />
     </div>
   </div>
-   <div class="section">
+  <div class="section">
     <NTag type="primary" :bordered="false" size="small" class="mb-3 font-bold">
       {{ $t('customize.layout') }}
     </NTag>
@@ -100,36 +125,27 @@ watch(
     <div class="py-3">
       <n-switch v-model:value="isRtl" />
       {{ $t('customize.rtl') }}
-
     </div>
     <div class="py-3">
       <n-switch v-model:value="flatDesign" />
       {{ $t('customize.flatDesign') }}
     </div>
-  </div> 
+  </div>
 </template>
 
 <style lang="scss" scoped>
 .section {
-  padding: .8rem 0;
+  padding: 0.8rem 0;
 
   .section-title {
     font-weight: 500;
     padding: 0.2rem 0;
-    border-bottom: solid 1px #CCC;
+    border-bottom: solid 1px #ccc;
     margin-bottom: 1rem;
   }
 }
 
 .color-picker {
-  background: conic-gradient(from 90deg,
-      violet,
-      indigo,
-      blue,
-      green,
-      yellow,
-      orange,
-      red,
-      violet);
+  background: conic-gradient(from 90deg, violet, indigo, blue, green, yellow, orange, red, violet);
 }
 </style>

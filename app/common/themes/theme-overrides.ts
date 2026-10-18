@@ -25,7 +25,6 @@ export const yummyAdminThemeConfig = {
       },
     },
     dark: {
-
       common: {
         borderColor: '#1c2334',
         cardColor: '#0f172a',
@@ -40,7 +39,6 @@ export const yummyAdminThemeConfig = {
         hoverColor: '#1c202c',
         tdColorHover: '#1c202c',
       },
-
     },
-  }
+  },
 }

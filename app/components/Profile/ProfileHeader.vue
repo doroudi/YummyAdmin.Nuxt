@@ -9,9 +9,7 @@ const { profile } = useProfile()
       <h4 class="text-center font-bold text-5">
         {{ `${profile?.firstName} ${profile?.lastName}` }}
       </h4>
-      <p class="font-light text-center">
-        {{ profile?.role }} | {{ profile?.location }}
-      </p>
+      <p class="font-light text-center">{{ profile?.role }} | {{ profile?.location }}</p>
     </div>
   </div>
 </template>

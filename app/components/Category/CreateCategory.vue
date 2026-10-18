@@ -1,4 +1,4 @@
-<script setup lang='ts'>
+<script setup lang="ts">
 import type { FormInst, FormRules } from 'naive-ui/es/form'
 import type { TreeSelectOption } from 'naive-ui/es/tree-select/src/interface'
 import { useCategories } from '~/composables/useCategories'
@@ -60,14 +60,23 @@ async function create() {
   <n-form ref="formRef" :model="categoryItem" :rules="rules" @submit.prevent="create()">
     <div class="form-control">
       <n-form-item class="mb-5" path="name" :label="$t('categories.create.categoryName')">
-        <n-input id="name" ref="nameInput" v-model:value="categoryItem.name"
-          :placeholder="$t('categories.create.categoryName')" />
+        <n-input
+          id="name"
+          ref="nameInput"
+          v-model:value="categoryItem.name"
+          :placeholder="$t('categories.create.categoryName')"
+        />
       </n-form-item>
     </div>
     <div class="form-control">
       <n-form-item class="mb-5" :label="$t('categories.create.parent')">
-        <n-tree-select v-model="categoryItem.parentId" key-field="key" :options="parents"
-          :placeholder="$t('categories.create.parent')" default-value="Root" />
+        <n-tree-select
+          v-model="categoryItem.parentId"
+          key-field="key"
+          :options="parents"
+          :placeholder="$t('categories.create.parent')"
+          default-value="Root"
+        />
       </n-form-item>
     </div>
     <n-button attr-type="submit" size="large" :block="true" type="primary" :loading="isSaving">
@@ -76,4 +85,4 @@ async function create() {
   </n-form>
 </template>
 
-<style scoped lang='scss'></style>
+<style scoped lang="scss"></style>

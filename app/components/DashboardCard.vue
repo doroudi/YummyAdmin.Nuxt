@@ -27,8 +27,7 @@ onMounted(() => {
 
       value.value = currentNumber + countFrom
 
-      if (progress < 1)
-        element.value.animationFrameID = window.requestAnimationFrame(step)
+      if (progress < 1) element.value.animationFrameID = window.requestAnimationFrame(step)
       else window.cancelAnimationFrame(element.value.animationFrameID)
     }
 

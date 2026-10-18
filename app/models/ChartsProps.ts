@@ -4,14 +4,7 @@ import type { ChartData, SimpleChartSeries } from './ChartData.ts'
  * Axis / cartesian chart families exposed by the vendored uipkge primitives.
  * `polarArea`, `pie` and `donut` are fed by {@link SimpleChartProps}.
  */
-export type ChartType =
-  | 'line'
-  | 'area'
-  | 'bar'
-  | 'radar'
-  | 'pie'
-  | 'donut'
-  | 'polarArea'
+export type ChartType = 'line' | 'area' | 'bar' | 'radar' | 'pie' | 'donut' | 'polarArea'
 
 export type ChartLegendPosition = 'top' | 'right' | 'bottom' | 'left'
 

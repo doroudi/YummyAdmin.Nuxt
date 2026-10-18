@@ -2,12 +2,10 @@
 definePageMeta({
   title: 'dashboard',
   name: 'ecommerce-dashboard',
-  breadcrumb: ['dashboard']
+  breadcrumb: ['dashboard'],
 })
 </script>
-
 
 <template>
   <EcommerceDashboard />
 </template>
-

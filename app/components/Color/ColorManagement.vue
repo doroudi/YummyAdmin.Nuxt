@@ -1,4 +1,4 @@
-<script setup lang='ts'>
+<script setup lang="ts">
 import { type DataTableColumns, NButton } from 'naive-ui/es/components'
 import type { RowData } from 'naive-ui/es/data-table/src/interface'
 import { useColors } from '~/composables/useColors'
@@ -35,10 +35,8 @@ const columns: DataTableColumns<RowData> = [
     key: 'actions',
     width: 110,
     render: (row) => [
-      renderActionButton('fluent:edit-32-regular', () => { }),
-      renderDeleteActionButton($t('common.deleteConfirm'), () =>
-        handleDeleteItem(row),
-      ),
+      renderActionButton('fluent:edit-32-regular', () => {}),
+      renderDeleteActionButton($t('common.deleteConfirm'), () => handleDeleteItem(row)),
     ],
   },
 ]
@@ -83,8 +81,17 @@ function createColor() {
           </NButton>
         </n-space>
         <SkeletonTable v-if="isLoading" :columns="columns" />
-        <n-data-table v-else remote :columns="columns" :data="colors" :pagination="options" :row-key="rowKey"
-          :scroll-x="1000" @update:filters="handleFiltersChange" @update:page="handlePageChange" />
+        <n-data-table
+          v-else
+          remote
+          :columns="columns"
+          :data="colors"
+          :pagination="options"
+          :row-key="rowKey"
+          :scroll-x="1000"
+          @update:filters="handleFiltersChange"
+          @update:page="handlePageChange"
+        />
       </div>
     </n-layout-content>
 
@@ -96,12 +103,12 @@ function createColor() {
   </n-layout>
 </template>
 
-<style lang='scss'>
+<style lang="scss">
 .color-preview {
   display: inline-block;
   width: 2rem;
   height: 2rem;
-  border: solid 3px #FFF;
+  border: solid 3px #fff;
   box-shadow: 0 0 3px 0 #989898;
   border-radius: 50%;
 }

@@ -1,8 +1,13 @@
-<script setup lang='ts'>
+<script setup lang="ts">
 import { ProductStatus } from '~/models/Product'
 import { useProducts } from '~/composables/useProducts'
 import YummyDataTable from '../shared/YummyDataTable.vue'
-import { NSwitch, type DataTableColumns, type DataTableRowKey, type DataTableSortState } from 'naive-ui'
+import {
+  NSwitch,
+  type DataTableColumns,
+  type DataTableRowKey,
+  type DataTableSortState,
+} from 'naive-ui'
 import type { FilterOptionValue, RowData } from 'naive-ui/es/data-table/src/interface'
 const { enumToFilter } = useFilter()
 const { getProducts, deleteProduct, deleteMultipleProducts, isLoading, products } = useProducts()
@@ -10,7 +15,8 @@ const { getProducts, deleteProduct, deleteMultipleProducts, isLoading, products 
 const router = useRouter()
 const { renderDeleteActionButton } = useRender()
 const { options, bindOptionsToDataTable, filterApplied, resetFilters } = useOptions()
-const { renderPrice, renderRate, renderTag, renderProductImage, renderText, renderIcon } = useRender()
+const { renderPrice, renderRate, renderTag, renderProductImage, renderText, renderIcon } =
+  useRender()
 
 const columns: DataTableColumns<RowData> = [
   {
@@ -25,14 +31,13 @@ const columns: DataTableColumns<RowData> = [
   {
     title: $t('products.category'),
     key: 'category',
-    render: (row) => renderText(row.category.name)
-
+    render: (row) => renderText(row.category.name),
   },
   {
     title: $t('products.rate'),
     key: 'rate',
     sorter: true,
-    render: (row) => renderRate(row.rate)
+    render: (row) => renderRate(row.rate),
   },
   {
     title: $t('common.price'),
@@ -47,12 +52,7 @@ const columns: DataTableColumns<RowData> = [
     filterOptionValues: [],
     filterOptions: enumToFilter(ProductStatus, 'ProductStatus'),
     render: (row) =>
-      renderTag(
-        row.status,
-        getStatusColor(row.status),
-        ProductStatus,
-        'ProductStatus',
-      ),
+      renderTag(row.status, getStatusColor(row.status), ProductStatus, 'ProductStatus'),
   },
   {
     title: $t('products.stoke'),
@@ -64,9 +64,7 @@ const columns: DataTableColumns<RowData> = [
     key: 'actions',
     width: 110,
     render: (row) => [
-      renderDeleteActionButton($t('common.deleteConfirm'), () =>
-        handleDeleteItem(row),
-      ),
+      renderDeleteActionButton($t('common.deleteConfirm'), () => handleDeleteItem(row)),
     ],
   },
 ]
@@ -133,16 +131,22 @@ function resetFilter() {
 function fetchProducts(options: any) {
   getProducts(options)
 }
-
 </script>
 
 <template>
   <n-layout>
     <n-layout-content>
       <div class="px-3">
-        <YummyDataTable reload-on-mount :columns="columns" :rows="products" :row-key="(row: any) => row.id"
-          :data="products" :loading="isLoading" :fetch="(opt: any) => fetchProducts(opt)"
-          v-model:checkedRowKeys="checkedRows">
+        <YummyDataTable
+          reload-on-mount
+          :columns="columns"
+          :rows="products"
+          :row-key="(row: any) => row.id"
+          :data="products"
+          :loading="isLoading"
+          :fetch="(opt: any) => fetchProducts(opt)"
+          v-model:checkedRowKeys="checkedRows"
+        >
           <template #toolbar="{ filterApplied, resetFilters }">
             <!-- <n-button :disabled="!filterApplied" @click="resetFilters()">Reset</n-button>
             <n-button :disabled="!checkedRows.length" @click="deleteSelected()">Delete</n-button> -->
@@ -150,7 +154,13 @@ function fetchProducts(options: any) {
             <NSpace justify="space-between" class="mb-3">
               <div>
                 <SearchInput v-model="options.query" @search="getItems" />
-                <NButton v-if="filterApplied" @click="resetFilters()" secondary type="primary" class="ms-2">
+                <NButton
+                  v-if="filterApplied"
+                  @click="resetFilters()"
+                  secondary
+                  type="primary"
+                  class="ms-2"
+                >
                   <template #icon>
                     <Icon name="fluent:filter-dismiss-24-regular" />
                   </template>
@@ -170,9 +180,7 @@ function fetchProducts(options: any) {
             </NSpace>
           </template>
 
-          <template #empty>
-            No products found.
-          </template>
+          <template #empty> No products found. </template>
         </YummyDataTable>
       </div>
     </n-layout-content>

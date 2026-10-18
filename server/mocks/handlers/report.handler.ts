@@ -7,135 +7,114 @@ import type {
   LocationChartSeries,
   SimpleChartSeries,
 } from '../../../app/models/ChartData'
-import type {
-  DashboardSummaryStatDto,
-  SummaryStatDto,
-} from '../../../app/models/SummaryStat'
+import type { DashboardSummaryStatDto, SummaryStatDto } from '../../../app/models/SummaryStat'
 
 import type { VisitStat } from '../../../app/models/VisitStat'
 
-const months = [
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr',
-  'May',
-  'Jun',
-  'Jul',
-  'Aug',
-  'Sep',
-  'Oct',
-  'Nov',
-  'Dec',
-]
+const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
-
-registerMockHandler('GET','report/summary', () => {
-    const response = createFakeSummaryData()
-    return response
+registerMockHandler('GET', 'report/summary', () => {
+  const response = createFakeSummaryData()
+  return response
 })
 
-registerMockHandler('GET','report/revenue/:period', (event: any, params: any) => {
-    const { period } = params;
-    // const { period } = params
-    let min = 10
-    let max = 200
-    switch (period) {
-      case 'day':
-        min = 10
-        max = 200
-        break
-      case 'week':
-        min = 700
-        max = 1500
-        break
-      case 'month':
-        min = 25000
-        max = 70000
-    }
-    const response = times(7, () => faker.number.int({ min, max }))
+registerMockHandler('GET', 'report/revenue/:period', (event: any, params: any) => {
+  const { period } = params
+  // const { period } = params
+  let min = 10
+  let max = 200
+  switch (period) {
+    case 'day':
+      min = 10
+      max = 200
+      break
+    case 'week':
+      min = 700
+      max = 1500
+      break
+    case 'month':
+      min = 25000
+      max = 70000
+  }
+  const response = times(7, () => faker.number.int({ min, max }))
 
-    return response
+  return response
 })
 
-registerMockHandler('GET','report/usersGender', () => {
-    const response = createFakeGenderData()
-    return response
+registerMockHandler('GET', 'report/usersGender', () => {
+  const response = createFakeGenderData()
+  return response
 })
 
-registerMockHandler('GET','report/usersLocation', () => {
-    const response = createFakeLocationData()
-    return response
+registerMockHandler('GET', 'report/usersLocation', () => {
+  const response = createFakeLocationData()
+  return response
 })
 
-registerMockHandler('GET','report/monthlySellStat', () => {
-    const response: ChartData = {
-      labels: months,
-      series: [
-        {
-          name: 'Total',
-          data: times(12, () => faker.number.int({ min: 1000, max: 10000 })),
-        },
-        {
-          name: 'Revenue',
-          data: times(12, () => faker.number.int({ min: 1000, max: 3000 })),
-        },
-      ],
-    }
-    return response
+registerMockHandler('GET', 'report/monthlySellStat', () => {
+  const response: ChartData = {
+    labels: months,
+    series: [
+      {
+        name: 'Total',
+        data: times(12, () => faker.number.int({ min: 1000, max: 10000 })),
+      },
+      {
+        name: 'Revenue',
+        data: times(12, () => faker.number.int({ min: 1000, max: 3000 })),
+      },
+    ],
+  }
+  return response
 })
 
-registerMockHandler('GET','report/chartDemoData/:length', async (event: any, params: any) => {
-    const { length } = params
-    let lengthNum = Number.parseInt(length?.toString() ?? '12', 10)
-    if (lengthNum > 12) lengthNum = 12
+registerMockHandler('GET', 'report/chartDemoData/:length', async (event: any, params: any) => {
+  const { length } = params
+  let lengthNum = Number.parseInt(length?.toString() ?? '12', 10)
+  if (lengthNum > 12) lengthNum = 12
 
-    const response: ChartData = {
-      labels: months.slice(0, lengthNum),
-      series: [
-        {
-          name: 'Total',
-          data: times(lengthNum, () =>
-            faker.number.int({ min: 1000, max: 10000 }),
-          ),
-        },
-        {
-          name: 'Revenue',
-          data: times(lengthNum, () =>
-            faker.number.int({ min: 1000, max: 3000 }),
-          ),
-        },
-      ],
-    }
+  const response: ChartData = {
+    labels: months.slice(0, lengthNum),
+    series: [
+      {
+        name: 'Total',
+        data: times(lengthNum, () => faker.number.int({ min: 1000, max: 10000 })),
+      },
+      {
+        name: 'Revenue',
+        data: times(lengthNum, () => faker.number.int({ min: 1000, max: 3000 })),
+      },
+    ],
+  }
 
-    await delay(1000)
-    return response
+  await delay(1000)
+  return response
 })
 
-registerMockHandler('GET','report/visitsData', () => {
-    const pages = [
-      '/',
-      '/products',
-      '/products/1',
-      '/about',
-      '/contact',
-      '/blog',
-      '/blog/1',
-      '/cart',
-      '/checkout',
-    ]
-    const response: VisitStat = {
-      pages: times(8, () => ({
-        url: pages[faker.number.int({ min: 0, max: pages.length - 1 })],
-        count: faker.number.int({ min: 500, max: 8000 }),
-      })),
-      sources: times(8, () => ({
-        name: faker.internet.url(),
-        count: faker.number.int({ min: 300, max: 10000 }),
-      })),
-    }
+registerMockHandler('GET', 'report/visitsData', () => {
+  const pages = [
+    '/',
+    '/products',
+    '/products/1',
+    '/about',
+    '/contact',
+    '/blog',
+    '/blog/1',
+    '/cart',
+    '/checkout',
+  ]
+  const response: VisitStat = {
+    pages: times(8, () => ({
+      url: pages[faker.number.int({ min: 0, max: pages.length - 1 })],
+      count: faker.number.int({ min: 500, max: 8000 }),
+    })),
+    sources: times(8, () => ({
+      name: faker.internet.url(),
+      count: faker.number.int({ min: 300, max: 10000 }),
+    })),
+  }
 
-    return response
+  return response
 })
 
 function createFakeSummaryData(): DashboardSummaryStatDto {
@@ -147,11 +126,7 @@ function createFakeSummaryData(): DashboardSummaryStatDto {
   }
 }
 
-function createFakeSummaryStatDto(
-  min = 20,
-  max = 1000,
-  suffix = '',
-): SummaryStatDto {
+function createFakeSummaryStatDto(min = 20, max = 1000, suffix = ''): SummaryStatDto {
   return {
     count: faker.number.int({ min, max }),
     suffix,
@@ -177,12 +152,10 @@ function createFakeLocationData(): LocationChartSeries[] {
 
   if (locations.includes('IR')) locations.splice(locations.indexOf('IR'), 1)
 
-  const locationData: LocationChartSeries[] = locations.map(
-    (location: string) => ({
-      key: location,
-      value: faker.number.int({ min: 500, max: 1000 }),
-    }),
-  )
+  const locationData: LocationChartSeries[] = locations.map((location: string) => ({
+    key: location,
+    value: faker.number.int({ min: 500, max: 1000 }),
+  }))
 
   locationData.push({ key: 'IR', value: { value: 1000, color: '#00A693' } }) // (Persian green). this product made by love in IRAN 💚🤍🩷
 

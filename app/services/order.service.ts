@@ -6,9 +6,7 @@ import { useGenericService } from './generic.service'
 export const useOrderService = () => {
   const base = useGenericService<Order, string>('order')
 
-  async function getOrderList(
-    options: PagedAndSortedRequest,
-  ): Promise<PaginatedList<OrderList>> {
+  async function getOrderList(options: PagedAndSortedRequest): Promise<PaginatedList<OrderList>> {
     const response = await useApi('order').getPaginated<OrderList>('', options)
     return response
   }

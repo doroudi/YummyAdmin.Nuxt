@@ -1,4 +1,4 @@
-<script setup lang='ts'>
+<script setup lang="ts">
 import type { DataTableColumns, DataTableRowKey } from 'naive-ui/es/components'
 import { NRate, NSpace, NText } from 'naive-ui/es/components'
 import type { RowData } from 'naive-ui/es/data-table/src/interface'
@@ -23,9 +23,7 @@ const columns: DataTableColumns<RowData> = [
         NSpace,
         {},
         {
-          default: () => [
-            h(NText, {}, { default: () => `${row.product.name}` }),
-          ],
+          default: () => [h(NText, {}, { default: () => `${row.product.name}` })],
         },
       ),
   },
@@ -57,7 +55,6 @@ const columns: DataTableColumns<RowData> = [
       )
     },
   },
-  
 
   {
     title: $t('reviews.customer'),
@@ -133,13 +130,23 @@ function handleCheck(checkedRowKeys: DataTableRowKey[]) {
         </NSpace>
 
         <SkeletonTable v-if="isLoading" :columns="columns" />
-        <n-data-table v-else remote :columns="columns" :data="reviews" :pagination="options"
-          selectable :row-key="rowKey" :scroll-x="1000" @update:sorter="handleSorterChange"
-          @update:filters="handleFiltersChange" @update:page="handlePageChange"
-          @update:checked-row-keys="handleCheck" />
+        <n-data-table
+          v-else
+          remote
+          :columns="columns"
+          :data="reviews"
+          :pagination="options"
+          selectable
+          :row-key="rowKey"
+          :scroll-x="1000"
+          @update:sorter="handleSorterChange"
+          @update:filters="handleFiltersChange"
+          @update:page="handlePageChange"
+          @update:checked-row-keys="handleCheck"
+        />
       </div>
     </n-layout-content>
   </n-layout>
 </template>
 
-<style scoped lang='scss'></style>
+<style scoped lang="scss"></style>

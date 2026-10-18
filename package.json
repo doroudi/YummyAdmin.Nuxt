@@ -1,12 +1,7 @@
 {
   "name": "yummy-admin-nuxt",
-  "type": "module",
   "private": true,
-  "engines": {
-    "node": ">=22.16",
-    "pnpm": ">=10.22.0"
-  },
-  "packageManager": "pnpm@10.22.0",
+  "type": "module",
   "scripts": {
     "build": "nuxt build",
     "build:mock": "cross-env NUXT_PUBLIC_API_MOCK=true nuxt build",
@@ -18,7 +13,8 @@
     "preview": "nuxt preview",
     "preview:real": "cross-env NUXT_PUBLIC_API_MOCK=false nuxt preview",
     "postinstall": "nuxt prepare",
-    "check": "biome check --write ./app",
+    "prepare": "vp config",
+    "check": "vp check --fix",
     "up": "taze major -I"
   },
   "dependencies": {
@@ -41,7 +37,6 @@
     "@vueuse/core": "^10.11.1",
     "echarts": "^6.1.0",
     "glob": "^13.0.6",
-    "lefthook": "^2.1.9",
     "moment": "^2.30.1",
     "naive-ui": "^2.44.1",
     "nuxt": "^4.4.6",
@@ -57,7 +52,6 @@
     "vue3-map-chart": "^0.0.6"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.16",
     "@faker-js/faker": "^10.4.0",
     "@nuxt/eslint": "^1.15.2",
     "@tailwindcss/vite": "^4.3.0",
@@ -65,13 +59,18 @@
     "autoprefixer": "^10.5.0",
     "cross-env": "^7.0.3",
     "eslint": "^10.4.1",
-    "lefthook": "^2.0.13",
     "postcss": "^8.5.15",
     "sass-embedded": "^1.100.0",
     "taze": "^0.11.4",
     "typescript": "^5.9.3",
     "unplugin-auto-import": "^21.0.0",
     "unplugin-vue-components": "^32.1.0",
+    "vite-plus": "catalog:",
     "vue-tsc": "^3.3.3"
-  }
+  },
+  "engines": {
+    "node": ">=22.18.0",
+    "pnpm": ">=10.22.0"
+  },
+  "packageManager": "pnpm@10.22.0"
 }

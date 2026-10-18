@@ -4,4 +4,3 @@
 export default defineEventHandler(() => {
   // Handlers are initialized in the Nitro plugin
 })
-

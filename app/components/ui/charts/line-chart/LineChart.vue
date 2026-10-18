@@ -104,7 +104,9 @@ const mergedOption = computed(() => {
     legend: userLegend,
     ...userRest
   } = userOption
-  const mergedSeries = Array.isArray(userSeries) ? series.map((s, i) => ({ ...s, ...(userSeries[i] ?? {}) })) : series
+  const mergedSeries = Array.isArray(userSeries)
+    ? series.map((s, i) => ({ ...s, ...userSeries[i] }))
+    : series
 
   const baseLegend =
     fields.length > 1

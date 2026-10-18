@@ -22,6 +22,10 @@ loadSettings()
         {{ $t('profile.push') }}
       </n-gi>
     </n-grid>
-    <ProfileNotificationItem v-for="item in userSettings.notifications" :key="item.type" :item="item" />
+    <ProfileNotificationItem
+      v-for="item in userSettings.notifications"
+      :key="item.type"
+      :item="item"
+    />
   </div>
 </template>

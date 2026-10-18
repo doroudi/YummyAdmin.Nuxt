@@ -18,13 +18,7 @@ export function cn(...inputs: ClassValue[]): string {
   const classes: string[] = []
 
   const walk = (value: ClassValue): void => {
-    if (
-      value === null ||
-      value === undefined ||
-      value === false ||
-      value === ''
-    )
-      return
+    if (value === null || value === undefined || value === false || value === '') return
 
     if (typeof value === 'string' || typeof value === 'number') {
       classes.push(String(value))

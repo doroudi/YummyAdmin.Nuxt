@@ -6,12 +6,14 @@ const chatMessages: Array<ChatItem> = times(10, createFakeChatMessage)
 const activeConnections = new Map<WebSocket, NodeJS.Timeout>()
 
 export default defineWebSocketHandler({
-  async open(peer : any) {
+  async open(peer: any) {
     // Send initial messages
-    peer.send(JSON.stringify({
-      type: 'INIT',
-      payload: chatMessages,
-    }))
+    peer.send(
+      JSON.stringify({
+        type: 'INIT',
+        payload: chatMessages,
+      }),
+    )
 
     // Set up periodic updates
     const updateInterval = setInterval(() => {
@@ -52,7 +54,7 @@ export default defineWebSocketHandler({
     console.log(`Chat WebSocket disconnected: ${peer.id}`)
   },
 
-  async error(peer : any, error) {
+  async error(peer: any, error) {
     console.error(`WebSocket error for ${peer.id}:`, error)
     // Clean up on error as well
     const interval = activeConnections.get(peer)
@@ -60,7 +62,7 @@ export default defineWebSocketHandler({
       clearInterval(interval)
       activeConnections.delete(peer)
     }
-  }
+  },
 })
 
 async function sendInitialMessages(_id: string, peer: any) {

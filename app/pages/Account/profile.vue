@@ -2,7 +2,7 @@
 definePageMeta({
   title: 'profile',
   name: 'accountSettings',
-  breadcrumb: ['accountSettings']
+  breadcrumb: ['accountSettings'],
 })
 </script>
 

@@ -13,20 +13,32 @@ onMounted(async () => {
   <div>
     <div class="margin-outside flex flex-wrap">
       <SummaryStatCard
-        class="w-full sm:w-1/2 md:w-1/4" :loading="isLoadingStats" :data="summaryStat.visitors!"
-        :title="$t('analyticsDashboard.visitors')" color="#00a096"
+        class="w-full sm:w-1/2 md:w-1/4"
+        :loading="isLoadingStats"
+        :data="summaryStat.visitors!"
+        :title="$t('analyticsDashboard.visitors')"
+        color="#00a096"
       />
       <SummaryStatCard
-        class="w-full sm:w-1/2 md:w-1/4" :loading="isLoadingStats" :data="summaryStat.visits!"
-        :title="$t('analyticsDashboard.visits')" color="#DB0B51"
+        class="w-full sm:w-1/2 md:w-1/4"
+        :loading="isLoadingStats"
+        :data="summaryStat.visits!"
+        :title="$t('analyticsDashboard.visits')"
+        color="#DB0B51"
       />
       <SummaryStatCard
-        class="w-full sm:w-1/2 md:w-1/4" :loading="isLoadingStats" :data="summaryStat.views!"
-        :title="$t('analyticsDashboard.views')" color="#9575cd"
+        class="w-full sm:w-1/2 md:w-1/4"
+        :loading="isLoadingStats"
+        :data="summaryStat.views!"
+        :title="$t('analyticsDashboard.views')"
+        color="#9575cd"
       />
       <SummaryStatCard
-        class="w-full sm:w-1/2 md:w-1/4" :loading="isLoadingStats" :data="summaryStat.bounceRate!"
-        :title="$t('analyticsDashboard.bounceRate')" color="#FF8000"
+        class="w-full sm:w-1/2 md:w-1/4"
+        :loading="isLoadingStats"
+        :data="summaryStat.bounceRate!"
+        :title="$t('analyticsDashboard.bounceRate')"
+        color="#FF8000"
       />
     </div>
     <div>

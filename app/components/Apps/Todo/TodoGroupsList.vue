@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useToDoApp } from '~/composables/useTodo';
+import { useToDoApp } from '~/composables/useTodo'
 import type { TaskGroup } from '~/models/Todo'
 
 interface Props {
@@ -58,9 +58,13 @@ function handleSelect(action: string) {
 <template>
   <div>
     <NList hoverable clickable class="px-1">
-      <NListItem v-for="item of groups" :key="item.id" @click="selectGroup(item)"
+      <NListItem
+        v-for="item of groups"
+        :key="item.id"
+        @click="selectGroup(item)"
         @contextmenu="(e: MouseEvent) => handleContextMenu(item, e)"
-        :class="{ selected: item.id === selectedGroup?.id }">
+        :class="{ selected: item.id === selectedGroup?.id }"
+      >
         <template #prefix>
           <span class="icon text-lg">{{ item.icon }}</span>
         </template>
@@ -69,17 +73,23 @@ function handleSelect(action: string) {
             {{ item.title }}
           </span>
 
-          <n-badge  color="var(--primary-color)" />
+          <n-badge color="var(--primary-color)" />
         </div>
-
       </NListItem>
       <!-- context menu -->
-      <n-dropdown :on-clickoutside="() => showDropdown = false" placement="bottom-start" trigger="manual" :x="x" :y="y"
-        :options="options" :show="showDropdown" @select="handleSelect" />
+      <n-dropdown
+        :on-clickoutside="() => (showDropdown = false)"
+        placement="bottom-start"
+        trigger="manual"
+        :x="x"
+        :y="y"
+        :options="options"
+        :show="showDropdown"
+        @select="handleSelect"
+      />
     </NList>
   </div>
 </template>
-
 
 <style scoped lang="scss">
 .icon {

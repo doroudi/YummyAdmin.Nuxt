@@ -1,14 +1,5 @@
 import { Icon } from '@iconify/vue'
-import {
-  NBadge,
-  NButton,
-  NIcon,
-  NImage,
-  NPopconfirm,
-  NSpace,
-  NTag,
-  NText,
-} from 'naive-ui'
+import { NBadge, NButton, NIcon, NImage, NPopconfirm, NSpace, NTag, NText } from 'naive-ui'
 import { useI18n } from 'vue-i18n'
 import { NuxtLink } from '#components'
 // import { useLocalePath } from '#imports'
@@ -20,7 +11,7 @@ export function useRender() {
     const localePath = useLocalePath()
     const convertedPath = localePath(path)
     const to = {
-      to: convertedPath
+      to: convertedPath,
     }
     return h(
       NuxtLink,
@@ -31,11 +22,11 @@ export function useRender() {
         default: () => [
           h(NText, { class: 'mx-2' }, { default: () => title }),
           isNew &&
-          h(
-            NTag,
-            { type: 'primary', bordered: false, round: true, size: 'small' },
-            { default: () => t('common.new') },
-          ),
+            h(
+              NTag,
+              { type: 'primary', bordered: false, round: true, size: 'small' },
+              { default: () => t('common.new') },
+            ),
         ],
       },
     )
@@ -165,18 +156,13 @@ export function useRender() {
   }
 
   function renderConfirmStatus(status: boolean, label: string) {
-    const icon = status
-      ? 'fluent:checkmark-circle-20-filled'
-      : 'fluent:warning-20-filled'
+    const icon = status ? 'fluent:checkmark-circle-20-filled' : 'fluent:warning-20-filled'
     const iconColor = status ? 'green' : 'orange'
     return h(
       NSpace,
       { align: 'center', justify: 'start' },
       {
-        default: () => [
-          renderColoredIcon(icon, iconColor),
-          h(NText, {}, { default: () => label }),
-        ],
+        default: () => [renderColoredIcon(icon, iconColor), h(NText, {}, { default: () => label })],
       },
     )
   }
@@ -186,11 +172,7 @@ export function useRender() {
   }
 
   function renderDate(date: string) {
-    return h(
-      NText,
-      {},
-      { default: () => `${new Date(date).toLocaleDateString()}` },
-    )
+    return h(NText, {}, { default: () => `${new Date(date).toLocaleDateString()}` })
   }
 
   function renderActionButton(icon: any, onClickAction: any) {
@@ -203,10 +185,7 @@ export function useRender() {
     })
   }
 
-  function renderDeleteActionButton(
-    confirmMessage: string,
-    confirmAction: any,
-  ) {
+  function renderDeleteActionButton(confirmMessage: string, confirmAction: any) {
     return h(
       NPopconfirm,
       {
@@ -216,8 +195,7 @@ export function useRender() {
         negativeButtonProps: { ghost: true, type: 'tertiary' },
       },
       {
-        trigger: () =>
-          renderActionButton('fluent:delete-20-regular', () => null),
+        trigger: () => renderActionButton('fluent:delete-20-regular', () => null),
         default: () => confirmMessage,
       },
     )
@@ -242,9 +220,7 @@ export function useRender() {
       },
       {
         icon: renderColoredIcon(
-          confirmed
-            ? 'fluent:checkmark-circle-20-filled'
-            : 'fluent:warning-20-filled',
+          confirmed ? 'fluent:checkmark-circle-20-filled' : 'fluent:warning-20-filled',
           confirmed ? 'green' : 'orange',
         ),
         default: () => email.toLowerCase(),

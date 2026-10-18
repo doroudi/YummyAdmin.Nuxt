@@ -45,7 +45,9 @@ const mergedOption = computed(() => {
   // Per-index series merge — partial overrides keep computed `type`/`data`.
   const userOption: any = props.option ?? {}
   const { series: userSeries, ...userRest } = userOption
-  const mergedSeries = Array.isArray(userSeries) ? series.map((s, i) => ({ ...s, ...(userSeries[i] ?? {}) })) : series
+  const mergedSeries = Array.isArray(userSeries)
+    ? series.map((s, i) => ({ ...s, ...userSeries[i] }))
+    : series
 
   return {
     color: chartColors.value,

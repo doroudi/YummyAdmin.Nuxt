@@ -1,0 +1,3 @@
+# Git hook scripts must stay LF: `sh` (used by Git for Windows) cannot parse a
+# CRLF shebang. The repo uses core.autocrlf=true, so pin these explicitly.
+.vite-hooks/** text eol=lf

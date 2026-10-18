@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LazyEnglandIcon, LazyChineseIcon, LazyPersianIcon } from '#components';
+import { LazyEnglandIcon, LazyChineseIcon, LazyPersianIcon } from '#components'
 defineProps<{ showTitle?: boolean }>()
 const layoutStore = useLayoutStore()
 const { activeLanguage } = storeToRefs(layoutStore)
@@ -49,7 +49,12 @@ function sortLangs(a: string, b: string): number {
   <div v-bind="$attrs">
     <n-tooltip placement="top" trigger="hover">
       <template #trigger>
-        <n-popselect v-model:value="language" trigger="click" :options="languages" @update-value="update">
+        <n-popselect
+          v-model:value="language"
+          trigger="click"
+          :options="languages"
+          @update-value="update"
+        >
           <n-button quaternary :circle="!showTitle">
             <template #icon>
               <Icon name="fluent:globe-20-regular" size="1.4rem" />

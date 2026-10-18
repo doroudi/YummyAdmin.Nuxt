@@ -4,7 +4,7 @@ import Card from './Card.vue'
 
 interface Props {
   title: string
-  data: SummaryStatDto 
+  data: SummaryStatDto
   loading: boolean
   color?: string
 }
@@ -28,21 +28,34 @@ const props = withDefaults(defineProps<Props>(), {
           <div class="flex flex-column items-center justify-between">
             <div class="w-25 overflow-hidden">
               <h3 class="text-gray-700 dark:text-gray-200 value">
-                <n-number-animation v-if="data" :from="0" :to="data.count" /> 
+                <n-number-animation v-if="data" :from="0" :to="data.count" />
                 <span class="ms-0">{{ data?.suffix }}</span>
               </h3>
 
               <span v-if="!loading && data && data.progress">
-                <div class="badge items-center"
-                  :class="data.progress && data.progress > 0 ? 'badge-success' : 'badge-error'">
-                  <Icon class="me-1 pt-1" size=".8rem"
-                    :name="data.progress && data.progress> 0 ? 'fluent:arrow-up-24-filled' : 'fluent:arrow-down-24-filled'" />
+                <div
+                  class="badge items-center"
+                  :class="data.progress && data.progress > 0 ? 'badge-success' : 'badge-error'"
+                >
+                  <Icon
+                    class="me-1 pt-1"
+                    size=".8rem"
+                    :name="
+                      data.progress && data.progress > 0
+                        ? 'fluent:arrow-up-24-filled'
+                        : 'fluent:arrow-down-24-filled'
+                    "
+                  />
                   <span>{{ `${data.progress}%` }}</span>
                 </div>
               </span>
             </div>
-            <Sparkline v-if="!loading && data && data.progressFlow" :width="190" :data="data.progressFlow"
-              :color="color" />
+            <Sparkline
+              v-if="!loading && data && data.progressFlow"
+              :width="190"
+              :data="data.progressFlow"
+              :color="color"
+            />
           </div>
         </section>
       </div>
@@ -62,7 +75,6 @@ const props = withDefaults(defineProps<Props>(), {
       font-size: 1.7rem;
       font-weight: 500;
       margin-top: 7px;
-
     }
     .title {
       font-size: 1rem;
@@ -70,12 +82,12 @@ const props = withDefaults(defineProps<Props>(), {
     }
 
     .badge {
-      font-size: .7rem;
+      font-size: 0.7rem;
       border-radius: 4px;
       display: inline-block;
       padding: 1px 6px;
       display: inline-flex;
-      
+
       &.badge-success {
         background-color: color-mix(in srgb, var(--success-color), var(--background) 95%);
         color: var(--success-color);
@@ -96,8 +108,8 @@ const props = withDefaults(defineProps<Props>(), {
       text-align: right;
     }
   }
-    .badge { 
-      direction: ltr;
-    }
+  .badge {
+    direction: ltr;
+  }
 }
 </style>

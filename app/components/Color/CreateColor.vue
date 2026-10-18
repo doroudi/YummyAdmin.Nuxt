@@ -1,4 +1,4 @@
-<script setup lang='ts'>
+<script setup lang="ts">
 import type { FormInst, FormRules } from 'naive-ui/es/form'
 import { useColors } from '~/composables/useColors'
 import type { ColorCreateModel } from '~/models/Color'
@@ -37,19 +37,23 @@ const rules: FormRules = {
   <n-form ref="formRef" :model="colorItem" :rules="rules" @submit.prevent="create()">
     <div class="form-control">
       <n-form-item class="mb-5" path="name" :label="$t('colors.create.name')">
-        <n-input id="name" ref="nameInput" v-model:value="colorItem.name" autofocus
-          :placeholder="$t('brands.create.brandName')" />
+        <n-input
+          id="name"
+          ref="nameInput"
+          v-model:value="colorItem.name"
+          autofocus
+          :placeholder="$t('brands.create.brandName')"
+        />
       </n-form-item>
     </div>
     <div class="form-control flex flex-col mb-5">
       <n-form-item :label="$t('colors.create.color')">
-        <n-color-picker v-model:value="colorItem.color" :modes="['hex']" :show-alpha="false" :swatches="[
-          '#FFFFFF',
-          '#18A058',
-          '#2080F0',
-          '#F0A020',
-          'rgba(208, 48, 80, 1)',
-        ]" />
+        <n-color-picker
+          v-model:value="colorItem.color"
+          :modes="['hex']"
+          :show-alpha="false"
+          :swatches="['#FFFFFF', '#18A058', '#2080F0', '#F0A020', 'rgba(208, 48, 80, 1)']"
+        />
       </n-form-item>
     </div>
 
@@ -59,4 +63,4 @@ const rules: FormRules = {
   </n-form>
 </template>
 
-<style scoped lang='scss'></style>
+<style scoped lang="scss"></style>

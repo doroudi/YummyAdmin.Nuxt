@@ -1,8 +1,3 @@
-<!--
-  Vendored from the uipkge registry - https://uipkge.dev/vue/charts/area-chart
-  MIT licensed. Adapted for YummyAdmin: UnoCSS instead of Tailwind, and the
-  theme tokens wired to this project's SCSS variables (see ../useChartTheme.ts).
--->
 <script setup lang="ts">
 import { computed } from 'vue'
 import { use } from 'echarts/core'
@@ -55,7 +50,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const mergedOption = computed(() => {
   const fields = Array.isArray(props.yField) ? props.yField : [props.yField]
-  const xData = props.data.map((d) => d[props.xField!])
+  const xData = props.data.map((d) => d[props.xField])
 
   const series = fields.map((field, i) => ({
     name: field,
@@ -94,7 +89,9 @@ const mergedOption = computed(() => {
     legend: userLegend,
     ...userRest
   } = userOption
-  const mergedSeries = Array.isArray(userSeries) ? series.map((s, i) => ({ ...s, ...(userSeries[i] ?? {}) })) : series
+  const mergedSeries = Array.isArray(userSeries)
+    ? series.map((s, i) => ({ ...s, ...userSeries[i] }))
+    : series
 
   // Single-series charts hide the legend explicitly so ECharts' default
   // doesn't dump the y-field name (e.g. "y") onto the chart canvas.

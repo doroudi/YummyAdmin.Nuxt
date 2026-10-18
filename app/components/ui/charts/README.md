@@ -13,12 +13,12 @@ npx shadcn-vue@latest add https://uipkge.dev/r/vue/area-chart.json
 YummyAdmin.Nuxt is Nuxt 4 + Tailwind 3 + Naive UI with its own SCSS token set, so
 the upstream Tailwind v4 assumptions were retargeted rather than reproduced:
 
-| Upstream                     | Here                                                          |
-| ---------------------------- | ------------------------------------------------------------- |
-| `cn` from `@/lib/utils`      | `cn` from `~/common/utils/cn` (no `clsx`/`tailwind-merge`)     |
-| `focus-visible:ring-ring`    | dropped - the focus ring comes from `utils/_override.scss`     |
+| Upstream                     | Here                                                            |
+| ---------------------------- | --------------------------------------------------------------- |
+| `cn` from `@/lib/utils`      | `cn` from `~/common/utils/cn` (no `clsx`/`tailwind-merge`)      |
+| `focus-visible:ring-ring`    | dropped - the focus ring comes from `utils/_override.scss`      |
 | `--chart-1..5`, `--popover`… | defined in `app/assets/css/main.scss`, updated by `app/app.vue` |
-| bare `<VChart>`              | wrapped in `<ClientOnly>` (see below)                          |
+| bare `<VChart>`              | wrapped in `<ClientOnly>` (see below)                           |
 
 `<ClientOnly>` is this repo's own addition, not an upstream change: the vendored
 wrappers are rendered during Nuxt's SSR pass, where ECharts has no canvas. The

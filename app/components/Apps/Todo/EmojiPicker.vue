@@ -65,7 +65,7 @@ function handleSelect(emoji: string) {
 
 <template>
   <div>
-    <n-dropdown trigger="hover" :options="options" @select="handleSelect" style="max-width: 280px;">
+    <n-dropdown trigger="hover" :options="options" @select="handleSelect" style="max-width: 280px">
       <n-button ghost>
         <span v-if="model">{{ model }}</span>
         <span v-else>📁</span>

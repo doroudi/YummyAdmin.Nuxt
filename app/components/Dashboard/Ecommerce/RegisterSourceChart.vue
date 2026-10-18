@@ -4,9 +4,7 @@ const registersSource = ref<any[]>([
   { name: 'Google', value: 120 },
   { name: 'Apple', value: 10 },
 ])
-const total = computed(() =>
-  registersSource.value.reduce((a: any, b: any) => a + b.value, 0),
-)
+const total = computed(() => registersSource.value.reduce((a: any, b: any) => a + b.value, 0))
 </script>
 
 <template>
@@ -17,6 +15,10 @@ const total = computed(() =>
     <p class="text-xsm text-coolgray font-light pb-2">
       {{ $t('dashboard.registerSource.subtitle') }}
     </p>
-    <DonutChart :data="registersSource" :colors="['#DB0B51','#22c55e','#FFCC00', '#0ea5e9']" :height="250" />
+    <DonutChart
+      :data="registersSource"
+      :colors="['#DB0B51', '#22c55e', '#FFCC00', '#0ea5e9']"
+      :height="250"
+    />
   </Card>
 </template>

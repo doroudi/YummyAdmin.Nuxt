@@ -27,21 +27,21 @@ const demoOptions = [
 </script>
 
 <template>
-    <Card stretch-height title-size="normal">
-        <template #title>
-            <header class="flex w-full flex-row justify-between items-center pb-5">
-                <h3 class="title text-lg">📊 Bar Chart Demo</h3>
-                <div>
-                    <n-tooltip placement="top" trigger="hover">
-                        <template #trigger>
-                            <n-button quaternary circle>
-                                <Icon name="fluent:arrow-counterclockwise-32-filled" />
-                            </n-button>
-                        </template>
-                        {{ $t('common.refresh') }}
-                    </n-tooltip>
+  <Card stretch-height title-size="normal">
+    <template #title>
+      <header class="flex w-full flex-row justify-between items-center pb-5">
+        <h3 class="title text-lg">📊 Bar Chart Demo</h3>
+        <div>
+          <n-tooltip placement="top" trigger="hover">
+            <template #trigger>
+              <n-button quaternary circle>
+                <Icon name="fluent:arrow-counterclockwise-32-filled" />
+              </n-button>
+            </template>
+            {{ $t('common.refresh') }}
+          </n-tooltip>
 
-                    <!-- <n-tooltip placement="top" trigger="hover">
+          <!-- <n-tooltip placement="top" trigger="hover">
                         <template #trigger>
                             <n-button quaternary circle>
                                 <n-icon @click="loadData" :component="SettingIcon"></n-icon>
@@ -49,12 +49,12 @@ const demoOptions = [
                         </template>
                         {{ $t('common.settings') }}
                     </n-tooltip> -->
-                    <!-- <n-select class="w-50" v-model="demo" :options="demoOptions" placeholder="Demo" /> -->
-                </div>
-            </header>
-        </template>
-        <div class="pt-2">
-            <BarChart :loading="isLoading" :data="monthlySellStat" :height="300" />
+          <!-- <n-select class="w-50" v-model="demo" :options="demoOptions" placeholder="Demo" /> -->
         </div>
-    </Card>
+      </header>
+    </template>
+    <div class="pt-2">
+      <BarChart :loading="isLoading" :data="monthlySellStat" :height="300" />
+    </div>
+  </Card>
 </template>

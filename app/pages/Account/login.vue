@@ -43,12 +43,10 @@ async function socialLoginWithProvider(provider: string) {
   if (result) {
     useNotification().success({ title: $t('login.successMessage') })
     setTimeout(() => router.push('/'), 500)
-  }
-  else {
+  } else {
     useNotification().error({ title: $t('login.failedMessage') })
     setLoginFailed()
   }
-
 }
 
 const rules: FormRules = {
@@ -70,14 +68,17 @@ const rules: FormRules = {
 
 definePageMeta({
   layout: 'auth',
-  title: 'login'
+  title: 'login',
 })
 </script>
 
 <template>
   <div class="bg flex justify-center items-center h-screen">
     <div class="login-box w-full px-3 md:px-0">
-      <div class="md:shadow-lg bg-white dark:bg-slate-800  rounded-md w-full" :class="{ failed: loginFailed }">
+      <div
+        class="md:shadow-lg bg-white dark:bg-slate-800 rounded-md w-full"
+        :class="{ failed: loginFailed }"
+      >
         <div class="p-5">
           <div class="text-2xl font-medium mb-8">
             {{ $t('login.title') }}
@@ -85,16 +86,28 @@ definePageMeta({
 
           <n-form ref="formRef" :model="loginInfo" @submit="doLogin">
             <n-form-item class="mb-1" path="username" :label="$t('login.username')">
-              <n-input id="name" v-model:value="loginInfo.username" autofocus :placeholder="$t('login.username')" />
+              <n-input
+                id="name"
+                v-model:value="loginInfo.username"
+                autofocus
+                :placeholder="$t('login.username')"
+              />
             </n-form-item>
             <n-form-item class="mb-1" path="password" :label="$t('login.password')">
-              <n-input id="name" v-model:value="loginInfo.password" type="password" show-password-on="mousedown"
-                :placeholder="$t('login.password')" />
+              <n-input
+                id="name"
+                v-model:value="loginInfo.password"
+                type="password"
+                show-password-on="mousedown"
+                :placeholder="$t('login.password')"
+              />
             </n-form-item>
 
             <div class="flex align-items-center justify-between mb-2">
-              <RouterLink to="/Account/ForgotPassword"
-                class="no-underline ml-2 text-blue-500 text-right cursor-pointer">
+              <RouterLink
+                to="/Account/ForgotPassword"
+                class="no-underline ml-2 text-blue-500 text-right cursor-pointer"
+              >
                 {{ $t('login.forgetPassword') }}
               </RouterLink>
             </div>
@@ -104,7 +117,10 @@ definePageMeta({
           </n-form>
           <div class="text-center pt-4 text-sm">
             <span class="line-height-3">{{ $t('login.haveNotAccount') }}</span>
-            <RouterLink to="/Account/Register" class="no-underline mx-1 text-blue-500 cursor-pointer">
+            <RouterLink
+              to="/Account/Register"
+              class="no-underline mx-1 text-blue-500 cursor-pointer"
+            >
               {{ $t('login.createAccount') }}
             </RouterLink>
           </div>
@@ -143,7 +159,7 @@ definePageMeta({
   </div>
 </template>
 
-<style lang='scss'>
+<style lang="scss">
 .login-box {
   max-width: 380px;
   position: relative;
@@ -158,7 +174,6 @@ definePageMeta({
 }
 
 @keyframes shake {
-
   10%,
   90% {
     transform: translate3d(-1px, 0, 0);

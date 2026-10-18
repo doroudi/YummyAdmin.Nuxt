@@ -25,21 +25,26 @@ function updateTitle() {
         <div class="flex row">
           <span class="icon">{{ group.icon }}</span>
           <span class="ms-2" v-if="!editMode" @dblclick="goEditMode">{{ group.title }}</span>
-          <n-input v-else size="large" ref="inputRef" class="edit-input" v-model:value="group.title"
-            @blur="updateTitle" />
+          <n-input
+            v-else
+            size="large"
+            ref="inputRef"
+            class="edit-input"
+            v-model:value="group.title"
+            @blur="updateTitle"
+          />
         </div>
-        <span v-if="group.isToday" class="ms-15  text-sm font-normal">{{ new Date().toDateString() }}</span>
+        <span v-if="group.isToday" class="ms-15 text-sm font-normal">{{
+          new Date().toDateString()
+        }}</span>
       </div>
     </h2>
-
 
     <n-button icon quaternary circle v-if="!group.isToday">
       <Icon name="fluent:edit-24-regular" v-if="!editMode" @click="goEditMode"></Icon>
       <Icon name="fluent:checkmark-48-filled" v-else @click="updateTitle"></Icon>
     </n-button>
   </div>
-
-
 </template>
 
 <style scoped lang="scss">
@@ -49,15 +54,15 @@ function updateTitle() {
 
   .icon {
     display: inline-flex;
-    margin: 0 .4rem;
+    margin: 0 0.4rem;
   }
 
   .edit-input {
     display: inline-block;
     font-size: 1.7rem;
     font-weight: bold;
-    background-color: #CCCCCC40;
-    border-color: transparent
+    background-color: #cccccc40;
+    border-color: transparent;
   }
 }
 </style>

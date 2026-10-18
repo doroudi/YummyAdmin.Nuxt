@@ -1,9 +1,4 @@
-import type {
-  GroupCreateModel,
-  TaskCreateModel,
-  TaskGroup,
-  TaskItem,
-} from '~/models/Todo'
+import type { GroupCreateModel, TaskCreateModel, TaskGroup, TaskItem } from '~/models/Todo'
 
 export const useTodoService = () => {
   const api = useApi('todo')
@@ -19,10 +14,7 @@ export const useTodoService = () => {
   }
 
   async function createTask(task: TaskCreateModel) {
-    const response = await api.post<TaskItem>(
-      `groups/${task.groupId}/tasks`,
-      task,
-    )
+    const response = await api.post<TaskItem>(`groups/${task.groupId}/tasks`, task)
     return response
   }
 

@@ -9,7 +9,7 @@ const route = useRoute()
         {{ $t('home') }}
       </NuxtLink>
     </n-breadcrumb-item>
-    
+
     <n-breadcrumb-item v-for="item in route.meta.breadcrumb" :key="item">
       {{ $t(`menu.${item as string}`) }}
     </n-breadcrumb-item>

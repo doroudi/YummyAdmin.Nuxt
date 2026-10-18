@@ -6,7 +6,7 @@ import type {
   RegisterResponse,
   RegisterViewModel,
 } from '../../../app/models/Account'
-import {  delay } from '../handler-utilities' 
+import { delay } from '../handler-utilities'
 import { registerMockHandler } from '../registry'
 
 registerMockHandler('POST', 'account/login', async (request: any) => {
@@ -20,7 +20,8 @@ registerMockHandler('POST', 'account/login', async (request: any) => {
     return response
   }
 
-  return { //TODO: return correct error response
+  return {
+    //TODO: return correct error response
     status: 400,
     statusText: 'UserName or Password is not correct',
   }
@@ -57,4 +58,3 @@ registerMockHandler('POST', 'account/forget-password', async (request: any) => {
   const response: ForgetPasswordResponse = { isSucceed: true }
   return response
 })
-

@@ -20,43 +20,49 @@ watch(
 <template>
   <div class="flex justify-center switch-select">
     <n-radio-group v-model:value="localValue" size="small" type="info">
-      <n-radio-button v-for="item of ranges" :key="item.label" :value="item.value" :label="item.label" round />
+      <n-radio-button
+        v-for="item of ranges"
+        :key="item.label"
+        :value="item.value"
+        :label="item.label"
+        round
+      />
     </n-radio-group>
   </div>
 </template>
 
 <style lang="scss">
 .switch-select {
-    .n-radio-group {
-        .n-radio-button {
-            border: none;
-            border-radius: var(--n-button-border-radius);
-            margin: 0 0.2rem;
-            background-color: #CCCCCC28;
+  .n-radio-group {
+    .n-radio-button {
+      border: none;
+      border-radius: var(--n-button-border-radius);
+      margin: 0 0.2rem;
+      background-color: #cccccc28;
 
-            &:hover {
-                border: none;
-            }
+      &:hover {
+        border: none;
+      }
 
-            &.n-radio-button--checked {
-              background-color: rgb(from var(--primary-color) r g b / .5);
-              color: var(--n-color-text);
-            }
+      &.n-radio-button--checked {
+        background-color: rgb(from var(--primary-color) r g b / 0.5);
+        color: var(--n-color-text);
+      }
 
-            .n-radio-button__state-border {
-                display: none;
-            }
-        }
-
-        .n-radio-group__splitor {
-            display: none;
-        }
-
-        &.n-radio-group--button-group {
-            .n-radio-group__splitor {
-                display: none;
-            }
-        }
+      .n-radio-button__state-border {
+        display: none;
+      }
     }
+
+    .n-radio-group__splitor {
+      display: none;
+    }
+
+    &.n-radio-group--button-group {
+      .n-radio-group__splitor {
+        display: none;
+      }
+    }
+  }
 }
 </style>

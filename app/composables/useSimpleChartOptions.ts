@@ -1,7 +1,4 @@
-import {
-  chartColors,
-  resolveCssColor,
-} from '~/components/ui/charts/useChartTheme'
+import { chartColors, resolveCssColor } from '~/components/ui/charts/useChartTheme'
 import type { SimpleChartSeries } from '~/models/ChartData'
 import type { ChartOption, SimpleChartProps } from '~/models/ChartsProps'
 
@@ -14,20 +11,15 @@ export function useSimpleChartOptions(props: SimpleChartProps) {
   const { makeLighter } = useColorsUtility()
 
   const labels = computed(() =>
-    Array.isArray(props.data)
-      ? props.data.map((item: any) => String(item.name))
-      : [],
+    Array.isArray(props.data) ? props.data.map((item: any) => String(item.name)) : [],
   )
 
   const safeSeries = computed<number[]>(() =>
-    Array.isArray(props.data)
-      ? props.data.map((item: any) => Number(item.value) || 0)
-      : [],
+    Array.isArray(props.data) ? props.data.map((item: any) => Number(item.value) || 0) : [],
   )
 
   const palette = computed<string[]>(() => {
-    if (props.colors && props.colors.length > 0)
-      return props.colors.map(resolveCssColor)
+    if (props.colors && props.colors.length > 0) return props.colors.map(resolveCssColor)
 
     if (props.colorScheme) {
       return (Array.isArray(props.data) ? props.data : []).map((_, i) =>
@@ -38,9 +30,7 @@ export function useSimpleChartOptions(props: SimpleChartProps) {
     return chartColors.value
   })
 
-  const total = computed(() =>
-    safeSeries.value.reduce((acc, value) => acc + value, 0),
-  )
+  const total = computed(() => safeSeries.value.reduce((acc, value) => acc + value, 0))
 
   /** `DonutChart` / `PieChart` / `PolarBarChart` all accept `{ name, value }`. */
   const simpleData = computed(() =>
@@ -111,11 +101,7 @@ export function useSimpleChartOptions(props: SimpleChartProps) {
   const validateChartData = () => true
 
   const showChart = computed(
-    () =>
-      !props.loading &&
-      !props.error &&
-      Array.isArray(props.data) &&
-      props.data.length > 0,
+    () => !props.loading && !props.error && Array.isArray(props.data) && props.data.length > 0,
   )
 
   watch(

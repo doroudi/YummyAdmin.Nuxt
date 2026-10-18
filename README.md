@@ -8,7 +8,7 @@
 
 Free Nuxt AdminPanel based on Naive UI and Tailwind CSS. Fairly complete with a beautiful design, Full RTL support and multilingual support.
 
-![Preview](/docs/banner-dark.png "Preview")
+![Preview](/docs/banner-dark.png 'Preview')
 
 <p align='center'>
    <a href="https://yummy-admin-nuxt.vercel.app/">🌏 Live Demo</a>
@@ -19,7 +19,7 @@ Free Nuxt AdminPanel based on Naive UI and Tailwind CSS. Fairly complete with a 
    <a href="https://yummy-admin-nuxt.vercel.app?lang=zh"> Chines</a>
 </p>
 
-![Preview](/docs/banner-light.png "Preview Light")
+![Preview](/docs/banner-light.png 'Preview Light')
 
 ## Charts
 
@@ -56,13 +56,13 @@ const months: ChartData = {
 </template>
 ```
 
-| Wrapper                       | Renders                                     |
-| ----------------------------- | ------------------------------------------- |
-| `<LineChart>` / `<AreaChart>` | Multi-series line / filled area             |
-| `<BarChart>`                  | Vertical, grouped or stacked bars           |
-| `<PieChart>` / `<DonutChart>` | Share-of-total, with centre KPI             |
-| `<PolarChart>`                | Radial bar (polar coordinate bar)           |
-| `<RadarChart>`                | Spider chart with auto-computed axis maxima |
+| Wrapper                       | Renders                                                              |
+| ----------------------------- | -------------------------------------------------------------------- |
+| `<LineChart>` / `<AreaChart>` | Multi-series line / filled area                                      |
+| `<BarChart>`                  | Vertical, grouped or stacked bars                                    |
+| `<PieChart>` / `<DonutChart>` | Share-of-total, with centre KPI                                      |
+| `<PolarChart>`                | Radial bar (polar coordinate bar)                                    |
+| `<RadarChart>`                | Spider chart with auto-computed axis maxima                          |
 | `<Sparkline>`                 | Axis-less mini trend, used by `SummaryStatCard` and the revenue card |
 
 Every wrapper accepts `ChartData` (`{ labels, series }`) or `SimpleChartSeries[]`

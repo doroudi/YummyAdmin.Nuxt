@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { SidebarMenuOption  } from './SidebarMenu.vue'
+import type { SidebarMenuOption } from './SidebarMenu.vue'
 const layoutStore = useLayoutStore()
 const { collapsed, forceCollapsed, mobileMode, mobileMenuClosed } = storeToRefs(layoutStore)
 
@@ -19,7 +19,7 @@ const menuOptions: SidebarMenuOption[] = [
         label: $t('menu.eCommerce'),
         key: 'index',
         icon: 'fluent-chart-multiple-20-regular',
-        activeIcon: 'fluent-chart-multiple-20-filled' ,
+        activeIcon: 'fluent-chart-multiple-20-filled',
         route: '/',
       },
       {
@@ -197,27 +197,45 @@ router.beforeEach(() => {
 </script>
 
 <template>
-  <n-layout-sider :native-scrollbar="false" collapse-mode="width" :collapsed-width="mobileMode ? 0 : 64"
+  <n-layout-sider
+    :native-scrollbar="false"
+    collapse-mode="width"
+    :collapsed-width="mobileMode ? 0 : 64"
     :collapsed="effectiveCollapsed"
-    :class="{ 'collapsed': effectiveCollapsed, 'mobile-mode': mobileMode, 'support-mode': layoutStore.supportEnabled }">
+    :class="{
+      collapsed: effectiveCollapsed,
+      'mobile-mode': mobileMode,
+      'support-mode': layoutStore.supportEnabled,
+    }"
+  >
     <div class="logo-container mb-4">
       <div class="flex w-full justify-between items-center">
         <div class="flex w-full justify-start items-center">
-          <div class="logo-bg"><img src="@/assets/images/logo.png" alt="logo" class="logo"></div>
+          <div class="logo-bg"><img src="@/assets/images/logo.png" alt="logo" class="logo" /></div>
           <h1 class="main-title">
             {{ $t('title') }}
           </h1>
         </div>
 
-        <n-button v-if="mobileMode" mx-2 size="small" tertiary circle @click="layoutStore.closeSidebar">
+        <n-button
+          v-if="mobileMode"
+          mx-2
+          size="small"
+          tertiary
+          circle
+          @click="layoutStore.closeSidebar"
+        >
           <template #icon>
             <Icon name="fluent:dismiss-24-filled" size="1.2rem" />
           </template>
         </n-button>
       </div>
     </div>
-    <SidebarMenu :collapsed-width="mobileMode ? 0 : 64" :collapsed-icon-size="mobileMode ? 30 : 20"
-      :options="menuOptions" />
+    <SidebarMenu
+      :collapsed-width="mobileMode ? 0 : 64"
+      :collapsed-icon-size="mobileMode ? 30 : 20"
+      :options="menuOptions"
+    />
   </n-layout-sider>
 </template>
 
@@ -244,7 +262,7 @@ router.beforeEach(() => {
     width: 38px;
     height: 38px;
     display: flex;
-    margin: 0 .34rem;
+    margin: 0 0.34rem;
     justify-content: center;
     align-items: center;
 
@@ -270,14 +288,14 @@ router.beforeEach(() => {
 
 .collapsed {
   .logo-container {
-    padding: 1.2rem 0.5rem 0.5rem .5rem;
+    padding: 1.2rem 0.5rem 0.5rem 0.5rem;
   }
 
   .main-title {
     display: none;
   }
 
-  .n-menu-item-group>.n-menu-item-group-title {
+  .n-menu-item-group > .n-menu-item-group-title {
     display: none;
   }
 
@@ -307,7 +325,7 @@ router.beforeEach(() => {
 .rtl {
   .logo {
     margin-left: 0.8rem;
-    margin-right: .5rem;
+    margin-right: 0.5rem;
   }
 
   .n-menu-item-group-title {
@@ -317,7 +335,7 @@ router.beforeEach(() => {
 }
 
 .support-mode {
-  .n-scrollbar>.n-scrollbar-container {
+  .n-scrollbar > .n-scrollbar-container {
     max-height: calc(100% - 120px);
   }
 }
@@ -329,21 +347,20 @@ router.beforeEach(() => {
 .main-menu {
   .active {
     .p-button {
-
       .p-button-label,
       .p-button-icon {
         color: var(--primary-color);
       }
     }
 
-    ul>li>a {
+    ul > li > a {
       display: block;
     }
   }
 
   .separator {
     border-bottom: solid 1px #f4f4f5;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
 }
 

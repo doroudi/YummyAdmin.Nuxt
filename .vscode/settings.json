@@ -1,50 +1,79 @@
 {
-    "editor.selectionHighlight": false,
-    "peacock.color": "#0a141e",
-    "cSpell.words": [
-        "antfu",
-        "demi",
-        "Ecommerce",
-        "hoverable",
-        "iconify",
-        "intlify",
-        "Nuxt",
-        "pinia",
-        "pnpm",
-        "Shabnam",
-        "sider",
-        "unocss",
-        "unplugin",
-        "Vite",
-        "vitejs",
-        "Vitesse",
-        "vitest",
-        "vueuse"
-    ],
-    "i18n-ally.sourceLanguage": "en",
-    "i18n-ally.keystyle": "nested",
-    "i18n-ally.localesPaths": "app/locales",
-    "i18n-ally.sortKeys": false,
-    "workbench.colorTheme": "GitHub Dark Dimmed",
-    "workbench.colorCustomizations": {
-        "activityBar.activeBackground": "#172d44",
-        "activityBar.background": "#172d44",
-        "activityBar.foreground": "#e7e7e7",
-        "activityBar.inactiveForeground": "#e7e7e799",
-        "activityBarBadge.background": "#a7386e",
-        "activityBarBadge.foreground": "#e7e7e7",
-        "commandCenter.border": "#e7e7e799",
-        "titleBar.activeBackground": "#0a141e",
-        "titleBar.activeForeground": "#e7e7e7",
-        "titleBar.inactiveBackground": "#0a141e99",
-        "titleBar.inactiveForeground": "#e7e7e799",
-        "activityBar.activeBorder": "#e7e7e7",
-        "activityBarTop.activeBackground": "#172d44",
-        "activityBarTop.activeBorder": "#e7e7e7",
-        "activityBarTop.background": "#172d44",
-        "activityBarTop.foreground": "#e7e7e7",
-        "activityBarTop.inactiveForeground": "#e7e7e799",
-        "commandCenter.foreground": "#e7e7e7"
-    },
-    "editor.occurrencesHighlight": "off",
+  "editor.selectionHighlight": false,
+  "peacock.color": "#0a141e",
+  "cSpell.words": [
+    "antfu",
+    "demi",
+    "Ecommerce",
+    "hoverable",
+    "iconify",
+    "intlify",
+    "Nuxt",
+    "pinia",
+    "pnpm",
+    "Shabnam",
+    "sider",
+    "unocss",
+    "unplugin",
+    "Vite",
+    "vitejs",
+    "Vitesse",
+    "vitest",
+    "vueuse"
+  ],
+  "i18n-ally.sourceLanguage": "en",
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.localesPaths": "app/locales",
+  "i18n-ally.sortKeys": false,
+  "workbench.colorTheme": "GitHub Dark Dimmed",
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#172d44",
+    "activityBar.background": "#172d44",
+    "activityBar.foreground": "#e7e7e7",
+    "activityBar.inactiveForeground": "#e7e7e799",
+    "activityBarBadge.background": "#a7386e",
+    "activityBarBadge.foreground": "#e7e7e7",
+    "commandCenter.border": "#e7e7e799",
+    "titleBar.activeBackground": "#0a141e",
+    "titleBar.activeForeground": "#e7e7e7",
+    "titleBar.inactiveBackground": "#0a141e99",
+    "titleBar.inactiveForeground": "#e7e7e799",
+    "activityBar.activeBorder": "#e7e7e7",
+    "activityBarTop.activeBackground": "#172d44",
+    "activityBarTop.activeBorder": "#e7e7e7",
+    "activityBarTop.background": "#172d44",
+    "activityBarTop.foreground": "#e7e7e7",
+    "activityBarTop.inactiveForeground": "#e7e7e799",
+    "commandCenter.foreground": "#e7e7e7"
+  },
+  "editor.occurrencesHighlight": "off",
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "oxc.disableNestedConfig": true,
+  "oxc.fmt.disableNestedConfig": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.oxc": "explicit"
+  }
 }

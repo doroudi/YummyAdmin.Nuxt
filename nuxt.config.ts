@@ -34,39 +34,33 @@ const naiveUiClientPrebundle = defineNuxtModule({
         return
       }
 
-      const preBundled = new Set([
-        'naive-ui',
-        'vueuc',
-        '@css-render/vue3-ssr',
-        '@iconify/vue'
-      ])
+      const preBundled = new Set(['naive-ui', 'vueuc', '@css-render/vue3-ssr', '@iconify/vue'])
 
       config.optimizeDeps.exclude = config.optimizeDeps.exclude.filter(
-        (entry) => typeof entry !== 'string' || !preBundled.has(entry)
+        (entry) => typeof entry !== 'string' || !preBundled.has(entry),
       )
     })
-  }
+  },
 })
 
 export default defineNuxtConfig({
-  modules:
-    [
-      '@nuxt/eslint',
-      '@nuxt/icon',
-      '@nuxt/image',
-      '@nuxt/scripts',
-      '@bg-dev/nuxt-naiveui',
-      naiveUiClientPrebundle,
-      '@nuxtjs/i18n',
-      '@nuxt/fonts',
-      '@vercel/speed-insights',
-      '@nuxt/hints',
-      '@vercel/analytics',
-      '@pinia/nuxt',
-      'pinia-plugin-persistedstate/nuxt'
-    ],
+  modules: [
+    '@nuxt/eslint',
+    '@nuxt/icon',
+    '@nuxt/image',
+    '@nuxt/scripts',
+    '@bg-dev/nuxt-naiveui',
+    naiveUiClientPrebundle,
+    '@nuxtjs/i18n',
+    '@nuxt/fonts',
+    '@vercel/speed-insights',
+    '@nuxt/hints',
+    '@vercel/analytics',
+    '@pinia/nuxt',
+    'pinia-plugin-persistedstate/nuxt',
+  ],
   devServer: {
-    port: 4000
+    port: 4000,
   },
   piniaPluginPersistedstate: {
     storage: 'cookies',
@@ -90,12 +84,12 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       apiMock: false,
-      appUrl: process.env.NUXT_PUBLIC_APP_URL || 'http://localhost:4000'
-    }
+      appUrl: process.env.NUXT_PUBLIC_APP_URL || 'http://localhost:4000',
+    },
   },
   icon: {
     mode: 'css',
-    cssLayer: 'base'
+    cssLayer: 'base',
   },
   fonts: {
     provider: 'google',
@@ -115,8 +109,8 @@ export default defineNuxtConfig({
         weight: [400, 700],
         style: 'normal',
         fallbacks: ['Sans Serif', 'Segoe UI', 'Arial'],
-      }
-    ]
+      },
+    ],
   },
   compatibilityDate: '2025-01-15',
   devtools: {
@@ -133,7 +127,7 @@ export default defineNuxtConfig({
     },
   },
   build: {
-    transpile: ['vueuc', 'naive-ui', 'echarts', 'vue-echarts', '@iconify/vue']
+    transpile: ['vueuc', 'naive-ui', 'echarts', 'vue-echarts', '@iconify/vue'],
   },
   naiveui: {
     colorModePreference: 'light',
@@ -147,19 +141,14 @@ export default defineNuxtConfig({
       AutoImport({
         imports: [
           {
-            'naive-ui': [
-              'useDialog',
-              'useMessage',
-              'useNotification',
-              'useLoadingBar'
-            ]
+            'naive-ui': ['useDialog', 'useMessage', 'useNotification', 'useLoadingBar'],
           },
-          '@vueuse/core'
-        ]
+          '@vueuse/core',
+        ],
       }),
       Components({
-        resolvers: [NaiveUiResolver()]
-      })
+        resolvers: [NaiveUiResolver()],
+      }),
     ],
     optimizeDeps: {
       // Nuxt's client entry is virtual, so Vite's dependency scanner cannot discover
@@ -178,28 +167,28 @@ export default defineNuxtConfig({
         'naive-ui/es/message/styles',
         'naive-ui/es/table/styles',
         'naive-ui/es/tag/styles',
-        '@iconify/vue'
-      ]
+        '@iconify/vue',
+      ],
     },
     build: {
-      target: 'es2022'
-    }
+      target: 'es2022',
+    },
   },
   nitro: {
     esbuild: {
       options: {
-        target: 'es2022'
-      }
+        target: 'es2022',
+      },
     },
     experimental: {
-      websocket: true
-    }
+      websocket: true,
+    },
   },
   i18n: {
     locales: [
       { code: 'en', language: 'en-US', file: 'en.yml' },
       { code: 'fa', language: 'fa-IR', file: 'fa.yml', dir: 'rtl' },
-      { code: 'zh', language: 'zh-CN', file: 'zh.yml' }
+      { code: 'zh', language: 'zh-CN', file: 'zh.yml' },
     ],
     langDir: '../app/locales',
     defaultLocale: 'en',
@@ -208,8 +197,8 @@ export default defineNuxtConfig({
     config: {
       stylistic: {
         commaDangle: 'never',
-        braceStyle: '1tbs'
-      }
-    }
+        braceStyle: '1tbs',
+      },
+    },
   },
 })

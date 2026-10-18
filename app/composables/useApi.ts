@@ -40,30 +40,21 @@ export const useApi = (urlSlug: string) => {
   }
 
   // Async data wrapper for automatic loading/error states
-  const useAsyncFetch = <T>(
-    url: string,
-    options: any = {},
-    immediate = true,
-  ) => {
-    return useAsyncData<T>(
-      `${options.method || 'GET'}:${url}`,
-      () => baseFetch<T>(url, options),
-      { immediate, ...options.asyncDataOptions },
-    )
+  const useAsyncFetch = <T>(url: string, options: any = {}, immediate = true) => {
+    return useAsyncData<T>(`${options.method || 'GET'}:${url}`, () => baseFetch<T>(url, options), {
+      immediate,
+      ...options.asyncDataOptions,
+    })
   }
 
   return {
     // Core methods (direct promises)
-    get: <T>(url: string, params?: any) =>
-      baseFetch<T>(url, { method: 'GET', params }),
+    get: <T>(url: string, params?: any) => baseFetch<T>(url, { method: 'GET', params }),
 
     getList: <T>(url: string, params: any): Promise<ListResult<T>> =>
       baseFetch<ListResult<T>>(url, { method: 'GET', params }),
 
-    getPaginated: <T>(
-      url: string,
-      options: PagedAndSortedRequest,
-    ): Promise<PaginatedList<T>> =>
+    getPaginated: <T>(url: string, options: PagedAndSortedRequest): Promise<PaginatedList<T>> =>
       baseFetch<PaginatedList<T>>(url, {
         method: 'GET',
         params: removeDefaultOptions(options),
@@ -78,8 +69,7 @@ export const useApi = (urlSlug: string) => {
     put: <T>(url: string, data?: any): Promise<T> =>
       baseFetch<T>(url, { method: 'PUT', body: data }),
 
-    delete: <T>(url: string): Promise<T> =>
-      baseFetch<T>(url, { method: 'DELETE' }),
+    delete: <T>(url: string): Promise<T> => baseFetch<T>(url, { method: 'DELETE' }),
 
     getBlobFile: (url: string, params?: any) =>
       baseFetch<Blob>(url, {
@@ -109,11 +99,7 @@ export const useApi = (urlSlug: string) => {
     useAsyncGetList: <T>(url: string, params: any, immediate = true) =>
       useAsyncFetch<ListResult<T>>(url, { method: 'GET', params }, immediate),
 
-    useAsyncGetPaginated: <T>(
-      url: string,
-      options: PagedAndSortedRequest,
-      immediate = true,
-    ) =>
+    useAsyncGetPaginated: <T>(url: string, options: PagedAndSortedRequest, immediate = true) =>
       useAsyncFetch<PaginatedList<T>>(
         url,
         { method: 'GET', params: removeDefaultOptions(options) },
@@ -132,9 +118,7 @@ export const useApi = (urlSlug: string) => {
 }
 
 // Helper function to remove default options
-function removeDefaultOptions(
-  options: PagedAndSortedRequest,
-): Partial<PagedAndSortedRequest> {
+function removeDefaultOptions(options: PagedAndSortedRequest): Partial<PagedAndSortedRequest> {
   const result: Partial<PagedAndSortedRequest> = {}
 
   // Define default values
@@ -160,9 +144,7 @@ function removeDefaultOptions(
 
     // Skip internal/UI properties
     if (
-      ['pageCount', 'onUpdatePageSize', 'showSizePicker', 'pageSizes'].includes(
-        prop,
-      )
+      ['pageCount', 'onUpdatePageSize', 'showSizePicker', 'pageSizes'].includes(prop.toString())
     ) {
       continue
     }
@@ -172,35 +154,3 @@ function removeDefaultOptions(
 
   return result
 }
-
-// Optional: Create a composable for using API with auto-refresh on auth change
-// export const useApiWithRefresh = () => {
-//   const api = useApi();
-//   const auth = useAuth();
-
-//   const refreshableFetch = async <T>(
-//     fetchFn: () => Promise<T>
-//   ): Promise<T> => {
-//     try {
-//       return await fetchFn();
-//     } catch (error: any) {
-//       if (error.response?.status === 401 && auth.token.value) {
-//         await auth.refreshToken();
-//         return await fetchFn();
-//       }
-//       throw error;
-//     }
-//   };
-
-//   return {
-//     ...api,
-//     get: <T>(url: string, params?: any) =>
-//       refreshableFetch(() => api.get<T>(url, params)),
-//     post: <T>(url: string, data?: any) =>
-//       refreshableFetch(() => api.post<T>(url, data)),
-//     put: <T>(url: string, data?: any) =>
-//       refreshableFetch(() => api.put<T>(url, data)),
-//     delete: <T>(url: string) =>
-//       refreshableFetch(() => api.delete<T>(url)),
-//   };
-// };

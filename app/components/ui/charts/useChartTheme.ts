@@ -20,13 +20,10 @@ if (typeof window !== 'undefined') {
   // resolved CSS values rather than the static fallbacks below.
   requestAnimationFrame(() => themeKey.value++)
 
-  new MutationObserver(() => themeKey.value++).observe(
-    document.documentElement,
-    {
-      attributes: true,
-      attributeFilter: ['class', 'style', 'data-theme'],
-    },
-  )
+  new MutationObserver(() => themeKey.value++).observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['class', 'style', 'data-theme'],
+  })
 }
 
 // ECharts' canvas renderer does not accept every modern CSS colour format.
@@ -45,8 +42,7 @@ export function toCanvasColor(cssColor: string): string {
     const lightness = Number(match[1]) / (match[2] === '%' ? 100 : 1)
     const chroma = Number(match[3])
     const hue = (Number(match[4]) * Math.PI) / 180
-    const alpha =
-      match[5] == null ? 1 : Number(match[5]) / (match[6] === '%' ? 100 : 1)
+    const alpha = match[5] == null ? 1 : Number(match[5]) / (match[6] === '%' ? 100 : 1)
     const a = chroma * Math.cos(hue)
     const b = chroma * Math.sin(hue)
 
@@ -59,29 +55,21 @@ export function toCanvasColor(cssColor: string): string {
       -0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s,
     ]
     const rgb = linear.map((channel) => {
-      const encoded =
-        channel <= 0.0031308
-          ? 12.92 * channel
-          : 1.055 * channel ** (1 / 2.4) - 0.055
+      const encoded = channel <= 0.0031308 ? 12.92 * channel : 1.055 * channel ** (1 / 2.4) - 0.055
       return Math.round(Math.min(1, Math.max(0, encoded)) * 255)
     })
 
-    return alpha < 1
-      ? `rgba(${rgb.join(', ')}, ${alpha})`
-      : `rgb(${rgb.join(', ')})`
+    return alpha < 1 ? `rgba(${rgb.join(', ')}, ${alpha})` : `rgb(${rgb.join(', ')})`
   }
 
   if (typeof document === 'undefined') return cssColor
-  if (!_hexCanvas)
-    _hexCanvas = document.createElement('canvas').getContext('2d')
+  if (!_hexCanvas) _hexCanvas = document.createElement('canvas').getContext('2d')
   if (!_hexCanvas) return cssColor
 
   _hexCanvas.fillStyle = '#010203'
   _hexCanvas.fillStyle = value
   const normalized = _hexCanvas.fillStyle as string
-  return normalized === '#010203' && value.toLowerCase() !== '#010203'
-    ? value
-    : normalized
+  return normalized === '#010203' && value.toLowerCase() !== '#010203' ? value : normalized
 }
 
 // Convert any CSS colour (hex, rgb, oklch, color()) + alpha 0..1 to a
@@ -97,8 +85,7 @@ export function toRgba(cssColor: string, alpha: number): string {
     const b = Number.parseInt(normalized.slice(5, 7), 16)
     return `rgba(${r},${g},${b},${alpha})`
   }
-  if (normalized.startsWith('rgba('))
-    return normalized.replace(/,\s*[\d.]+\s*\)$/, `,${alpha})`)
+  if (normalized.startsWith('rgba(')) return normalized.replace(/,\s*[\d.]+\s*\)$/, `,${alpha})`)
 
   if (normalized.startsWith('rgb('))
     return normalized.replace(/^rgb\(/, 'rgba(').replace(/\)$/, `,${alpha})`)
@@ -134,9 +121,7 @@ export function resolveCssColor(input: string): string {
     const resolved =
       typeof window === 'undefined'
         ? ''
-        : getComputedStyle(document.documentElement)
-            .getPropertyValue(match[1]!)
-            .trim()
+        : getComputedStyle(document.documentElement).getPropertyValue(match[1]!).trim()
 
     if (resolved) return toCanvasColor(resolved)
     if (match[2]) return toCanvasColor(match[2].trim())
@@ -149,67 +134,49 @@ export function resolveCssColor(input: string): string {
 
 // Light-mode fallbacks roughly matching the YummyAdmin brand green so the
 // first paint does not flicker before the tokens resolve.
-export const CHART_FALLBACK = [
-  '#00ad4c',
-  '#008a3c',
-  '#007935',
-  '#00692e',
-  '#ff7300',
-]
+export const CHART_FALLBACK = ['#00ad4c', '#008a3c', '#007935', '#00692e', '#ff7300']
 
 export const chartColors: ComputedRef<string[]> = computed(() => {
-  themeKey.value
-  return Array.from({ length: 5 }, (_, i) =>
-    resolveVar([`--chart-${i + 1}`], CHART_FALLBACK[i]!),
-  )
+  return Array.from({ length: 5 }, (_, i) => resolveVar([`--chart-${i + 1}`], CHART_FALLBACK[i]!))
 })
 
 export const chartTextColor: ComputedRef<string> = computed(() => {
-  themeKey.value
   return resolveVar(['--muted-foreground', '--chart-text-color'], '#6e6b7b')
 })
 
 export const chartAxisColor: ComputedRef<string> = computed(() => {
-  themeKey.value
   return resolveVar(['--border', '--border-color'], '#e0dfdf')
 })
 
 export const chartSplitLineColor: ComputedRef<string> = computed(() => {
-  themeKey.value
   return resolveVar(['--border', '--border-color'], '#efefef')
 })
 
 export const chartTooltipBg: ComputedRef<string> = computed(() => {
-  themeKey.value
   return resolveVar(['--popover', '--main-content'], 'rgba(255,255,255,0.96)')
 })
 
 export const chartTooltipBorder: ComputedRef<string> = computed(() => {
-  themeKey.value
   return resolveVar(['--border', '--border-color'], '#e0dfdf')
 })
 
 export const chartTooltipText: ComputedRef<string> = computed(() => {
-  themeKey.value
   return resolveVar(['--popover-foreground'], '#2f2b3d')
 })
 
 export const chartBgColor: ComputedRef<string> = computed(() => {
-  themeKey.value
   return resolveVar(['--card', '--main-content'], '#ffffff')
 })
 
 // The app accent, for the one highlighted element on a chart - a focused bar
 // or a selected series. Category series keep using `chartColors`.
 export const chartAccentColor: ComputedRef<string> = computed(() => {
-  themeKey.value
   return resolveVar(['--primary', '--primary-color'], '#00ad4c')
 })
 
 // Out-of-bounds / failure colour for charts that encode good vs bad rather
 // than a category.
 export const chartDangerColor: ComputedRef<string> = computed(() => {
-  themeKey.value
   return resolveVar(['--destructive', '--error-color'], '#ff4d4f')
 })
 

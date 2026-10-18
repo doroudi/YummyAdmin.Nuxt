@@ -25,8 +25,7 @@ const validations = {
   password(_rule: FormItemRule, value: string) {
     if (!value) return new Error('password is required')
 
-    if (value.length < 5)
-      return new Error('password must be at least 5 characters')
+    if (value.length < 5) return new Error('password must be at least 5 characters')
 
     return true
   },

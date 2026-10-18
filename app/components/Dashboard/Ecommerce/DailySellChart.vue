@@ -17,7 +17,7 @@ const data: ChartData = {
 </script>
 
 <template>
-    <Card class="p-2" :title="$t('dashboard.sellChart.title')">
-        <RadarChart :height="320" :colors="['#FC0', '#2358EA']" :data="data" />
-    </Card>
+  <Card class="p-2" :title="$t('dashboard.sellChart.title')">
+    <RadarChart :height="320" :colors="['#FC0', '#2358EA']" :data="data" />
+  </Card>
 </template>

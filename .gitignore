@@ -13,6 +13,9 @@ node_modules
 logs
 *.log
 
+# Vite+ generated hook dispatcher (project-owned hooks live in .vite-hooks/)
+.vite-hooks/_
+
 # Misc
 .DS_Store
 .fleet

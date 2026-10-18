@@ -1,15 +1,10 @@
-<script setup lang='ts'>
+<script setup lang="ts">
 import { type DataTableColumns, NSpace, NText } from 'naive-ui/es/components'
 import type { RowData } from 'naive-ui/es/data-table/src/interface'
 import { OrderStatus } from '~/models/Order'
 
-const {
-  renderTag,
-  renderPrice,
-  renderUserAvatar,
-  renderDeleteActionButton,
-  renderDate,
-} = useRender()
+const { renderTag, renderPrice, renderUserAvatar, renderDeleteActionButton, renderDate } =
+  useRender()
 const { getStatusColor, isLoading, orders, deleteItem, getOrders } = useOrders()
 
 onMounted(getItems)
@@ -24,12 +19,7 @@ const columns: DataTableColumns<RowData> = [
   {
     title: $t('common.date'),
     key: 'createdDate',
-    render: (row) =>
-      h(
-        NText,
-        {},
-        { default: () => renderDate(row.createdDate) },
-      ),
+    render: (row) => h(NText, {}, { default: () => renderDate(row.createdDate) }),
   },
   {
     title: $t('orders.itemsCount'),
@@ -43,22 +33,14 @@ const columns: DataTableColumns<RowData> = [
   {
     title: $t('common.status'),
     key: 'status',
-    render: (row) =>
-      renderTag(
-        row.status,
-        getStatusColor(row.status),
-        OrderStatus,
-        'OrderStatus',
-      ),
+    render: (row) => renderTag(row.status, getStatusColor(row.status), OrderStatus, 'OrderStatus'),
   },
   {
     title: $t('common.actions'),
     key: 'actions',
     width: 110,
     render: (row) => [
-      renderDeleteActionButton($t('common.deleteConfirm'), () =>
-        handleDeleteItem(row),
-      ),
+      renderDeleteActionButton($t('common.deleteConfirm'), () => handleDeleteItem(row)),
     ],
   },
 ]
@@ -92,11 +74,20 @@ async function handleDeleteItem(row: RowData) {
           <SearchInput v-model="options.query" @search="getItems" />
         </NSpace>
         <SkeletonTable v-if="isLoading" :columns="columns" />
-        <n-data-table remote :columns="columns" :data="orders" :pagination="options" :row-key="rowKey" :scroll-x="1000"
-          @update:sorter="getItems" @update:filters="getItems" @update:page="handlePageChange" />
+        <n-data-table
+          remote
+          :columns="columns"
+          :data="orders"
+          :pagination="options"
+          :row-key="rowKey"
+          :scroll-x="1000"
+          @update:sorter="getItems"
+          @update:filters="getItems"
+          @update:page="handlePageChange"
+        />
       </div>
     </n-layout-content>
   </n-layout>
 </template>
 
-<style scoped lang='scss'></style>
+<style scoped lang="scss"></style>

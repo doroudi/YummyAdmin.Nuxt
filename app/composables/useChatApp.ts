@@ -8,9 +8,7 @@ export const useChatApp = () => {
   const isLoading = ref(false)
   const unwatch: (() => void) | null = null
 
-  const { status, data, send, open, close } = useWebSocket(
-    `wss://localhost:4000/ws/chat`,
-  )
+  const { status, data, send, open, close } = useWebSocket(`wss://localhost:4000/ws/chat`)
 
   async function connect() {
     if (status.value === 'CLOSED') open()

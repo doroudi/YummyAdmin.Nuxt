@@ -8,7 +8,12 @@ import { computed } from 'vue'
 import { use } from 'echarts/core'
 import { CanvasRenderer } from 'echarts/renderers'
 import { BarChart as EChartsBarChart } from 'echarts/charts'
-import { GridComponent, TooltipComponent, LegendComponent, MarkAreaComponent } from 'echarts/components'
+import {
+  GridComponent,
+  TooltipComponent,
+  LegendComponent,
+  MarkAreaComponent,
+} from 'echarts/components'
 import VChart from 'vue-echarts'
 import { cn } from '~/common/utils/cn'
 import {
@@ -23,7 +28,14 @@ import {
   mergeOptionBlock,
 } from '../useChartTheme'
 
-use([CanvasRenderer, EChartsBarChart, GridComponent, TooltipComponent, LegendComponent, MarkAreaComponent])
+use([
+  CanvasRenderer,
+  EChartsBarChart,
+  GridComponent,
+  TooltipComponent,
+  LegendComponent,
+  MarkAreaComponent,
+])
 
 interface Props {
   data: Record<string, any>[]
@@ -98,7 +110,9 @@ const mergedOption = computed(() => {
             }
           : {}),
       },
-      label: props.valueLabels ? { show: true, position: 'top', color: chartTextColor.value, fontSize: 11 } : undefined,
+      label: props.valueLabels
+        ? { show: true, position: 'top', color: chartTextColor.value, fontSize: 11 }
+        : undefined,
       data: props.data.map((d) => d[field]),
     }
   })
@@ -131,7 +145,7 @@ const mergedOption = computed(() => {
                   borderWidth: stackGap,
                 }
               : {}),
-            ...(u.itemStyle ?? {}),
+            ...u.itemStyle,
           },
         }
       })

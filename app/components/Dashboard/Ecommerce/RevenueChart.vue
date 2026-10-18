@@ -19,9 +19,7 @@ const ranges = [
   { label: $t('common.month'), value: 'month' },
 ]
 
-const total = computed(() =>
-  (revenueStat.value as number[]).reduce((a, b) => a + b, 0),
-)
+const total = computed(() => (revenueStat.value as number[]).reduce((a, b) => a + b, 0))
 </script>
 
 <template>
@@ -30,14 +28,20 @@ const total = computed(() =>
       <div class="h-full flex flex-col justify-between">
         <div>
           <h3 class="text-3xl font-bold">
-            <n-number-animation show-separator :from="0" :to="total" /> <span class="currency">{{ $t('currencySign') }}</span>
+            <n-number-animation show-separator :from="0" :to="total" />
+            <span class="currency">{{ $t('currencySign') }}</span>
           </h3>
           <p class="text-xsm text-coolgray font-light pb-2">
             {{ $t('dashboard.revenueChart.subtitle') }}
           </p>
         </div>
 
-        <SwitchSelect v-if="revenueStat.length" v-model:value="period" :ranges="ranges" @update:value="updatePeriod" />
+        <SwitchSelect
+          v-if="revenueStat.length"
+          v-model:value="period"
+          :ranges="ranges"
+          @update:value="updatePeriod"
+        />
         <div v-if="revenueStat.length" class="my-2 -mx-11">
           <Sparkline :data="revenueStat" width="100%" :height="150" color="var(--primary-color)" />
         </div>

@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 definePageMeta({
-   title: 'charts',
-   name: 'charts',
-   breadcrumb: ['components', 'charts']
+  title: 'charts',
+  name: 'charts',
+  breadcrumb: ['components', 'charts'],
 })
 </script>
 
 <template>
-   <ChartsComponentView />
+  <ChartsComponentView />
 </template>

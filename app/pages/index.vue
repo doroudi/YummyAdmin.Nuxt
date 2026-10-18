@@ -3,8 +3,7 @@ const route = useRoute()
 if (route.query.lang) {
   const lang = route.query.lang as string
   const layout = useLayoutStore()
-  if (['en','fa','zh'].includes(lang))
-    layout.changeLanguage(lang)
+  if (['en', 'fa', 'zh'].includes(lang)) layout.changeLanguage(lang)
 }
 
 if (route.query.theme) {
@@ -16,7 +15,7 @@ if (route.query.theme) {
 definePageMeta({
   title: 'dashboard',
   name: 'index',
-  breadcrumb: ['dashboard']
+  breadcrumb: ['dashboard'],
 })
 </script>
 

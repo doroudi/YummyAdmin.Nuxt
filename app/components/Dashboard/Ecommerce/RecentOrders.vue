@@ -27,19 +27,21 @@ const columns: DataTableColumns<RowData> = [
     key: 'status',
     fixed: 'right',
     width: 80,
-    render: (row) =>
-      renderTag(
-        row.status,
-        getStatusColor(row.status),
-        OrderStatus,
-        'OrderStatus',
-      ),
+    render: (row) => renderTag(row.status, getStatusColor(row.status), OrderStatus, 'OrderStatus'),
   },
 ]
 </script>
 
 <template>
   <div>
-    <YummyDataTable :row-key="(row: any) => row.id" no-pagination :loading="isLoading" :columns="columns" :rows="orders" :scroll-x="500" :fetch="getItems" />
+    <YummyDataTable
+      :row-key="(row: any) => row.id"
+      no-pagination
+      :loading="isLoading"
+      :columns="columns"
+      :rows="orders"
+      :scroll-x="500"
+      :fetch="getItems"
+    />
   </div>
 </template>

@@ -261,7 +261,7 @@ notifications:
   stats: آمار
   orderSubmitted: سفارش جدید ثبت شد
   passwordExpire: رمز عبور شما در {count} روز دیگر منقضی می‌شود
-  customerRegister: "{count} مشتری جدید دیروز ثبت‌نام کردند"
+  customerRegister: '{count} مشتری جدید دیروز ثبت‌نام کردند'
   stockWarning: موجودی محصول در حال کاهش است
   orderCanceled: یک سفارش لغو شد
 notify:

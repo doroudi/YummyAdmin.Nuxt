@@ -31,18 +31,14 @@ onMounted(() => activateCurrentRoute())
 function activateCurrentRoute() {
   setTimeout(() => {
     const keys = props.options.flatMap((item: SidebarMenuOption) =>
-      item.children
-        ? [item, ...item.children.flatMap((child) => child.children || child)]
-        : item,
+      item.children ? [item, ...item.children.flatMap((child) => child.children || child)] : item,
     )
     const currentRouteName = route.name?.toString().toLowerCase().replace(/__.*/g, '')
     if (keys !== undefined) {
       selectedMenuKey.value =
-      keys.find(
-        (s: SidebarMenuOption) =>
-        s.key?.toLowerCase() === currentRouteName,
-      )?.key ?? 'dashboard-ecommerce' //default route
-      
+        keys.find((s: SidebarMenuOption) => s.key?.toLowerCase() === currentRouteName)?.key ??
+        'dashboard-ecommerce' //default route
+
       menuRef.value?.showOption(selectedMenuKey.value)
     }
   }, 20)
@@ -50,12 +46,10 @@ function activateCurrentRoute() {
 
 watch(
   () => route.name,
-  () =>  setTimeout(() => activateCurrentRoute(), 200)
+  () => setTimeout(() => activateCurrentRoute(), 200),
 )
 
-const items = computed(() =>
-  props.options.map((o: SidebarMenuOption) => convertToMenuOption(o)),
-)
+const items = computed(() => props.options.map((o: SidebarMenuOption) => convertToMenuOption(o)))
 
 function convertToMenuOption(item: SidebarMenuOption): MenuOption {
   return {
@@ -71,9 +65,7 @@ function convertToMenuOption(item: SidebarMenuOption): MenuOption {
       item.type === 'group'
         ? () => null
         : renderIcon(
-            isActiveRoute(item) && item.activeIcon
-              ? item.activeIcon
-              : item.icon,
+            isActiveRoute(item) && item.activeIcon ? item.activeIcon : item.icon,
             item.showBadge,
           ),
     key: item.key,
@@ -87,8 +79,13 @@ function isActiveRoute(item: SidebarMenuOption) {
 </script>
 
 <template>
-  <n-menu ref="menuRef" v-bind="$attrs" accordion v-model:value="selectedMenuKey" :options="items" />
+  <n-menu
+    ref="menuRef"
+    v-bind="$attrs"
+    accordion
+    v-model:value="selectedMenuKey"
+    :options="items"
+  />
 </template>
-
 
 <style scoped></style>

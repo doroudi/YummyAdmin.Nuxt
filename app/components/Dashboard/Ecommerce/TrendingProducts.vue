@@ -44,6 +44,14 @@ const columns: DataTableColumns<RowData> = [
 
 <template>
   <div>
-    <YummyDataTable :row-key="(row: any) => row.id" :loading="isLoading" no-pagination :columns="columns" :rows="trendingProducts" :scroll-x="500" :fetch="loadItems" />
+    <YummyDataTable
+      :row-key="(row: any) => row.id"
+      :loading="isLoading"
+      no-pagination
+      :columns="columns"
+      :rows="trendingProducts"
+      :scroll-x="500"
+      :fetch="loadItems"
+    />
   </div>
 </template>

@@ -19,8 +19,13 @@ const items: any[] = [
 <template>
   <div class="flex items-center" v-bind="$attrs">
     <n-dropdown :options="items">
-      <NImage class="avatar" preview-disabled src="/assets/images/avatar.png" alt="avatar"
-        fallbackSrc="/assets/images/avatar.png" />
+      <NImage
+        class="avatar"
+        preview-disabled
+        src="/assets/images/avatar.png"
+        alt="avatar"
+        fallbackSrc="/assets/images/avatar.png"
+      />
     </n-dropdown>
   </div>
 </template>
@@ -41,14 +46,13 @@ const items: any[] = [
   font-size: 0.7rem;
 }
 
-.p-tieredmenu .p-menuitem-active>.p-submenu-list {
+.p-tieredmenu .p-menuitem-active > .p-submenu-list {
   right: 100%;
   left: auto;
 }
 
 .rtl {
-
-  .p-tieredmenu .p-menuitem-active>.p-submenu-list {
+  .p-tieredmenu .p-menuitem-active > .p-submenu-list {
     right: auto;
     left: 100%;
   }

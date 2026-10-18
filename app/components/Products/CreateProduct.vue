@@ -1,4 +1,4 @@
-<script setup lang='ts'>
+<script setup lang="ts">
 import type { TreeSelectOption } from 'naive-ui/es/tree-select/src/interface'
 import type { UploadFileInfo } from 'naive-ui/es/upload'
 import { useBrands } from '~/composables/useBrands'
@@ -67,34 +67,55 @@ function formatCurrency(value: number | null) {
               <n-input :placeholder="$t('products.create.name')" label="Name" size="large" />
             </n-form-item>
             <n-grid :span="24" :x-gap="24">
-              <n-form-item-gi :span="8" path="sku" :label="$t('products.create.sku')" >
-                <n-input :placeholder="$t('products.create.sku')" :label="$t('products.create.sku')" size="large" />
+              <n-form-item-gi :span="8" path="sku" :label="$t('products.create.sku')">
+                <n-input
+                  :placeholder="$t('products.create.sku')"
+                  :label="$t('products.create.sku')"
+                  size="large"
+                />
               </n-form-item-gi>
 
               <n-form-item-gi :span="8" path="name" :label="$t('products.create.barcode')">
-                <n-input :placeholder="$t('products.create.barcode')" :label="$t('products.create.barcode')"
-                  size="large" />
+                <n-input
+                  :placeholder="$t('products.create.barcode')"
+                  :label="$t('products.create.barcode')"
+                  size="large"
+                />
               </n-form-item-gi>
 
               <n-form-item-gi :span="8" path="name" :label="$t('products.create.barcode')">
-                <n-input :placeholder="$t('products.create.barcode')" :label="$t('products.create.barcode')"
-                  size="large" />
+                <n-input
+                  :placeholder="$t('products.create.barcode')"
+                  :label="$t('products.create.barcode')"
+                  size="large"
+                />
               </n-form-item-gi>
-             
             </n-grid>
 
             <div path="description">
-              <Editor v-model="productItem.description" :placeholder="$t('products.create.productInformation')" />
+              <Editor
+                v-model="productItem.description"
+                :placeholder="$t('products.create.productInformation')"
+              />
             </div>
           </div>
         </Card>
         <Card size="small" :title="$t('products.create.media')">
           <div class="form-control">
             <n-form-item class="mb-5" path="image" :label="$t('brands.create.image')">
-              <n-upload list-type="image-card" accept="image/png, image/jpeg" :max="20" @preview="handlePreview" />
-              <n-modal v-model:show="showModal" preset="card" style="width: 600px"
-                :title="$t('products.create.imageName')">
-                <img :src="previewImageUrl" style="width: 100%">
+              <n-upload
+                list-type="image-card"
+                accept="image/png, image/jpeg"
+                :max="20"
+                @preview="handlePreview"
+              />
+              <n-modal
+                v-model:show="showModal"
+                preset="card"
+                style="width: 600px"
+                :title="$t('products.create.imageName')"
+              >
+                <img :src="previewImageUrl" style="width: 100%" />
               </n-modal>
             </n-form-item>
           </div>
@@ -105,18 +126,30 @@ function formatCurrency(value: number | null) {
         <Card size="small" :title="$t('products.create.pricing')" class="mb-2">
           <n-space vertical>
             <n-form-item path="price" :label="$t('products.create.price')">
-              <n-input :input-props="{ type: 'number' }" :placeholder="$t('products.create.price')" class="flex-1"
-                v-model="productItem.price" :parse="parseCurrency" :show-button="false" :format="formatCurrency">
+              <n-input
+                :input-props="{ type: 'number' }"
+                :placeholder="$t('products.create.price')"
+                class="flex-1"
+                v-model="productItem.price"
+                :parse="parseCurrency"
+                :show-button="false"
+                :format="formatCurrency"
+              >
                 <template #suffix>
                   {{ $t('currencySign') }}
                 </template>
-                
-            </n-input>
+              </n-input>
             </n-form-item>
             <n-form-item path="name" :label="$t('products.create.discountedPrice')">
-              <n-input-number :placeholder="$t('products.create.discountedPrice')" class="flex-1" :default-value="0"
-                v-model="productItem.discountedPrice" :show-button="false" :parse="parseCurrency"
-                :format="formatCurrency" />
+              <n-input-number
+                :placeholder="$t('products.create.discountedPrice')"
+                class="flex-1"
+                :default-value="0"
+                v-model="productItem.discountedPrice"
+                :show-button="false"
+                :parse="parseCurrency"
+                :format="formatCurrency"
+              />
             </n-form-item>
             <hr />
             <n-space p-1 justify="space-between">
@@ -129,17 +162,30 @@ function formatCurrency(value: number | null) {
         <Card size="small" :title="$t('products.create.category')">
           <n-space vertical>
             <n-form-item path="category" :label="$t('products.create.category')">
-              <n-tree-select v-model="productItem.categoryId" key-field="key" :options="categoryOptions"
-                :placeholder="$t('products.create.category')" />
+              <n-tree-select
+                v-model="productItem.categoryId"
+                key-field="key"
+                :options="categoryOptions"
+                :placeholder="$t('products.create.category')"
+              />
             </n-form-item>
             <n-form-item path="brand" :label="$t('products.create.brand')">
-              <n-select v-model="productItem.brandId" :options="brandOptions"
-                :placeholder="$t('products.create.brand')" />
+              <n-select
+                v-model="productItem.brandId"
+                :options="brandOptions"
+                :placeholder="$t('products.create.brand')"
+              />
             </n-form-item>
             <n-form-item path="keywords" :label="$t('products.create.keywords')">
               <n-dynamic-tags v-model:value="productItem.tags" :max="10">
                 <template #trigger="{ activate, disabled }">
-                  <n-button size="small" type="primary" dashed :disabled="disabled" @click="activate()">
+                  <n-button
+                    size="small"
+                    type="primary"
+                    dashed
+                    :disabled="disabled"
+                    @click="activate()"
+                  >
                     <template #icon>
                       <Icon name="fluent:add-24-filled" />
                     </template>
@@ -155,8 +201,8 @@ function formatCurrency(value: number | null) {
   </n-form>
 </template>
 
-<style lang='scss'>
-.n-card>.n-card-header .n-card-header__main {
+<style lang="scss">
+.n-card > .n-card-header .n-card-header__main {
   font-weight: bold;
 }
 

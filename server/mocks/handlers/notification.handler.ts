@@ -1,19 +1,14 @@
 import { faker } from '@faker-js/faker/locale/en'
-import { type Notification, NotificationType } from '../../../app/models/Notification.ts'
+import { type Notification, NotificationType } from '../../../app/models/Notification'
 import { CreateListResponse } from '../handler-utilities'
 import { registerMockHandler } from '../registry'
 
 const notifications = createFakeNotification()
 
 registerMockHandler('GET', 'notification', (request: any) => {
-  const response = CreateListResponse<Notification>(
-    request,
-    notifications,
-    'title',
-  )
+  const response = CreateListResponse<Notification>(request, notifications, 'title')
   return response
 })
-
 
 function createFakeNotification(): Notification[] {
   return [
@@ -69,4 +64,3 @@ function createFakeNotification(): Notification[] {
     },
   ]
 }
-

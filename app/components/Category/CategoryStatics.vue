@@ -11,15 +11,26 @@ getCategoryStats()
       {{ $t('categories.stat') }}
     </h2>
 
-    <SummaryStatCard class="w-full" v-if="!isLoadingStats" :data="categoryStats.summaryStats" :loading="isLoadingStats"
-      :title="$t('categories.stat')" icon="fluent:data-trending-16-regular" />
+    <SummaryStatCard
+      class="w-full"
+      v-if="!isLoadingStats"
+      :data="categoryStats.summaryStats"
+      :loading="isLoadingStats"
+      :title="$t('categories.stat')"
+      icon="fluent:data-trending-16-regular"
+    />
 
     <h2 class="card-title px-2 py-4">
       {{ $t('categories.topCategories') }}
     </h2>
 
-    <DonutChart v-if="categoryStats.productsByCategoryStat" :height="300" :loading="isLoadingStats"
-      :data="categoryStats.productsByCategoryStat" show-legend />
+    <DonutChart
+      v-if="categoryStats.productsByCategoryStat"
+      :height="300"
+      :loading="isLoadingStats"
+      :data="categoryStats.productsByCategoryStat"
+      show-legend
+    />
   </div>
 </template>
 

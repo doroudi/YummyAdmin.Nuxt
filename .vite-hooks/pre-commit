@@ -1,0 +1,7 @@
+#!/bin/sh
+# Project-owned Vite+ pre-commit hook.
+# The dispatcher installed by `vp hooks enable` (core.hooksPath=.vite-hooks/_)
+# invokes this file. This repo has no global `vp` CLI, so the project-local CLI
+# is run through the package manager. Use `vp staged --fail-on-changes` if you
+# want the commit to fail when a task rewrites files.
+pnpm exec vp staged

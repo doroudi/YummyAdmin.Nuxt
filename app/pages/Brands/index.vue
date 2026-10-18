@@ -1,8 +1,8 @@
-<script setup lang='ts'>
+<script setup lang="ts">
 definePageMeta({
   title: 'brands',
   name: 'brands',
-  breadcrumb: ['productManagement', 'brands']
+  breadcrumb: ['productManagement', 'brands'],
 })
 </script>
 

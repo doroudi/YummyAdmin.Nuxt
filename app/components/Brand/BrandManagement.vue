@@ -1,4 +1,4 @@
-<script setup lang='ts'>
+<script setup lang="ts">
 import { type DataTableColumns, NButton, NIcon } from 'naive-ui/es/components'
 import type { RowData } from 'naive-ui/es/data-table/src/interface'
 import { useBrands } from '~/composables/useBrands'
@@ -23,10 +23,8 @@ const columns: DataTableColumns<RowData> = [
     key: 'actions',
     width: 110,
     render: (row) => [
-      renderActionButton('fluent:edit-32-regular', () => { }),
-      renderDeleteActionButton($t('common.deleteConfirm'), () =>
-        handleDeleteItem(row),
-      ),
+      renderActionButton('fluent:edit-32-regular', () => {}),
+      renderDeleteActionButton($t('common.deleteConfirm'), () => handleDeleteItem(row)),
     ],
   },
 ]
@@ -73,8 +71,16 @@ function createBrand() {
       </n-space>
 
       <SkeletonTable v-if="isLoading" :columns="columns" />
-      <n-data-table v-else remote :columns="columns" :data="brands" :pagination="options" :row-key="rowKey"
-         @update:filters="getItems" @update:page="handlePageChange" />
+      <n-data-table
+        v-else
+        remote
+        :columns="columns"
+        :data="brands"
+        :pagination="options"
+        :row-key="rowKey"
+        @update:filters="getItems"
+        @update:page="handlePageChange"
+      />
     </n-layout-content>
 
     <n-drawer v-model:show="showAddDialog" :width="380" :placement="dialogPlacement">

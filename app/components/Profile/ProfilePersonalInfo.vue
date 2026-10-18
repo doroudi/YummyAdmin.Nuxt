@@ -10,12 +10,18 @@ function editProfile() {}
       <n-form size="large" :model="profile" @submit.prevent="editProfile()">
         <n-grid :span="24" :x-gap="42" :y-gap="18">
           <n-form-item-gi :span="12" class="mb-1" path="firstName" :label="$t('profile.firstName')">
-            <n-input id="name" v-model:value="profile.firstName" autofocus :placeholder="$t('profile.firstName')" />
+            <n-input
+              id="name"
+              v-model:value="profile.firstName"
+              autofocus
+              :placeholder="$t('profile.firstName')"
+            />
           </n-form-item-gi>
           <n-form-item-gi :span="12" class="mb-1" path="lastName" :label="$t('profile.lastName')">
             <n-input
               id="lastName"
-              v-model:value="profile.lastName" type="text"
+              v-model:value="profile.lastName"
+              type="text"
               :placeholder="$t('profile.lastName')"
             />
           </n-form-item-gi>
@@ -23,7 +29,8 @@ function editProfile() {}
           <n-form-item-gi :span="12" class="mb-1" path="location" :label="$t('profile.location')">
             <n-input
               id="location"
-              v-model:value="profile.location" type="text"
+              v-model:value="profile.location"
+              type="text"
               :placeholder="$t('profile.location')"
             />
           </n-form-item-gi>
@@ -31,7 +38,8 @@ function editProfile() {}
           <n-form-item-gi :span="12" class="mb-1" path="phone" :label="$t('profile.phone')">
             <n-input
               id="phone"
-              v-model:value="profile.phone" type="text"
+              v-model:value="profile.phone"
+              type="text"
               :placeholder="$t('profile.phone')"
             />
           </n-form-item-gi>

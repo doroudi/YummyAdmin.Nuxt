@@ -1,4 +1,4 @@
-<script setup lang='ts'>
+<script setup lang="ts">
 import { type DataTableColumns, NButton } from 'naive-ui/es/components'
 import type { RowData } from 'naive-ui/es/data-table/src/interface'
 import { useCategories } from '~/composables/useCategories'
@@ -25,10 +25,8 @@ const columns: DataTableColumns<RowData> = [
     key: 'actions',
     width: 110,
     render: (row) => [
-      renderActionButton('fluent:edit-32-regular', () => { }),
-      renderDeleteActionButton($t('common.deleteConfirm'), () =>
-        handleDeleteItem(row),
-      ),
+      renderActionButton('fluent:edit-32-regular', () => {}),
+      renderDeleteActionButton($t('common.deleteConfirm'), () => handleDeleteItem(row)),
     ],
   },
 ]
@@ -79,12 +77,28 @@ function createCategory() {
           </NButton>
         </n-space>
         <SkeletonTable v-if="isLoading" :columns="columns" />
-        <n-data-table v-else remote :columns="columns" :data="categories" :pagination="options" :row-key="rowKey"
-          @update:sorter="handleSorterChange" @update:filters="handleFiltersChange" @update:page="handlePageChange" />
+        <n-data-table
+          v-else
+          remote
+          :columns="columns"
+          :data="categories"
+          :pagination="options"
+          :row-key="rowKey"
+          @update:sorter="handleSorterChange"
+          @update:filters="handleFiltersChange"
+          @update:page="handlePageChange"
+        />
       </div>
     </n-layout-content>
-    <n-layout-sider bordered collapse-mode="width" :collapsed-width="0" :width="300" :collapsed="collapsed"
-      @collapse="collapsed = true" @expand="collapsed = false">
+    <n-layout-sider
+      bordered
+      collapse-mode="width"
+      :collapsed-width="0"
+      :width="300"
+      :collapsed="collapsed"
+      @collapse="collapsed = true"
+      @expand="collapsed = false"
+    >
       <CategoryStatics />
     </n-layout-sider>
 
@@ -96,4 +110,4 @@ function createCategory() {
   </n-layout>
 </template>
 
-<style scoped lang='scss'></style>
+<style scoped lang="scss"></style>

@@ -1,8 +1,4 @@
-import type {
-  ChartData,
-  LocationChartSeries,
-  SimpleChartSeries,
-} from '~/models/ChartData'
+import type { ChartData, LocationChartSeries, SimpleChartSeries } from '~/models/ChartData'
 import type { DashboardSummaryStatDto } from '~/models/SummaryStat'
 import { useReportService } from '~/services/report.service'
 

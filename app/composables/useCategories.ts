@@ -1,9 +1,6 @@
 import type { Category, CategoryCreateModel } from '~/models/Category'
 import type { SimpleChartSeries } from '~/models/ChartData'
-import {
-  defaultOptions,
-  type PagedAndSortedRequest,
-} from '~/models/PagedAndSortedRequest'
+import { defaultOptions, type PagedAndSortedRequest } from '~/models/PagedAndSortedRequest'
 import type { SummaryStatDto } from '~/models/SummaryStat'
 import { useCategoryService } from '~/services/category.service'
 
@@ -19,9 +16,7 @@ export const useCategories = () => {
     productsByCategoryStat: SimpleChartSeries[]
   }>({} as any)
 
-  async function getCategories(
-    options: PagedAndSortedRequest = defaultOptions,
-  ) {
+  async function getCategories(options: PagedAndSortedRequest = defaultOptions) {
     isLoading.value = true
     try {
       const response = await categoryService.getPagedList(options)
@@ -45,7 +40,7 @@ export const useCategories = () => {
     isLoading.value = true
     try {
       await categoryService.create<CategoryCreateModel>(categoryItem)
-      getCategories()
+      await getCategories()
     } finally {
       isLoading.value = false
     }
@@ -53,7 +48,7 @@ export const useCategories = () => {
 
   async function deleteCategory(id: number) {
     await categoryService.remove(id)
-    getCategories()
+    await getCategories()
   }
 
   return {

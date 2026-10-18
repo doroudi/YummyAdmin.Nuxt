@@ -24,7 +24,13 @@ const options = {
 </script>
 
 <template>
-  <QuillEditor v-model="content" :option="options" toolbar="minimal" align="right" v-bind="$attrs" />
+  <QuillEditor
+    v-model="content"
+    :option="options"
+    toolbar="minimal"
+    align="right"
+    v-bind="$attrs"
+  />
 </template>
 
 <style lang="scss">
@@ -45,11 +51,12 @@ const options = {
 
 .dark {
   .ql-editor.ql-blank::before {
-    color: #CCC;
-    font-size: .9rem;
+    color: #ccc;
+    font-size: 0.9rem;
   }
 
-  .ql-container.ql-snow, .ql-toolbar.ql-snow {
+  .ql-container.ql-snow,
+  .ql-toolbar.ql-snow {
     background: #2e3342;
     // border-color: var(--second-background);
   }

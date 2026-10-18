@@ -3,7 +3,7 @@ definePageMeta({
   title: 'chat',
   name: 'apps-chat',
   layout: 'wide',
-  breadcrumb: ['apps', 'chat']
+  breadcrumb: ['apps', 'chat'],
 })
 </script>
 

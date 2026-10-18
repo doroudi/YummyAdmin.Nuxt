@@ -19,11 +19,19 @@ function searchInListDebounced(value: string) {
 </script>
 
 <template>
-    <n-input v-model="model" :placeholder="$t('common.search')" autosize clearable
-        class="w-[200px] transition-all ease-in duration-200" :class="{ 'md:w-[250px]': focused }"
-        @input="searchInListDebounced" @focus="focused = true" @blur="focused = false">
-        <template #prefix>
-            <Icon name="fluent:search-24-regular" />
-        </template>
-    </n-input>
+  <n-input
+    v-model="model"
+    :placeholder="$t('common.search')"
+    autosize
+    clearable
+    class="w-[200px] transition-all ease-in duration-200"
+    :class="{ 'md:w-[250px]': focused }"
+    @input="searchInListDebounced"
+    @focus="focused = true"
+    @blur="focused = false"
+  >
+    <template #prefix>
+      <Icon name="fluent:search-24-regular" />
+    </template>
+  </n-input>
 </template>

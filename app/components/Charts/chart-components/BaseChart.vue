@@ -143,131 +143,129 @@ const chartBindings = computed(() => ({
 </script>
 
 <template>
-    <div class="chart-container">
-        <div v-if="loading" class="chart-loading">
-            <div class="loading-spinner"></div>
-            <p class="loading-text">{{ t('charts.loading') }}</p>
-        </div>
-
-        <div v-else-if="error" class="chart-error">
-            <div class="error-icon">⚠️</div>
-            <p class="error-text">{{ error }}</p>
-            <button v-if="$slots['error-action']" class="error-action" @click="$emit('error-action')">
-                <slot name="error-action"></slot>
-            </button>
-        </div>
-
-        <div v-else-if="!hasData" class="chart-no-data">
-            <div class="no-data-icon">📊</div>
-            <p class="no-data-text">{{ t('charts.notData') }}</p>
-        </div>
-
-        <div v-else class="chart-wrapper">
-            <component :is="chartComponent" v-bind="chartBindings" />
-        </div>
-
-        <div v-if="$slots.footer" class="chart-footer">
-            <slot name="footer"></slot>
-        </div>
+  <div class="chart-container">
+    <div v-if="loading" class="chart-loading">
+      <div class="loading-spinner"></div>
+      <p class="loading-text">{{ t('charts.loading') }}</p>
     </div>
+
+    <div v-else-if="error" class="chart-error">
+      <div class="error-icon">⚠️</div>
+      <p class="error-text">{{ error }}</p>
+      <button v-if="$slots['error-action']" class="error-action" @click="$emit('error-action')">
+        <slot name="error-action"></slot>
+      </button>
+    </div>
+
+    <div v-else-if="!hasData" class="chart-no-data">
+      <div class="no-data-icon">📊</div>
+      <p class="no-data-text">{{ t('charts.notData') }}</p>
+    </div>
+
+    <div v-else class="chart-wrapper">
+      <component :is="chartComponent" v-bind="chartBindings" />
+    </div>
+
+    <div v-if="$slots.footer" class="chart-footer">
+      <slot name="footer"></slot>
+    </div>
+  </div>
 </template>
 
 <style scoped>
 .chart-container {
-    position: relative;
-    width: 100%;
-    min-height: 200px;
+  position: relative;
+  width: 100%;
+  min-height: 200px;
 }
 
 .chart-loading,
 .chart-error,
 .chart-no-data,
 .chart-fallback {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: v-bind(heightStyle);
-    border-radius: var(--border-radius);
-    ;
-    padding: 2rem;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: v-bind(heightStyle);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  text-align: center;
 }
 
 .loading-spinner {
-    width: 40px;
-    height: 40px;
-    border: 3px solid #e0e0e0;
-    border-top-color: var(--primary-color, #7367f0);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin-bottom: 1rem;
+  width: 40px;
+  height: 40px;
+  border: 3px solid #e0e0e0;
+  border-top-color: var(--primary-color, #7367f0);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
 }
 
 @keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .loading-text,
 .error-text,
 .no-data-text {
-    color: #6E6B7B;
-    margin: 0.5rem 0;
-    font-size: 0.875rem;
+  color: #6e6b7b;
+  margin: 0.5rem 0;
+  font-size: 0.875rem;
 }
 
 .error-icon,
 .no-data-icon {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+  font-size: 2rem;
+  margin-bottom: 1rem;
 }
 
 .error-action {
-    margin-top: 1rem;
-    padding: 0.5rem 1rem;
-    background: var(--primary-color, #7367f0);
-    color: white;
-    border: none;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    font-size: 0.875rem;
-    transition: opacity 0.2s;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: var(--primary-color, #7367f0);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: opacity 0.2s;
 }
 
 .error-action:hover {
-    opacity: 0.9;
+  opacity: 0.9;
 }
 
 .chart-wrapper {
-    position: relative;
-    transition: opacity 0.3s ease;
+  position: relative;
+  transition: opacity 0.3s ease;
 }
 
 .chart-component {
-    width: 100%;
+  width: 100%;
 }
 
 .chart-footer {
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid #e0e0e0;
-    font-size: 0.75rem;
-    color: #6E6B7B;
-    text-align: center;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e0e0e0;
+  font-size: 0.75rem;
+  color: #6e6b7b;
+  text-align: center;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-
-    .chart-loading,
-    .chart-error,
-    .chart-no-data,
-    .chart-fallback {
-        height: auto;
-        min-height: 200px;
-        padding: 1rem;
-    }
+  .chart-loading,
+  .chart-error,
+  .chart-no-data,
+  .chart-fallback {
+    height: auto;
+    min-height: 200px;
+    padding: 1rem;
+  }
 }
 </style>

@@ -16,12 +16,7 @@ const DEFAULTS = {
   pageSize: 10,
 } as const
 
-const IGNORE_KEYS = new Set([
-  'pageCount',
-  'onUpdatePageSize',
-  'showSizePicker',
-  'pageSizes',
-])
+const IGNORE_KEYS = new Set(['pageCount', 'onUpdatePageSize', 'showSizePicker', 'pageSizes'])
 
 function asSingle(v: LocationQueryValue | LocationQueryValue[] | undefined) {
   return Array.isArray(v) ? v[0] : v
@@ -176,10 +171,7 @@ export function useOptions(autoBind = true) {
     if (sortBy) {
       const sortCol: any = columns.find((c: any) => c.key === sortBy)
       if (sortCol) {
-        const dir =
-          sortDirection === 'desc' || sortDirection === 'descend'
-            ? 'descend'
-            : 'ascend'
+        const dir = sortDirection === 'desc' || sortDirection === 'descend' ? 'descend' : 'ascend'
         sortCol.sortOrder = dir
       }
     }

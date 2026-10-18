@@ -33,7 +33,7 @@ const rules: FormRules = {
 definePageMeta({
   title: 'forgetPassword',
   layout: 'auth',
-  authRequired: false
+  authRequired: false,
 })
 </script>
 
@@ -45,25 +45,47 @@ definePageMeta({
           <div class="text-2xl font-medium mb-8">
             {{ $t('forgot.title') }}
           </div>
-          <n-form ref="formRef" :model="forgetInfo" :rules="rules" @submit.prevent="doResetPassword()">
+          <n-form
+            ref="formRef"
+            :model="forgetInfo"
+            :rules="rules"
+            @submit.prevent="doResetPassword()"
+          >
             <n-form-item class="mb-1" path="email" :label="$t('forgot.email')">
-              <n-input id="name" v-model:value="forgetInfo.email" autofocus :placeholder="$t('forgot.email')" />
+              <n-input
+                id="name"
+                v-model:value="forgetInfo.email"
+                autofocus
+                :placeholder="$t('forgot.email')"
+              />
             </n-form-item>
 
             <div class="flex align-items-center my-3">
               <span class="font-medium">{{ $t('forgot.rememberInfo') }}</span>
-              <RouterLink to="/Account/Login" class="font-medium no-underline mx-1 text-blue-500 cursor-pointer">
+              <RouterLink
+                to="/Account/Login"
+                class="font-medium no-underline mx-1 text-blue-500 cursor-pointer"
+              >
                 {{ $t('forgot.login') }}
               </RouterLink>
             </div>
 
-            <n-button attr-type="submit" size="large" :block="true" type="primary" :loading="isLoading">
+            <n-button
+              attr-type="submit"
+              size="large"
+              :block="true"
+              type="primary"
+              :loading="isLoading"
+            >
               {{ $t('forgot.resetPassword') }}
             </n-button>
           </n-form>
           <div class="text-center pt-4 text-sm">
             <span class="font-medium line-height-3">{{ $t('login.haveNotAccount') }}</span>
-            <RouterLink to="/Account/Register" class="font-medium no-underline mx-1 text-blue-500 cursor-pointer">
+            <RouterLink
+              to="/Account/Register"
+              class="font-medium no-underline mx-1 text-blue-500 cursor-pointer"
+            >
               {{ $t('login.createAccount') }}
             </RouterLink>
           </div>
@@ -77,7 +99,7 @@ definePageMeta({
   </div>
 </template>
 
-<style lang='scss'>
+<style lang="scss">
 .login-box {
   max-width: 380px;
 

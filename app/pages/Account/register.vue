@@ -46,7 +46,7 @@ const rules: FormRules = {
 definePageMeta({
   layout: 'auth',
   title: 'register',
-  authRequired: false
+  authRequired: false,
 })
 </script>
 
@@ -61,14 +61,29 @@ definePageMeta({
 
           <n-form ref="formRef" :model="registerInfo" :rules="rules" @submit.prevent="doRegister()">
             <n-form-item class="mb-1" path="username" :label="$t('register.username')">
-              <n-input id="name" v-model:value="registerInfo.username" autofocus
-                :placeholder="$t('register.username')" />
+              <n-input
+                id="name"
+                v-model:value="registerInfo.username"
+                autofocus
+                :placeholder="$t('register.username')"
+              />
             </n-form-item>
             <n-form-item class="mb-1" path="password" :label="$t('register.password')">
-              <n-input id="name" v-model:value="registerInfo.password" type="password" show-password-on="mousedown"
-                :placeholder="$t('register.password')" />
+              <n-input
+                id="name"
+                v-model:value="registerInfo.password"
+                type="password"
+                show-password-on="mousedown"
+                :placeholder="$t('register.password')"
+              />
             </n-form-item>
-            <n-button attr-type="submit" size="large" :block="true" type="primary" :loading="isLoading">
+            <n-button
+              attr-type="submit"
+              size="large"
+              :block="true"
+              type="primary"
+              :loading="isLoading"
+            >
               {{ $t('register.button') }}
             </n-button>
           </n-form>
@@ -88,7 +103,7 @@ definePageMeta({
   </div>
 </template>
 
-<style lang='scss'>
+<style lang="scss">
 .register-box {
   max-width: 380px;
   z-index: 2;

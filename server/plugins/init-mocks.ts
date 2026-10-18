@@ -2,7 +2,6 @@
 // Load all mock handlers using dynamic imports to prevent tree-shaking
 
 export default defineNitroPlugin(async () => {
-  
   try {
     await Promise.all([
       import('../mocks/handlers/account.handler'),
@@ -19,16 +18,17 @@ export default defineNitroPlugin(async () => {
       import('../mocks/handlers/review.handler'),
       import('../mocks/handlers/todo.handler'),
     ])
-    
+
     // Verify handlers are loaded
     const { mockHandlers } = await import('../mocks/registry')
-    
+
     if (mockHandlers.length > 0) {
-      const preview = mockHandlers.slice(0, 5).map((h: any) => `${h.method} ${h.path}`).join(', ')
+      mockHandlers
+        .slice(0, 5)
+        .map((h: any) => `${h.method} ${h.path}`)
+        .join(', ')
     }
   } catch (error) {
     console.error('❌ Failed to load mock handlers:', error)
   }
 })
-
-

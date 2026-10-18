@@ -1,8 +1,8 @@
-<script setup lang='ts'>
+<script setup lang="ts">
 definePageMeta({
   title: 'colors',
   name: 'colors',
-  breadcrumb: ['productManagement', 'colors']
+  breadcrumb: ['productManagement', 'colors'],
 })
 </script>
 
@@ -10,5 +10,4 @@ definePageMeta({
   <ColorManagement />
 </template>
 
-<style scoped lang='scss'>
-</style>
+<style scoped lang="scss"></style>
